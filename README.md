@@ -11,7 +11,7 @@ Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo de
 ## Integrantes
 
 * Victor Alexandre Ferreira Santos
-* Nome completo do aluno 2
+* Vitor Alberto Gonçalves Cavaco
 * Nome completo do aluno 3
 * Nome completo do aluno 4
 * Nome completo do aluno 5
