@@ -13,7 +13,7 @@ Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo de
 * Victor Alexandre Ferreira Santos
 * Vitor Alberto Gonçalves Cavaco
 * Luigi von Blücher Mezzogori
-* Nome completo do aluno 4
+* Samuel Lacerda Borges
 * Nome completo do aluno 5
 * Nome completo do aluno 6
 
