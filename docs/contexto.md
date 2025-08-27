@@ -36,9 +36,9 @@ Pessoas, entre 18 e 70 anos, com renda suficiente para comer fora de casa, que d
 
 ### Personas
 
-![Persona João](img/Persona_João.png)
+![Persona João](img/etapa_01/personas/Persona_João.png)
 
-![Persona Joaquim](img/Persona_Joaquim.png)
+![Persona Joaquim](img/etapa_01/personas/Persona_Joaquim.png)
 
 ### Mapa de stakeholders
 
