@@ -21,7 +21,7 @@ Desenvolver um sistema de delivery de pizzaria para resolver o problema apresent
 
 ### Objetivo Específicos
 1. Implementar uma plataforma digital de pedidos que permita ao cliente visualizar o cardápio, personalizar produtos e acompanhar o status da entrega.
-2. 
+2. Investigar a experiência dos usuários em relação à usabilidade da plataforma. 
 
 ## Justificativa
 O desenvolvimento de um sistema de delivery de pizzaria se justifica pela crescente demanda dos consumidores por praticidade, rapidez e comodidade no acesso a serviços alimentícios. Atualmente, o hábito de realizar pedidos online vem se consolidando como uma preferência, sobretudo em áreas urbanas, onde o tempo disponível é limitado e a convêniencia se torna fator decisivo
