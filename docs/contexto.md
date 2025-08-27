@@ -112,13 +112,29 @@ Definição de como o software é estruturado em termos dos componentes que faze
 
 ## Tecnologias Utilizadas
 
-Descreva aqui qual(is) tecnologias você vai usar para resolver o seu problema, ou seja, implementar a sua solução. Liste todas as tecnologias envolvidas, linguagens a serem utilizadas, serviços web, frameworks, bibliotecas, IDEs de desenvolvimento, e ferramentas.
+Para desenvolver o sistema de delivery da pizzaria foram escolhidas tecnologias simples, mas eficientes:
 
-Apresente também uma figura explicando como as tecnologias estão relacionadas ou como uma interação do usuário com o sistema vai ser conduzida, por onde ela passa até retornar uma resposta ao usuário.
+Linguagem: JavaScript
+
+Framework: React (para a interface do usuário)
+
+Estilo: Tailwind CSS (deixa o app bonito e responsivo)
+
+Banco de dados e autenticação: Firebase (armazenar pedidos, cardápio e login de clientes)
+
+Hospedagem do site: Vercel (publicação rápida e automática do sistema)
+
+FALTA UMA FIGURA AQUI.
 
 ## Hospedagem
 
-Explique como a hospedagem e o lançamento da plataforma foi feita.
+O sistema será hospedado no Vercel, que é simples de usar e integrado ao GitHub.
+
+Cada vez que o código for atualizado, a plataforma gera automaticamente uma nova versão do site.
+
+O banco de dados e a autenticação dos usuários ficam no Firebase, que funciona direto na nuvem.
+
+Assim, o cliente acessa o aplicativo ou site pelo celular ou computador, e todos os dados são processados online.
 
 # Planejamento
 
