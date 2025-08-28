@@ -14,7 +14,7 @@ Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo de
 * Vitor Alberto Gonçalves Cavaco
 * Luigi von Blücher Mezzogori
 * Samuel Lacerda Borges
-* Nome completo do aluno 5
+* Bruno de Lacerda Tetzner
 * Nome completo do aluno 6
 
 ## Orientador
