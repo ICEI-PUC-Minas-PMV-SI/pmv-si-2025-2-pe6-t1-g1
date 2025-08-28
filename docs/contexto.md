@@ -140,7 +140,8 @@ Banco de dados e autenticação: Firebase (armazenar pedidos, cardápio e login 
 
 Hospedagem do site: Vercel (publicação rápida e automática do sistema)
 
-FALTA UMA FIGURA AQUI.
+Fluxo de Interação.
+![arq](https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2025-2-pe6-t1-g1/blob/main/docs/img/diagrama.png?raw=true)
 
 ## Hospedagem
 
