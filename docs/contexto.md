@@ -144,10 +144,49 @@ Enumere as restrições à sua solução. Lembre-se de que as restrições geral
 
 # Arquitetura da Solução
 
-Definição de como o software é estruturado em termos dos componentes que fazem parte da solução e do ambiente de hospedagem da aplicação.
-
-![arq](https://github.com/user-attachments/assets/b9402e05-8445-47c3-9d47-f11696e38a3d)
-
+```txt
++--------------------+     +--------------------+
+|      Web App       |     |     Mobile App     |
+| (React + Tailwind) |     | (React Native +    |
+| (Hosted on Vercel) |     |     Tailwind)      |
+|                    |     | (Download on       |
+|                    |     | Apple Store /      |
+|                    |     | Google Play)       |
++---------+----------+     +---------+----------+
+          \                         /
+           \                       /
+            \                     /
+             \                   /
+              v                 v
+            +--------------------+
+            |    API Gateway     | <-- Autenticação inicial, roteamento, throttling
+            +--------------------+
+                      |
+                      v
+            +--------------------+
+            |  GCP cloud run     |
+            +--------------------+
+                      |
+                      v
+            +--------------------+
+            |        API         | (Desenvolvido em NodeJS + express, conectado ao Firebase)
+            +--------------------+
+            |  Controllers       | <-- Recebe requisições do API Gateway
+            +--------------------+
+            | Authentication     | <-- Valida JWT de clientes e cozinheiros
+            +--------------------+
+            |     UseCases       | <-- Implementa lógica de negócio
+            +--------------------+
+            |  Core / Services   | <-- Serviços compartilhados (pagamento, pedidos, notificações)
+            +--------------------+
+            |  Repository        | <-- Acesso ao Firebase
+            +--------------------+
+                      |
+                      v
+            +--------------------+
+            |     Firebase DB    |
+            +--------------------+
+```
 
 ## Tecnologias Utilizadas
 
