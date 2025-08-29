@@ -124,21 +124,23 @@ Enumere as restrições à sua solução. Lembre-se de que as restrições geral
 
 # Catálogo de Serviços
 
-- Cadastro de usuários: Clientes, e donos de restaurantes, poderão realizar o seu cadastro, com email e senha, para conseguirem utilizar o aplicativo.
+- Cadastro de usuários: Clientes, e os donos do restaurante, poderão realizar o seu cadastro, com email e senha, para conseguirem utilizar o aplicativo.
 
 - Login de usuários: Usuários, já cadastrados, poderão entrar no aplicativo, utilizando o seu email e senha, fornecidos no cadastro.
 
-- Atualização do perfil : Donos de restaurantes, e clientes, poderão atualizar os seus respectivos perfis.
+- Atualização do perfil : Donos do restaurante, e clientes, poderão atualizar os seus respectivos perfis.
 
-- Cadastro de items: Donos de restaurantes poderão cadastrar items, existentes nos seus restaurantes, para os clientes conseguirem comprar eles, por meio de pedidos.
+- Cadastro de items: Donos do restaurante poderão cadastrar items, existentes no seu menu, para os clientes conseguirem adquiri-los, por meio de pedidos.
 
-- Atualização de items: Donos de restaurantes conseguirão editar items existentes, para poder realizar atualizações necessárias.
+- Atualização de items: Os donos do restaurante conseguirão editar items existentes, para poder realizar atualizações necessárias.
 
-- Remoção de items: Donos de restaurantes terão a opção de remover um item, das opções existentes, caso ele pare de ser vendido.
+- Remoção de items: Os donos do restaurante terão a opção de remover um item, das opções existentes, caso ele pare de ser vendido.
 
-- Realização de pedidos: Clientes vão poder fazer pedidos, de algum item existente, publicado por algum restaurante, para receber ele em sua residência.
+- Realização de pedidos: Clientes vão poder fazer pedidos, de algum item existente, publicado pelo restaurante, para receber ele em sua residência.
 
-- Acompanhar o status do pedido: Clientes poderão acompanhar o status do seu pedido, que será dividido em: "Não aceito", "Aceito", "Em preparo", "Em rota de entrega" e "Entregue". Possibilitando assim, o cliente de saber se o restaurante vai realizar a entrega, para ele poder tomar alguma providência, dependendo do status atual.
+- Acompanhar o status do pedido, clientes: Clientes poderão acompanhar o status do seu pedido, que será dividido em: "Não aceito", "Aceito", "Em preparo", "Em rota de entrega" e "Entregue". Possibilitando assim, o cliente de saber se o restaurante vai realizar a entrega, para ele poder tomar alguma providência, dependendo do status atual.
+
+- Acompanhar os pedidos realizados, restaurante: Os donos do restaurante conseguirão ver uma lista dos pedidos realizados, feitos pelos clientes, para fazerem o seu preparo e envio. Além de conseguirem atualizar o status do pedido, para os já citados em "Acompanhar o status do pedido".
 
 # Arquitetura da Solução
 
