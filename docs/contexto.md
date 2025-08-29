@@ -115,6 +115,7 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |03| Será limitado à uma geolocalização específica |
 |04| terá que estar em conformidade com as normas das plataformas(Play Store, Apple Store) |
 |05| Deverá ser entregue no prazo estipulado |
+
 Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
 
 > **Links Úteis**:
