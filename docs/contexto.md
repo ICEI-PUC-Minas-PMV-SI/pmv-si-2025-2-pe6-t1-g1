@@ -1,6 +1,6 @@
 # Introdução
 
-Texto descritivo com a visão geral do projeto abordado. Inclui o contexto, o problema, os objetivos, a justificativa e o público-alvo do projeto.
+A partir deste projeto, será realizado o desenvolvimento de uma aplicação web e mobile de entregas para uma pizzaria, onde os clientes poderão consultar cardápios, realizar pedidos e acompanhá-los, além dos próprios funcionários da pizzaria poderem aceitar os pedidos e organizá-los durante a produção. Com isso, será desenvolvido o front-end, back-end e utilização de serviços de nuvem. 
 
 ## Problema
 Nesse momento você deve apresentar o problema que a sua aplicação deve  resolver. No entanto, não é a hora de comentar sobre a aplicação.
