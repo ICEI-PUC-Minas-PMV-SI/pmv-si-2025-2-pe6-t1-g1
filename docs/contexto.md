@@ -117,7 +117,21 @@ Enumere as restrições à sua solução. Lembre-se de que as restrições geral
 
 # Catálogo de Serviços
 
-Descreva aqui todos os serviços que serão disponibilizados pelo seu projeto, detalhando suas características e funcionalidades.
+- Cadastro de usuários: Clientes, e donos de restaurantes, poderão realizar o seu cadastro, com email e senha, para conseguirem utilizar o aplicativo.
+
+- Login de usuários: Usuários, já cadastrados, poderão entrar no aplicativo, utilizando o seu email e senha, fornecidos no cadastro.
+
+- Atualização do perfil : Donos de restaurantes, e clientes, poderão atualizar os seus respectivos perfis.
+
+- Cadastro de items: Donos de restaurantes poderão cadastrar items, existentes nos seus restaurantes, para os clientes conseguirem comprar eles, por meio de pedidos.
+
+- Atualização de items: Donos de restaurantes conseguirão editar items existentes, para poder realizar atualizações necessárias.
+
+- Remoção de items: Donos de restaurantes terão a opção de remover um item, das opções existentes, caso ele pare de ser vendido.
+
+- Realização de pedidos: Clientes vão poder fazer pedidos, de algum item existente, publicado por algum restaurante, para receber ele em sua residência.
+
+- Acompanhar o status do pedido: Clientes poderão acompanhar o status do seu pedido, que será dividido em: "Não aceito", "Aceito", "Em preparo", "Em rota de entrega" e "Entregue". Possibilitando assim, o cliente de saber se o restaurante vai realizar a entrega, para ele poder tomar alguma providência, dependendo do status atual.
 
 # Arquitetura da Solução
 
