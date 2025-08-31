@@ -3,11 +3,7 @@
 A partir deste projeto, será realizado o desenvolvimento de uma aplicação web e mobile de entregas para uma pizzaria, onde os clientes poderão consultar cardápios, realizar pedidos e acompanhá-los, além dos próprios funcionários da pizzaria poderem aceitar os pedidos e organizá-los durante a produção. Com isso, será desenvolvido o front-end, back-end e utilização de serviços de nuvem. 
 
 ## Problema
-Nesse momento você deve apresentar o problema que a sua aplicação deve  resolver. No entanto, não é a hora de comentar sobre a aplicação.
-
-Descreva também o contexto em que essa aplicação será usada, se  houver: empresa, tecnologias, etc. Novamente, descreva apenas o que de  fato existir, pois ainda não é a hora de apresentar requisitos  detalhados ou projetos.
-
-Nesse momento, o grupo pode optar por fazer uso  de ferramentas como Design Thinking, que permite um olhar de ponta a ponta para o problema.
+O projeto que será desenvolvido será um serviço de pedidos para uma pizzaria, contando com um aplicativo mobile e um site Web onde os clientes irão poder ver os itens disponíveis para pedir e acompanhar o processo até a saída para entrega, também tendo a opção de escolher a forma do pagamento. Os funcionários da pizzaria poderão aceitar e recusar os pedidos, além de poderem informar uma previsão de tempo para entrega do respectivo pedido.
 
 > **Links Úteis**:
 > - [Objetivos, Problema de pesquisa e Justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
