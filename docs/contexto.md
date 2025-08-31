@@ -59,23 +59,14 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| Cadastro e autenticação de usuário | ALTA | 
-|RF-002| Perfil do usuário   | ALTA |
-|RF-003| Visualização de cardápio   | ALTA |
-|RF-004| Carrinho e pedidos   | ALTA |
-|RF-005| Pagamento   | ALTA |
-|RF-006| Acompanhamento do pedido   | MÉDIA |
-|RF-007| Suporte e atendimento   | ALTA |
-|RF-008| Gerenciamento do cardápio   | ALTA |
-|RF-009| Relatórios e análises constante  | BAIXA |
-|RF-010| Monitoramento do Pedido  | MÉDIA |
-|RF-011| Gestão Financeira   | MÉDIA |
-|RF-012| Gestão de estoque   | BAIXA |
-|RF-013| Gerenciamento de Usuários   | MÉDIA |
-|RF-014| Cadastro e validação de motorista   | MÉDIA |
-|RF-015| Gestão de Entregas   | MÉDIA |
-|RF-016| Comunicação via chat   | MÉDIA |
-|RF-017| Navegação e Rota   | MÉDIA |
+|RF-001| Gestão de usuário | ALTA | 
+|RF-002| Visualização de cardápio e personalização   | ALTA |
+|RF-003| Carrinho e pedidos   | ALTA |
+|RF-004| Suporte e atendimento   | ALTA |
+|RF-005| Gerenciamento do cardápio   | ALTA |
+|RF-006| Monitoramento do Pedido  | MÉDIA |
+|RF-007| Gestão de estoque   | BAIXA |
+
 
 
 ### Requisitos não Funcionais
@@ -84,10 +75,10 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |-------|-------------------------|----|
 |RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | ALTA | 
 |RNF-002| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
-|RNF-003| Sistema deve fornecer uma boa experiencia para o usuário |  BAIXA | 
-|RNF-004| Sistema deve ser seguro |  BAIXA | 
-|RNF-005| terá que ser compativel com os sistemas mobile atuais  |  BAIXA | 
-|RNF-006| Deverá ter uma alta disponibilidade |  BAIXA | 
+|RNF-003| Sistema deve fornecer uma boa experiencia para o usuário |  MÉDIA | 
+|RNF-004| Sistema deve ser seguro |  ALTA | 
+|RNF-005| terá que ser compativel com os sistemas mobile atuais  |  ALTA | 
+|RNF-006| Deverá ter uma alta disponibilidade |  MÉDIA | 
 
 Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
 
