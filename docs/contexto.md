@@ -8,7 +8,7 @@ O projeto que será desenvolvido será um serviço de pedidos para uma pizzaria 
 ## Objetivos
 
 ### Objetivo Geral
-Desenvolver um sistema de delivery para pizzaria que ofereça ao cliente uma experiência simples, rápida e personalizada
+Desenvolver um sistema de delivery para pizzaria que ofereça ao cliente uma experiência simples, rápida e personalizada. Além disso, conforme demonstrado no problema, o sistema também deverá otimizar o processo interno da pizzaria, reduzindo erros de comunicação, melhorando a organização dos pedidos e possibilitando aos funcionários maior agilidade no atendimento e controle.
 
 ### Objetivo Específicos
 1. Implementar uma plataforma digital de pedidos que permita ao cliente visualizar o cardápio, personalizar produtos e acompanhar o status da entrega.
