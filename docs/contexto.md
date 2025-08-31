@@ -17,7 +17,7 @@ Nesse momento, o grupo pode optar por fazer uso  de ferramentas como Design Thin
 ## Objetivos
 
 ### Objetivo Geral
-Desenvolver um aplicativo de delivery para pizzaria que centralize e automatize o processo de pedidos, proporcionando maior praticidade aos clientes e eficiência no gerenciamento interno da pizzaria.
+Desenvolver um sistema de delivery para pizzaria que ofereça ao cliente uma experiência simples, rápida e personalizada
 
 ### Objetivo Específicos
 1. Implementar uma plataforma digital de pedidos que permita ao cliente visualizar o cardápio, personalizar produtos e acompanhar o status da entrega.
