@@ -6,7 +6,7 @@
 
 `SEMESTRE: 6º`
 
-O projeto visa desenvolver uma software integrado para a Pizzaria Fatia Certa, com o objetivo principal de ampliar a captação e fidelização de clientes. Sendo desenvolvido uma aplicação Web com frontend e backend para acompanhamento e gerenciamento de pedidos e uma aplicação mobile para que os clientes possam explorar o cardápio e fazer pedidos
+O projeto visa desenvolver uma sistema distribuído para a Pizzaria Fatia Certa, com o objetivo principal de ampliar a captação e fidelização de clientes. Sendo desenvolvido uma aplicação Web com frontend e backend para acompanhamento e gerenciamento de pedidos e uma aplicação mobile para que os clientes possam explorar o cardápio e fazer pedidos
 
 ## Integrantes
 
