@@ -1,4 +1,4 @@
-# TÍTULO DO PROJETO
+# FatiaCerta
 
 `CURSO: Sistemas de Informação`
 
