@@ -65,7 +65,6 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RF-004| Suporte e atendimento   | ALTA |
 |RF-005| Gerenciamento do cardápio   | ALTA |
 |RF-006| Monitoramento do Pedido  | MÉDIA |
-|RF-007| Gestão de estoque   | BAIXA |
 
 
 
