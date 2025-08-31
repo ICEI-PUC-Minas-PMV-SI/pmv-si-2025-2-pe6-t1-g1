@@ -100,11 +100,9 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 |ID| Restrição                                             |
 |--|-------------------------------------------------------|
-|01| O aplicativo mobile deve funcionar de forma nativa e consistente em iOS e Android |
-|02| Terá que ser construido o Backend |
-|03| Será limitado à uma geolocalização específica |
-|04| terá que estar em conformidade com as normas das plataformas(Play Store, Apple Store) |
-|05| Deverá ser entregue no prazo estipulado |
+|RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
+|RNF-002| Deve processar requisições do usuário em no máximo 3s | BAIXA | 
+|RNF-003| O projeto não deve ter subsídio de nenhuma espécie| ALTA |
 
 Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
 
