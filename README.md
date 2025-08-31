@@ -15,7 +15,7 @@ Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo de
 * Luigi von Blücher Mezzogori
 * Samuel Lacerda Borges
 * Bruno de Lacerda Tetzner
-* Nome completo do aluno 6
+* Pedro Vinicius Ribeiro Teixeira Justino
 
 ## Orientador
 
