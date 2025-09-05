@@ -157,9 +157,11 @@ Estilo: Tailwind CSS (deixa o app bonito e responsivo)
 
 Linguagem: C#
 
-Framework: ASP .NET
+Framework: ASP .NET CORE
 
-Banco de dados SQL server
+Banco de dados: SQL server
+
+Autenticação: JWT  usando Microsoft.AspNetCore.Authentication.JwtBearer
 
 ## Hospedagem
 
