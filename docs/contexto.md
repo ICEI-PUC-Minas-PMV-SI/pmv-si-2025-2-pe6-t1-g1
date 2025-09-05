@@ -57,10 +57,11 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |------|-----------------------------------------|----|
 |RF-001| Gestão de usuário | ALTA | 
 |RF-002| Visualização de cardápio e personalização   | ALTA |
-|RF-003| Carrinho e pedidos   | ALTA |
+|RF-003| Carrinho | ALTA |
 |RF-004| Suporte e atendimento   | ALTA |
 |RF-005| Gerenciamento do cardápio   | ALTA |
 |RF-006| Monitoramento do Pedido  | MÉDIA |
+|RF-007| Pedidos  | ALTA |
 
 
 
@@ -71,24 +72,11 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | ALTA | 
 |RNF-002| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
 |RNF-003| Sistema deve fornecer uma boa experiencia para o usuário |  MÉDIA | 
-|RNF-004| Sistema deve ser seguro |  ALTA | 
-|RNF-005| terá que ser compativel com os sistemas mobile atuais  |  ALTA | 
+|RNF-004| Sistema deve apresentar uma criptografia no banco de dados para melhor segurança|  ALTA | 
+|RNF-005| terá que ser compativel com os sistemas IOS e Android  |  ALTA | 
 |RNF-006| Deverá ter uma alta disponibilidade |  MÉDIA | 
 
-Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
 
-- [Requisitos Funcionais
- (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
- correspondem a uma funcionalidade que deve estar presente na
-  plataforma (ex: cadastro de usuário).
-- [Requisitos Não Funcionais
-  (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
-  correspondem a uma característica técnica, seja de usabilidade,
-  desempenho, confiabilidade, segurança ou outro (ex: suporte a
-  dispositivos iOS e Android).
-Lembre-se que cada requisito deve corresponder à uma e somente uma
-característica alvo da sua solução. Além disso, certifique-se de que
-todos os aspectos capturados nas Histórias de Usuário foram cobertos.
 
 ## Restrições
 
@@ -96,15 +84,12 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 |ID| Restrição                                             |
 |--|-------------------------------------------------------|
-|RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
-|RNF-002| Deve processar requisições do usuário em no máximo 3s | BAIXA | 
-|RNF-003| O projeto não deve ter subsídio de nenhuma espécie| ALTA |
+ 
+|RNF-001| Deve processar requisições do usuário em no máximo 3s | BAIXA | 
+|RNF-002| O projeto não deve ter subsídio de nenhuma espécie| ALTA |
 
-Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
 
-> **Links Úteis**:
-> - [O que são Requisitos Funcionais e Requisitos Não Funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
-> - [O que são requisitos funcionais e requisitos não funcionais?](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
+
 
 # Catálogo de Serviços
 
