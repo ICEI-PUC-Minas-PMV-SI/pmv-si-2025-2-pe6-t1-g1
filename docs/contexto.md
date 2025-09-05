@@ -90,8 +90,7 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 
 
-
-# Catálogo de Serviços
+## Catálogo de Serviços
 
 - Cadastro de usuários: Clientes, e os donos do restaurante, poderão realizar o seu cadastro, com email e senha, para conseguirem utilizar o aplicativo.
 
