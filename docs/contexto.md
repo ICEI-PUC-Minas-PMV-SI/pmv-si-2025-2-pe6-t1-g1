@@ -86,8 +86,7 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |--|-------------------------------------------------------|
  
 |RNF-001| Deve processar requisições do usuário em no máximo 3s | BAIXA | 
-
-|RNF-002| O projeto não deve ter subsídio de nenhuma espécie| ALTA |
+|RNF-002| O projeto não deve ter subsídio de nenhuma espécie | ALTA |
 
 
 
