@@ -58,11 +58,10 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RF-001| Gestão de usuário | ALTA | 
 |RF-002| Visualização de cardápio | ALTA |
 |RF-003| Carrinho | ALTA |
-|RF-004| Suporte e atendimento   | ALTA |
-|RF-005| Gerenciamento do cardápio   | ALTA |
-|RF-006| Monitoramento do Pedido  | MÉDIA |
-|RF-007| Pedidos  | ALTA |
-|RF-008| Personalização de pedidos | MÉDIA |
+|RF-004| Gerenciamento do cardápio   | ALTA |
+|RF-005| Monitoramento do Pedido  | MÉDIA |
+|RF-006| Pedidos  | ALTA |
+|RF-007| Personalização de pedidos | MÉDIA |
 
 
 ### Requisitos não Funcionais
