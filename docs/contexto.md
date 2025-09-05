@@ -1,9 +1,13 @@
 # Introdução
 
-A partir deste projeto, será realizado o desenvolvimento de uma aplicação web e mobile de entregas para uma pizzaria, onde os clientes poderão consultar cardápios, realizar pedidos e acompanhá-los, além dos próprios funcionários da pizzaria poderem aceitar os pedidos e organizá-los durante a produção. Com isso, será desenvolvido o front-end, back-end e utilização de serviços de nuvem. 
+A FatiaCerta, pizzaria de bairro que atua com delivery recentemente criada e em operação tem passado por dificuldades por conta do aumento de clientes e poucos funcionários para atender a crescente demanda dos clientes em relação a suas pizzas. A partir disso, de forma terceirizada solicitou o desenvolvimento de um aplicativo web e mobile para que seus clientes e funcionários possam ter maior controle e informação sobre os pedidos e uma forma mais fácil de se consultar o cardápio da pizzaria a hora que desejarem, além de ser uma boa ajuda na divulgação da loja demonstrando sua preocupação em se modernizar e cada vez mais aumentar sua clientela.
 
 ## Problema
-O projeto que será desenvolvido será um serviço de pedidos para uma pizzaria que passa por dificuldades e ineficiência em seu sistema de realização de pedidos, como dificuldades no atendimento em horários de pico, onde as ligações congestionam, erros na comunicação com os clientes durante as ligações, sobre por exemplo: sabores, adicionais e promoções. Com essa necessidade de se modernizar, decidiram realizar o desenvolvimento de um aplicativo mobile e um site Web onde os clientes irão poder ver os itens disponíveis para pedir e acompanhar o processo pelo status do pedido, também tendo a opção de escolher a forma do pagamento. Os funcionários da pizzaria poderão aceitar e recusar os pedidos, além de poderem informar o status dos respectivos pedidos.
+A pizzaria FatiaCerta, recentemente passa por dificuldades e ineficiência em seu sistema de realização de pedidos, como: 
+- Dificuldades no atendimento em horários de pico,
+- Ligações congestionadas,
+- Ocorrem erros na comunicação com os clientes durante as ligações em relação a sabores, adicionais e promoções.
+Com essa necessidade de se modernizar e atender melhor seus clientes, decidiram realizar o desenvolvimento de um aplicativo mobile e um site Web por meio do seu setor de TI onde os clientes irão poder ver os itens disponíveis para pedir e acompanhar o processo pelo status do pedido, além de ter a opção de escolher a forma do pagamento. Os funcionários da pizzaria poderão aceitar e recusar os pedidos, além de poderem atualizar o status dos respectivos pedidos para o cliente.
 
 ## Objetivos
 
