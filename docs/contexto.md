@@ -114,10 +114,7 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 +--------------------+     +--------------------+
 |      Web App       |     |     Mobile App     |
 | (React + Tailwind) |     | (React Native +    |
-| (Hosted on Vercel) |     |     Tailwind)      |
-|                    |     | (Download on       |
-|                    |     | Apple Store /      |
-|                    |     | Google Play)       |
+|                    |     |     Tailwind)      |
 +---------+----------+     +---------+----------+
           \                         /
            \                       /
@@ -125,19 +122,9 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
              \                   /
               v                 v
             +--------------------+
-            |    API Gateway     | <-- Autenticação inicial, roteamento, throttling
+            |        API         | (Desenvolvido em .net)
             +--------------------+
-                      |
-                      v
-            +--------------------+
-            |  GCP cloud run     |
-            +--------------------+
-                      |
-                      v
-            +--------------------+
-            |        API         | (Desenvolvido em NodeJS + express, conectado ao Firebase)
-            +--------------------+
-            |  Controllers       | <-- Recebe requisições do API Gateway
+            |  Controllers       | <-- Recebe requisições do frontend
             +--------------------+
             | Authentication     | <-- Valida JWT de clientes e cozinheiros
             +--------------------+
@@ -145,12 +132,12 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
             +--------------------+
             |  Core / Services   | <-- Serviços compartilhados (pagamento, pedidos, notificações)
             +--------------------+
-            |  Repository        | <-- Acesso ao Firebase
+            |  Repository        | <-- Acesso ao bancode de dados
             +--------------------+
                       |
                       v
             +--------------------+
-            |     Firebase DB    |
+            |     SQL server     |
             +--------------------+
 ```
 
@@ -158,28 +145,33 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 Para desenvolver o sistema de delivery da pizzaria foram escolhidas tecnologias simples, mas eficientes:
 
+### Front end
 Linguagem: JavaScript
 
-Framework: React (para a interface do usuário)
+Framework: React para Web, e React native para mobile
 
 Estilo: Tailwind CSS (deixa o app bonito e responsivo)
 
-Banco de dados e autenticação: Firebase (armazenar pedidos, cardápio e login de clientes)
 
-Hospedagem do site: Vercel (publicação rápida e automática do sistema)
+### Back end
 
-Fluxo de Interação.
+Linguagem: C#
+
+Framework: ASP .NET
+
+Banco de dados SQL server
+
+
+### Fluxo de Interação.
 ![arq](https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2025-2-pe6-t1-g1/blob/main/docs/img/diagrama.png?raw=true)
 
 ## Hospedagem
 
-O sistema será hospedado no Vercel, que é simples de usar e integrado ao GitHub.
+O front end será hospedado no Vercel, que é simples de usar e integrado ao GitHub.
 
 Cada vez que o código for atualizado, a plataforma gera automaticamente uma nova versão do site.
 
-O banco de dados e a autenticação dos usuários ficam no Firebase, que funciona direto na nuvem.
-
-Assim, o cliente acessa o aplicativo ou site pelo celular ou computador, e todos os dados são processados online.
+A respeito da API, caso haja tempo hábil, ela será hospedada no Google Cloud.
 
 # Planejamento
 
