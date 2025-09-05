@@ -7,6 +7,7 @@ A pizzaria FatiaCerta, recentemente passa por dificuldades e ineficiência em se
 - Dificuldades no atendimento em horários de pico,
 - Ligações congestionadas,
 - Ocorrem erros na comunicação com os clientes durante as ligações em relação a sabores, adicionais e promoções.
+  
 Com essa necessidade de se modernizar e atender melhor seus clientes, decidiram realizar o desenvolvimento de um aplicativo mobile e um site Web por meio do seu setor de TI onde os clientes irão poder ver os itens disponíveis para pedir e acompanhar o processo pelo status do pedido, além de ter a opção de escolher a forma do pagamento. Os funcionários da pizzaria poderão aceitar e recusar os pedidos, além de poderem atualizar o status dos respectivos pedidos para o cliente.
 
 ## Objetivos
