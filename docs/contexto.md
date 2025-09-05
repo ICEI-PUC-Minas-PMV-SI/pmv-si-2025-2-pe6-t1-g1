@@ -161,17 +161,13 @@ Framework: ASP .NET
 
 Banco de dados SQL server
 
-
-### Fluxo de Interação.
-![arq](https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2025-2-pe6-t1-g1/blob/main/docs/img/diagrama.png?raw=true)
-
 ## Hospedagem
 
 O front end será hospedado no Vercel, que é simples de usar e integrado ao GitHub.
 
 Cada vez que o código for atualizado, a plataforma gera automaticamente uma nova versão do site.
 
-A respeito da API, caso haja tempo hábil, ela será hospedada no Google Cloud.
+A respeito da API, caso haja tempo hábil, ela será hospedada na AWS.
 
 # Planejamento
 
