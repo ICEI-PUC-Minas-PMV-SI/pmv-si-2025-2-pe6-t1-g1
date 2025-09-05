@@ -83,7 +83,7 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 |ID     | Restrição  |Prioridade |
 |-------|-------------------------|----|
-|RNF-001| O projeto deve contar com uma camada de backend implementada, em vez de um mock/fake backend | ALTA | 
+|RNF-001| O projeto deve ser entregue no prazo estipulado | ALTA | 
 |RNF-002| O projeto não deve ter subsídio de nenhuma espécie | ALTA |
 
 
