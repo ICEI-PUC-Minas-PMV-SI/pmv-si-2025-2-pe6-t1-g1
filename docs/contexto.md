@@ -82,10 +82,9 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 O projeto está restrito pelos itens apresentados na tabela a seguir.
 
-|ID| Restrição                                             |
-|--|-------------------------------------------------------|
- 
-|RNF-001| Deve processar requisições do usuário em no máximo 3s | BAIXA | 
+|ID     | Restrição  |Prioridade |
+|-------|-------------------------|----|
+|RNF-001| Deve processar requisições do usuário em no máximo 3s | ALTA | 
 |RNF-002| O projeto não deve ter subsídio de nenhuma espécie | ALTA |
 
 
