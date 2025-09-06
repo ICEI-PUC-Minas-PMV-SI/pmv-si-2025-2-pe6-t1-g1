@@ -109,37 +109,52 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 - Acompanhar os pedidos realizados, restaurante: Os donos do restaurante conseguirão ver uma lista dos pedidos realizados, feitos pelos clientes, para fazerem o seu preparo e envio. Além de conseguirem atualizar o status do pedido, para os já citados em "Acompanhar o status do pedido".
 
 # Arquitetura da Solução
+      +--------------------+           +--------------------+
+      |      Web App       |           |     Mobile App     |
+      | (React + Tailwind) |           | (React Native +    |
+      |                    |           |     Tailwind)      |
+      +---------+----------+           +---------+----------+
+                \                               /
+                 \                             /
+                  \                           /
+                   \                         /
+                    v                       v
 
-```txt
-+--------------------+     +--------------------+
-|      Web App       |     |     Mobile App     |
-| (React + Tailwind) |     | (React Native +    |
-|                    |     |     Tailwind)      |
-+---------+----------+     +---------+----------+
-          \                         /
-           \                       /
-            \                     /
-             \                   /
-              v                 v
-            +--------------------+
-            |        API         | (Desenvolvido em .net)
-            +--------------------+
-            |  Controllers       | <-- Recebe requisições do frontend
-            +--------------------+
-            | Authentication     | <-- Valida JWT de clientes e cozinheiros
-            +--------------------+
-            |     UseCases       | <-- Implementa lógica de negócio
-            +--------------------+
-            |  Core / Services   | <-- Serviços compartilhados (pagamento, pedidos, notificações)
-            +--------------------+
-            |  Repository        | <-- Acesso ao bancode de dados
-            +--------------------+
-                      |
-                      v
-            +--------------------+
-            |     SQL server     |
-            +--------------------+
-```
+            +----------------------------------+
+            |               API                | (Desenvolvido em .NET)
+            +----------------------------------+
+            |          Controllers             | <-- Recebe requisições do frontend
+            +----------------------------------+
+            |          Authentication          | <-- Valida JWT de clientes e cozinheiros
+            +----------------------------------+
+            |         Serviços de Negócio      |
+            |                                  |
+            |   +---------------------------+  |
+            |   | Gestão de Usuários        |  | <-- CRUD de usuários + login
+            |   +---------------------------+  |
+            |                                  |
+            |   +---------------------------+  |
+            |   | Gestão de Pedidos         |  | <-- CRUD de pedidos
+            |   +---------------------------+  |
+            |                                  |
+            |   +---------------------------+  |
+            |   | Gestão de Cardápio        |  | <-- CRUD de cardápio
+            |   +---------------------------+  |
+            |                                  |
+            |   +---------------------------+  |
+            |   | Gestão de Entregas        |  | <-- Roteirização, status, confirmação
+            |   +---------------------------+  |
+            +----------------------------------+
+            |            Repository            | <-- Acesso ao banco de dados
+            +----------------------------------+
+
+                            |
+                            v
+
+                  +--------------------+
+                  |  Banco de dados    | (SQL Server)
+                  +--------------------+
+
 
 ## Tecnologias Utilizadas
 
@@ -169,7 +184,7 @@ O front end será hospedado no Vercel, que é simples de usar e integrado ao Git
 
 Cada vez que o código for atualizado, a plataforma gera automaticamente uma nova versão do site.
 
-A respeito da API, caso haja tempo hábil, ela será hospedada na AWS.
+A API será hospedada na AWS.
 
 # Planejamento
 
