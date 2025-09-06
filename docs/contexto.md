@@ -123,8 +123,6 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
             +----------------------------------+
             |               API                | (Desenvolvido em .NET)
             +----------------------------------+
-            |          Controllers             | <-- Recebe requisições do frontend
-            +----------------------------------+
             |          Authentication          | <-- Valida JWT de clientes e cozinheiros
             +----------------------------------+
             |         Serviços de Negócio      |
@@ -144,8 +142,6 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
             |   +---------------------------+  |
             |   | Gestão de Entregas        |  | <-- Roteirização, status, confirmação
             |   +---------------------------+  |
-            +----------------------------------+
-            |            Repository            | <-- Acesso ao banco de dados
             +----------------------------------+
 
                             |
