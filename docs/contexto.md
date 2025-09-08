@@ -1,14 +1,16 @@
 # Introdução
 
-A FatiaCerta, pizzaria de bairro que atua com delivery recentemente criada e em operação tem passado por dificuldades por conta do aumento de clientes e poucos funcionários para atender a crescente demanda dos clientes em relação a suas pizzas. A partir disso, montaram um setor de TI buscando o desenvolvimento de um aplicativo web e mobile para que seus clientes e funcionários possam ter maior controle e informação sobre os pedidos e uma forma mais fácil de se consultar o cardápio da pizzaria a hora que desejarem, além de ser uma boa ajuda na divulgação da loja demonstrando sua preocupação em se modernizar e cada vez mais aumentar sua clientela.
+A FatiaCerta, pizzaria de bairro que atua com delivery recentemente criada, tem passado por dificuldades na organização e recebimento de seus pedidos, por exemplo: erros no destinatário da entrega, sabores errados nos pedidos, número de ligações muito maior do que sua capacidade de funcionários atual pode atender, visto que muitas vezes são clientes que já realizaram seus pedidos e procuram saber se já estão no processo de entrega, além do excesso de comandas que muitas vezes acabam sendo repetidas pelos atendentes no momento da anotação do pedido. A partir disso, incapazes de aumentar seu número de funcionários para solucionar uma parte dos problemas, pois ainda não possuem um capital muito grande, utilizando seu próprio setor de TI escolheram realizar o desenvolvimento de um aplicativo web e mobile para que seus clientes e funcionários possam ter maior controle e informação sobre os pedidos. Onde os clientes receberiam um forma mais fácil de se consultar o cardápio da pizzaria a hora que desejar, realizar os seus pedidos e receberem atualizações do status do seu pedido diretamente sem a necessidade de mais ligações, além de ser uma boa ajuda na divulgação da loja ter um site próprio, demonstrando sua preocupação em se modernizar e cada vez mais aumentar sua clientela.
 
 ## Problema
 A pizzaria FatiaCerta, recentemente passa por dificuldades e ineficiência em seu sistema de realização de pedidos, como: 
-- Dificuldades no atendimento em horários de pico,
-- Ligações congestionadas,
-- Ocorrem erros na comunicação com os clientes durante as ligações em relação a sabores, adicionais e promoções.
+- Dificuldades no atendimento em horários de pico, visto que estão sem capacidade de contratar mais funcionários para o setor de atendimento;
+- Ligações de clientes repetidas, onde os clientes acabam ligando várias vezes para saberem alguma informação do pedido que realizaram e a pizzaria acaba perdendo um possível novo cliente nesse tempo.
+- Os clientes muitas vezes não recebem informações completas dos produtos que a pizzaria oferece dos atendentes durante as ligações, resultando na perda de um cliente por não saber que a opção que desejava estava disponível.
+- Anotações de comandas feitas em papéis, onde muitas vezes os atendentes se confundem nos pedidos e repetem as comandas, esquecem alguma escolha do cliente, ou até mesmo às perdem depois de anotá-las.
+- Erros na anotação do destinatário do pedido também são comuns, causando incoveniências aos entregadores após chegarem em residências que não haviam solicitado pedidos.
   
-Com essa necessidade de se modernizar e atender melhor seus clientes, decidiram realizar o desenvolvimento de um aplicativo mobile e um site Web por meio de seu setor de TI onde os clientes irão poder ver os itens disponíveis para pedir e acompanhar o processo pelo status do pedido, além de ter a opção de escolher a forma do pagamento. Os funcionários da pizzaria poderão aceitar e recusar os pedidos, além de poderem atualizar o status dos respectivos pedidos para o cliente.
+Com essa necessidade de se modernizar e atender melhor seus clientes, decidiram realizar o desenvolvimento de um aplicativo mobile e um site Web por meio de seu setor de TI onde os clientes irão poder ver os itens disponíveis para pedir, realizar os pedidos e acompanhar o processo pelo status do pedido, podendo também escolher a forma do pagamento. Os funcionários da pizzaria poderão aceitar e recusar os pedidos, consultar pedidos em andamento e atualizarem o status dos respectivos pedidos para o cliente.
 
 ## Objetivos
 
