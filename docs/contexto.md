@@ -75,7 +75,7 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RNF-003| Sistema deve fornecer uma boa usabilidade |  MÉDIA | 
 |RNF-004| Sistema deve apresentar uma criptografia no banco de dados para melhor segurança|  ALTA | 
 |RNF-005| terá que ser compativel com os sistemas IOS e Android  |  ALTA | 
-|RNF-006| Deverá ter uma alta disponibilidade porcentagem |  MÉDIA | 
+|RNF-006| Deverá ter uma alta disponibilidade de 99,95% |  MÉDIA | 
 
 
 
