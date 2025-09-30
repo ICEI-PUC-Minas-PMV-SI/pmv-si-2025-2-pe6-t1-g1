@@ -539,11 +539,11 @@ Atualizado em: 29/09/2025
 
 | Responsável | Tarefa/Requisito                   | Iniciado em    | Prazo      | Status | Terminado em |
 | :----       | :----                               | :----:        | :----:     | :----: | :----:       |
-| Samuel      | Desenvolver endpoints de Users     | 22/09/2025    | 29/09/2025 | ⌛     |              |
-| Pedro       | Criar endpoints de Users/Admin     | 22/09/2025    | 29/09/2025 | ⌛     |              |
-| Victor      | Desenvolver endpoints de Items/Admin | 22/09/2025  | 29/09/2025 | ⌛     |              |
-| Luigi       | Criar endpoints de Cart/User       | 22/09/2025    | 29/09/2025 | ⌛     |              |
-| Vitor       | Criar endpoints de Orders          | 22/09/2025    | 29/09/2025 | ⌛     |              |
+| Samuel      | Desenvolver endpoints de Users     | 22/09/2025    | 29/09/2025 | 📝     |              |
+| Pedro       | Criar endpoints de Users/Admin     | 22/09/2025    | 29/09/2025 | 📝     |              |
+| Victor      | Desenvolver endpoints de Items/Admin | 22/09/2025  | 29/09/2025 | 📝     |              |
+| Luigi       | Criar endpoints de Cart/User       | 22/09/2025    | 29/09/2025 | 📝     |              |
+| Vitor       | Criar endpoints de Orders          | 22/09/2025    | 29/09/2025 | 📝     |              |
 | Bruno       | Setup da API + modelagem do banco + models  | 22/09/2025    | 24/09/2025 |  ✔️    | 24/09/2025   |
 
 
