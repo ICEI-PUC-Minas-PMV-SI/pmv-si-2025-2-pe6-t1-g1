@@ -535,14 +535,17 @@ Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvo
 
 ### Semana 1
 
-Atualizado em: 21/04/2024
+Atualizado em: 29/09/2025
 
-| Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
-| :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
-| AlunaX        | Introdução | 01/02/2024     | 07/02/2024 | ✔️    | 05/02/2024      |
-| AlunaZ        | Objetivos    | 03/02/2024     | 10/02/2024 | 📝    |                 |
-| AlunoY        | Histórias de usuário  | 01/01/2024     | 07/01/2005 | ⌛     |                 |
-| AlunoK        | Personas 1  |    01/01/2024        | 12/02/2005 | ❌    |       |
+| Responsável | Tarefa/Requisito                   | Iniciado em    | Prazo      | Status | Terminado em |
+| :----       | :----                               | :----:        | :----:     | :----: | :----:       |
+| Samuel      | Desenvolver endpoints de Users     | 22/09/2025    | 29/09/2025 | ⌛     |              |
+| Pedro       | Criar endpoints de Users/Admin     | 22/09/2025    | 29/09/2025 | ⌛     |              |
+| Victor      | Desenvolver endpoints de Items/Admin | 22/09/2025  | 29/09/2025 | ⌛     |              |
+| Luigi       | Criar endpoints de Cart/User       | 22/09/2025    | 29/09/2025 | ⌛     |              |
+| Vitor       | Criar endpoints de Orders          | 22/09/2025    | 29/09/2025 | ⌛     |              |
+| Bruno       | Setup da API + modelagem do banco + models  | 22/09/2025    | 24/09/2025 |  ✔️    | 24/09/2025   |
+
 
 #### Semana 2
 
@@ -553,7 +556,9 @@ Atualizado em: 21/04/2024
 | AlunaX        | Página inicial   | 01/02/2024     | 07/03/2024 | ✔️    | 05/02/2024      |
 | AlunaZ        | CSS unificado    | 03/02/2024     | 10/03/2024 | 📝    |                 |
 | AlunoY        | Página de login  | 01/02/2024     | 07/03/2024 | ⌛     |                 |
-| AlunoK        | Script de login  |  01/01/2024    | 12/03/2024 | ❌    |       |
+| AlunoK        | Script de login  |  01/01/2024    | 12/03/2024 | ❌    |                |
+| Bruno         | Documentar APIs  |  29/09/20505   | 01/10/2025 | ⌛    |                |
+| Bruno         | Documentar objetivo + modelagem |  29/09/20505   | 01/10/2025 | ⌛    |                |
 
 Legenda:
 - ✔️: terminado
