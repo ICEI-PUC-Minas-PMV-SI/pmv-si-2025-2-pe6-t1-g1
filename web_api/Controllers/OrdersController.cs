@@ -18,7 +18,7 @@ namespace mf_apis_web_services_fuel_manager.Controllers
         }
 
         // USER ENDPOINTS
-        [Authorize(Roles = "Usuario")]
+        [Authorize(Roles = "USER")]
         [HttpPost("order")]
         public async Task<ActionResult> Create(Order model)
         {
@@ -28,7 +28,7 @@ namespace mf_apis_web_services_fuel_manager.Controllers
             return CreatedAtAction(nameof(GetById), new { id = model.Id }, model);
         }
 
-        [Authorize(Roles = "Usuario")]
+        [Authorize(Roles = "USER")]
         [HttpGet("order/{id}")]
         public async Task<ActionResult> GetById(int id)
         {
@@ -39,7 +39,7 @@ namespace mf_apis_web_services_fuel_manager.Controllers
             return Ok(model);
         }
 
-        [Authorize(Roles = "Usuario")]
+        [Authorize(Roles = "USER")]
         [HttpDelete("order/{id}")]
         public async Task<ActionResult> Delete(int id)
         {
@@ -54,7 +54,7 @@ namespace mf_apis_web_services_fuel_manager.Controllers
         }
 
         // ADMIN/EMPLOYEE ENDPOINT
-        [Authorize(Roles = "Administrador,Funcionario")]
+        [Authorize(Roles = "ADMIN,EMPLOYER")]
         [HttpGet("orders")]
         public async Task<ActionResult> GetAll()
         {
@@ -63,7 +63,7 @@ namespace mf_apis_web_services_fuel_manager.Controllers
         }
 
         // ADMIN/EMPLOYEE/USERS ENDPOINT
-        [Authorize(Roles = "Administrador,Funcionario,Usuario")]
+        [Authorize(Roles = "USER,ADMIN,EMPLOYER")]
         [HttpPatch("cancel/{id}")]
         public async Task<ActionResult> Cancel(int id)
         {
@@ -79,3 +79,4 @@ namespace mf_apis_web_services_fuel_manager.Controllers
         }
     }
 }
+
