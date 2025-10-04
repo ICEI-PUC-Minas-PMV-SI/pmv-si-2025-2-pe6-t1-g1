@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using web_api.Models;
+using test.Models;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -45,7 +45,7 @@ public class CartController : ControllerBase
             .Select(c => new {
                 CartItemId = c.Id,
                 ItemId = c.ItemId,
-                ItemName = c.Item.Name,
+                ItemName = c.Item.NameItem,
                 Quantity = c.Quantity,
                 Price = c.Item.Value,
                 Subtotal = c.Quantity * c.Item.Value
