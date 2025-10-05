@@ -1,10 +1,10 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace test.Models
 {
-    public class User
+    public class UserUpdateDto
     {
         [Key]
         public int Id { get; set; }
@@ -18,8 +18,7 @@ namespace test.Models
         public string Email { get; set; }
 
         [Required]
-        [MaxLength(255)]
-        [JsonIgnore]
+        [MaxLength(255)]       
         public string PasswordHash { get; set; }
 
         [MaxLength(20)]
@@ -31,16 +30,5 @@ namespace test.Models
         [MaxLength(20)]
         public string Role { get; set; } // EMPLOYER, ADMIN, USER
 
-        // Navigation properties
-        public virtual ICollection<UserAddress> Addresses { get; set; }
-        public virtual ICollection<UserCart> CartItems { get; set; }
-        public virtual ICollection<Order> Orders { get; set; }
-    }
-
-    public enum UserRole
-    {
-        EMPLOYER,
-        ADMIN,
-        USER
     }
 }

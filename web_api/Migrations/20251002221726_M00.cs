@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace web_api.Migrations
 {
-    public partial class InitialRestaurantModelsFixed : Migration
+    public partial class M00 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -70,7 +70,7 @@ namespace web_api.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserCarrinhos",
+                name: "UserCarts",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -81,15 +81,15 @@ namespace web_api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserCarrinhos", x => x.Id);
+                    table.PrimaryKey("PK_UserCarts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserCarrinhos_Items_ItemId",
+                        name: "FK_UserCarts_Items_ItemId",
                         column: x => x.ItemId,
                         principalTable: "Items",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserCarrinhos_Users_UserId",
+                        name: "FK_UserCarts_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -177,13 +177,13 @@ namespace web_api.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserCarrinhos_ItemId",
-                table: "UserCarrinhos",
+                name: "IX_UserCarts_ItemId",
+                table: "UserCarts",
                 column: "ItemId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserCarrinhos_UserId_ItemId",
-                table: "UserCarrinhos",
+                name: "IX_UserCarts_UserId_ItemId",
+                table: "UserCarts",
                 columns: new[] { "UserId", "ItemId" },
                 unique: true);
 
@@ -200,7 +200,7 @@ namespace web_api.Migrations
                 name: "OrderItems");
 
             migrationBuilder.DropTable(
-                name: "UserCarrinhos");
+                name: "UserCarts");
 
             migrationBuilder.DropTable(
                 name: "Orders");

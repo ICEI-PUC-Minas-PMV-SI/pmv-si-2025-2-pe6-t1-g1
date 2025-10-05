@@ -29,7 +29,7 @@ builder.Services.AddAuthentication(options =>
             ValidateAudience = false,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("sua-chave-secreta-aqui")),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("WD2LGFQOD8JR3MSSW8GAIPZ0GE5SNQZ")),
             ClockSkew = TimeSpan.Zero
         };
     });
