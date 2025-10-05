@@ -553,8 +553,7 @@ A etapa de modelagem começou com a modelagem do banco de ados:
 ```
 
 ## Considerações de Segurança
-
-[Discuta as considerações de segurança relevantes para a aplicação distribuída, como autenticação, autorização, proteção contra ataques, etc.]
+Afim de garantir a segurança de seus usuários, a API FatiaCerta utiliza estratégias como tokens JWT, que são gerados no momento em que o usuário faz login, permissionamento de rotas com roles e criptografia de senhas no banco de dados, garantindo que, mesmo em caso de vazamento de informações, as senhas não sejam expostas diretamente.
 
 ## Implantação
 
