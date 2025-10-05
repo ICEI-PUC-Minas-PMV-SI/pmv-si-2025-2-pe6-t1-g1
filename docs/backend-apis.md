@@ -505,10 +505,17 @@ A etapa de modelagem começou com a modelagem do banco de ados:
 
 ## Implantação
 
-[Instruções para implantar a aplicação distribuída em um ambiente de produção.]
+Servidor de Aplicação
+- Sistema Operacional: Windows.
+- .NET SDK / Runtime: .NET 6.0 (x64).
+- Memória mínima: 4 GB RAM.
+- CPU: 2 núcleos.
+- Armazenamento: 10 GB livre.
 
-1. Defina os requisitos de hardware e software necessários para implantar a aplicação em um ambiente de produção.
-2. Escolha uma plataforma de hospedagem adequada, como um provedor de nuvem ou um servidor dedicado.
+Banco de Dados
+- Banco de dados SQL
+- Usuário com permissões de criação e alteração de tabelas
+
 3. Configure o ambiente de implantação, incluindo a instalação de dependências e configuração de variáveis de ambiente.
 4. Faça o deploy da aplicação no ambiente escolhido, seguindo as instruções específicas da plataforma de hospedagem.
 5. Realize testes para garantir que a aplicação esteja funcionando corretamente no ambiente de produção.
