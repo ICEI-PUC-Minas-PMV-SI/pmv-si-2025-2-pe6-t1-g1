@@ -1,32 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Thunder\\source\\repos\\pmv-si-2025-2-pe6-t1-g1\\web_api\\web_api.csproj": {}
+    "/home/btetzner/Documents/project/pmv-si-2025-2-pe6-t1-g1/web_api/web_api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Thunder\\source\\repos\\pmv-si-2025-2-pe6-t1-g1\\web_api\\web_api.csproj": {
+    "/home/btetzner/Documents/project/pmv-si-2025-2-pe6-t1-g1/web_api/web_api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Thunder\\source\\repos\\pmv-si-2025-2-pe6-t1-g1\\web_api\\web_api.csproj",
+        "projectUniqueName": "/home/btetzner/Documents/project/pmv-si-2025-2-pe6-t1-g1/web_api/web_api.csproj",
         "projectName": "web_api",
-        "projectPath": "C:\\Users\\Thunder\\source\\repos\\pmv-si-2025-2-pe6-t1-g1\\web_api\\web_api.csproj",
-        "packagesPath": "C:\\Users\\Thunder\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Thunder\\source\\repos\\pmv-si-2025-2-pe6-t1-g1\\web_api\\obj\\",
+        "projectPath": "/home/btetzner/Documents/project/pmv-si-2025-2-pe6-t1-g1/web_api/web_api.csproj",
+        "packagesPath": "/home/btetzner/.nuget/packages/",
+        "outputPath": "/home/btetzner/Documents/project/pmv-si-2025-2-pe6-t1-g1/web_api/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Thunder\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/btetzner/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -39,13 +32,7 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.300"
+        }
       },
       "frameworks": {
         "net6.0": {
@@ -59,20 +46,6 @@
               "target": "Package",
               "version": "[6.0.25, )"
             },
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[6.0.25, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[6.0.25, )"
-            },
-            "Microsoft.EntityFrameworkCore.Relational.Design": {
-              "target": "Package",
-              "version": "[1.1.6, )"
-            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[6.0.25, )"
@@ -81,7 +54,7 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.9, )"
+              "version": "[6.0.25, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -107,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.428/RuntimeIdentifierGraph.json"
         }
       }
     }

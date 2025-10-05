@@ -1,76 +1,120 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using test.Models;
+using web_api.Models;
 
 namespace web_api.Controllers
 {
-    [Authorize]  // Exige autenticação para acessar os endpoints deste controlador
-    // Define a rota base para o controlador e indica que é um controlador de API
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class ItemsController : ControllerBase
     {
-        // Contexto do banco de dados
         private readonly AppDbContext _context;
 
-        // Construtor para injeção de dependência do contexto do banco de dados
         public ItemsController(AppDbContext context)
         {
             _context = context;
         }
 
-        //Endpoints
-
-        [AllowAnonymous]  // Permite acesso anônimo a este endpoint específico
-        [HttpGet] // GET: api/Items - Busca todos os items
-        public async Task<IActionResult> GetAll()
+        [HttpPost]
+        [Authorize(Roles = "ADMIN")]
+        public async Task<ActionResult<Item>> CreateItem(Item item)
         {
-            var model = await _context.Items.ToListAsync();
-            return Ok(model);
+            try
+            {
+                _context.Items.Add(item);
+                await _context.SaveChangesAsync();
+                return CreatedAtAction(nameof(GetItem), new { id = item.Id }, item);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Erro ao criar item", error = ex.Message });
+            }
         }
 
-        [Authorize(Roles = "Admin")]
-        [HttpPut("{id}")] // PUT: api/Items/? - Atualiza um item existente
-        public async Task<IActionResult> Update(int id, Item model)
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Item>>> GetItems()
         {
-            if (id != model.Id) return BadRequest();
-
-            var modeloDb = await _context.Items.AsNoTracking()
-                .FirstOrDefaultAsync(c => c.Id == id);
-
-            if (modeloDb == null) return NotFound();
-
-            _context.Items.Update(model);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            try
+            {
+                var items = await _context.Items.ToListAsync();
+                return Ok(items);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Erro ao buscar itens", error = ex.Message });
+            }
         }
 
-        [Authorize(Roles = "Admin")]
-        [HttpPost] // POST: api/Items - Cria um novo item
-        public async Task<IActionResult> Create(Item model)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Item>> GetItem(int id)
         {
-
-            _context.Items.Add(model);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetById", new { id = model.Id }, model);
+            try
+            {
+                var item = await _context.Items.FindAsync(id);
+                if (item == null)
+                {
+                    return NotFound(new { message = "Item não encontrado" });
+                }
+                return Ok(item);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Erro ao buscar item", error = ex.Message });
+            }
         }
 
-        [Authorize(Roles = "Admin")]
-        [HttpDelete("{id}")] // DELETE: api/Items/? - Deleta um item existente
-        public async Task<IActionResult> Delete(int id)
+        [HttpPut("{id}")]
+        [Authorize(Roles = "ADMIN")]
+        public async Task<IActionResult> UpdateItem(int id, Item item)
         {
-            var model = await _context.Items.FindAsync(id);
+            if (id != item.Id)
+            {
+                return BadRequest(new { message = "ID do item não confere" });
+            }
 
-            if (model == null) return NotFound();
+            try
+            {
+                var existingItem = await _context.Items.FindAsync(id);
+                if (existingItem == null)
+                {
+                    return NotFound(new { message = "Item não encontrado" });
+                }
 
-            _context.Items.Remove(model);
-            await _context.SaveChangesAsync();
+                existingItem.NameItem = item.NameItem;
+                existingItem.Description = item.Description;
+                existingItem.Value = item.Value;
+                existingItem.Category = item.Category;
 
-            return NoContent();
+                await _context.SaveChangesAsync();
+                return Ok(existingItem);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Erro ao atualizar item", error = ex.Message });
+            }
         }
 
+        [HttpDelete("{id}")]
+        [Authorize(Roles = "ADMIN")]
+        public async Task<IActionResult> DeleteItem(int id)
+        {
+            try
+            {
+                var item = await _context.Items.FindAsync(id);
+                if (item == null)
+                {
+                    return NotFound(new { message = "Item não encontrado" });
+                }
+
+                _context.Items.Remove(item);
+                await _context.SaveChangesAsync();
+                return Ok(new { message = "Item removido com sucesso" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Erro ao remover item", error = ex.Message });
+            }
+        }
     }
 }
