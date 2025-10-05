@@ -571,13 +571,28 @@ Banco de Dados
 
 ## Testes
 
-[Descreva a estratégia de teste, incluindo os tipos de teste a serem realizados (unitários, integração, carga, etc.) e as ferramentas a serem utilizadas.]
+Para facilitar os testes e garantir que novos desenvolvimentos não seriam enviados a branch 
+principal com erros, foi implementado um diretório de testes usando cypress e nodeJS, que serão executados antes de cada atualização do código principal
 
-1. Crie casos de teste para cobrir todos os requisitos funcionais e não funcionais da aplicação.
-2. Implemente testes unitários para testar unidades individuais de código, como funções e classes.
-3. Realize testes de integração para verificar a interação correta entre os componentes da aplicação.
-4. Execute testes de carga para avaliar o desempenho da aplicação sob carga significativa.
-5. Utilize ferramentas de teste adequadas, como frameworks de teste e ferramentas de automação de teste, para agilizar o processo de teste.
+### Casos de teste:
+<img width="770" height="691" alt="image" src="https://github.com/user-attachments/assets/ef10669b-b7ea-45ff-8de6-3a72ab1df259" />
+
+<img width="770" height="691" alt="image" src="https://github.com/user-attachments/assets/09900f13-e1af-461a-8019-4dd914bbe8bc" />
+
+<img width="770" height="691" alt="image" src="https://github.com/user-attachments/assets/552ed115-7b0f-4171-af05-0ef8817da4b7" />
+
+<img width="770" height="691" alt="image" src="https://github.com/user-attachments/assets/5f6c363e-b4a0-439b-9848-d73e6b19e2f8" />
+
+
+### Sumarização de resultados:
+
+<img width="1005" height="310" alt="image" src="https://github.com/user-attachments/assets/905b5b1a-af1a-4e4f-ae29-bf8c1315c14c" />
+
+
+
+
+
+
 
 # Referências
 
