@@ -12,8 +12,8 @@ using test.Models;
 namespace web_api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250924002538_InitialRestaurantModelsFixed")]
-    partial class InitialRestaurantModelsFixed
+    [Migration("20251002221726_M00")]
+    partial class M00
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -203,7 +203,7 @@ namespace web_api.Migrations
                     b.ToTable("UserAddresses");
                 });
 
-            modelBuilder.Entity("test.Models.UserCarrinho", b =>
+            modelBuilder.Entity("test.Models.UserCart", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -227,7 +227,7 @@ namespace web_api.Migrations
                     b.HasIndex("UserId", "ItemId")
                         .IsUnique();
 
-                    b.ToTable("UserCarrinhos");
+                    b.ToTable("UserCarts");
                 });
 
             modelBuilder.Entity("test.Models.Order", b =>
@@ -279,7 +279,7 @@ namespace web_api.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("test.Models.UserCarrinho", b =>
+            modelBuilder.Entity("test.Models.UserCart", b =>
                 {
                     b.HasOne("test.Models.Item", "Item")
                         .WithMany("CartItems")
