@@ -28,15 +28,16 @@ A etapa de modelagem começou com a modelagem do banco de ados:
 
 ### 👤 Users
 
-### POST `/user` – Criar usuário
-**Acesso:** User
+### POST `/api/user` – Criar usuário (Registrar)
+**Acesso:** Público
 
-**Request (exemplo):**
+**Request:**
 ```json
 {
   "name": "João Silva",
   "email": "joao@email.com",
-  "password": "SenhaForte!234"
+  "password": "SenhaForte!234",
+  "phone": "11999999999"
 }
 ```
 
@@ -45,117 +46,26 @@ A etapa de modelagem começou com a modelagem do banco de ados:
 **✅ 201 Created**
 ```json
 {
-  "id": "123",
+  "id": 123,
   "name": "João Silva",
-  "email": "joao@email.com"
+  "email": "joao@email.com",
+  "phone": "11999999999",
+  "createdAt": "2025-10-05T19:30:00.000Z",
+  "role": "USER"
 }
 ```
 
 **❌ 400 Bad Request**
 ```json
-{ "error": "Invalid email format", "statusCode": 400 }
-```
-
-**❌ 409 Conflict**
-```json
-{ "error": "User already exists", "statusCode": 409 }
-```
-
-**❌ 500 Internal Server Error**
-```json
-{ "error": "Unexpected error", "statusCode": 500 }
+{ "message": "User with this email already exists" }
 ```
 
 ---
 
-### GET `/user` – Buscar dados do próprio usuário
-**Acesso:** User
+### POST `/api/user/login` – Autenticação
+**Acesso:** Público
 
-**Responses:**
-
-**✅ 200 OK**
-```json
-{
-  "id": "123",
-  "name": "João Silva",
-  "email": "joao@email.com"
-}
-```
-
-**❌ 401 Unauthorized**
-```json
-{ "error": "Invalid token", "statusCode": 401 }
-```
-
-**❌ 404 Not Found**
-```json
-{ "error": "User not found", "statusCode": 404 }
-```
-
----
-
-### PUT `/user` – Atualizar dados do próprio usuário
-**Acesso:** User
-
-**Request (exemplo):**
-```json
-{
-  "name": "João Atualizado",
-  "email": "joao.novo@email.com"
-}
-```
-
-**Responses:**
-
-**✅ 200 OK**
-```json
-{
-  "id": "123",
-  "name": "João Atualizado",
-  "email": "joao.novo@email.com"
-}
-```
-
-**❌ 400 Bad Request**
-```json
-{ "error": "Invalid request body", "statusCode": 400 }
-```
-
-**❌ 401 Unauthorized**
-```json
-{ "error": "Invalid token", "statusCode": 401 }
-```
-
-**❌ 500 Internal Server Error**
-```json
-{ "error": "Unexpected error", "statusCode": 500 }
-```
-
----
-
-### DELETE `/user` – Remover a própria conta
-**Acesso:** User
-
-**Responses:**
-
-**✅ 204 No Content**
-
-**❌ 401 Unauthorized**
-```json
-{ "error": "Invalid token", "statusCode": 401 }
-```
-
-**❌ 404 Not Found**
-```json
-{ "error": "User not found", "statusCode": 404 }
-```
-
----
-
-### POST `/user/login` – Autenticação
-**Acesso:** Shared
-
-**Request (exemplo):**
+**Request:**
 ```json
 {
   "email": "joao@email.com",
@@ -169,34 +79,121 @@ A etapa de modelagem começou com a modelagem do banco de ados:
 ```json
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-  "expiresIn": 3600
+  "user": {
+    "id": 123,
+    "name": "João Silva",
+    "email": "joao@email.com",
+    "phone": "11999999999",
+    "createdAt": "2025-10-05T19:30:00.000Z",
+    "role": "USER"
+  }
 }
-```
-
-**❌ 400 Bad Request**
-```json
-{ "error": "Missing email or password", "statusCode": 400 }
 ```
 
 **❌ 401 Unauthorized**
 ```json
-{ "error": "Invalid credentials", "statusCode": 401 }
+{ "message": "Invalid credentials" }
+```
+
+---
+
+### GET `/api/user` – Buscar dados do próprio usuário
+**Acesso:** Usuário autenticado
+**Header:** `Authorization: Bearer {token}`
+
+**Responses:**
+
+**✅ 200 OK**
+```json
+{
+  "id": 123,
+  "name": "João Silva",
+  "email": "joao@email.com",
+  "phone": "11999999999",
+  "createdAt": "2025-10-05T19:30:00.000Z",
+  "role": "USER"
+}
+```
+
+**❌ 401 Unauthorized**
+```json
+{ "message": "Unauthorized" }
+```
+
+---
+
+### PUT `/api/user` – Atualizar dados do próprio usuário
+**Acesso:** Usuário autenticado
+**Header:** `Authorization: Bearer {token}`
+
+**Request:**
+```json
+{
+  "name": "João Silva Atualizado",
+  "phone": "11888888888",
+  "password": "NovaSenha!456"
+}
+```
+
+**Responses:**
+
+**✅ 200 OK**
+```json
+{
+  "id": 123,
+  "name": "João Silva Atualizado",
+  "email": "joao@email.com",
+  "phone": "11888888888",
+  "createdAt": "2025-10-05T19:30:00.000Z",
+  "role": "USER"
+}
+```
+
+---
+
+### DELETE `/api/user` – Remover a própria conta
+**Acesso:** Usuário autenticado
+**Header:** `Authorization: Bearer {token}`
+
+**Responses:**
+
+**✅ 204 No Content**
+
+---
+
+### GET `/api/user/{id}` – Buscar usuário por ID
+**Acesso:** Admin
+**Header:** `Authorization: Bearer {admin_token}`
+
+**Responses:**
+
+**✅ 200 OK**
+```json
+{
+  "id": 123,
+  "name": "João Silva",
+  "email": "joao@email.com",
+  "phone": "11999999999",
+  "createdAt": "2025-10-05T19:30:00.000Z",
+  "role": "USER"
+}
 ```
 
 ---
 
 ### 📦 Items
 
-### POST `/item` – Criar item
+### POST `/api/items` – Criar item
 **Acesso:** Admin
+**Header:** `Authorization: Bearer {admin_token}`
 
-**Request (exemplo):**
+**Request:**
 ```json
 {
-  "name": "Pizza Calabresa",
-  "description": "Calabresa, cebola, azeitona",
-  "price": 45.00,
-  "stock": 10
+  "nameItem": "Pizza Calabresa",
+  "description": "Pizza com calabresa, cebola e azeitona",
+  "value": 45.90,
+  "category": "Pizza"
 }
 ```
 
@@ -205,104 +202,145 @@ A etapa de modelagem começou com a modelagem do banco de ados:
 **✅ 201 Created**
 ```json
 {
-  "id": "1",
-  "name": "Pizza Calabresa",
-  "price": 45.00,
-  "stock": 10
+  "id": 1,
+  "nameItem": "Pizza Calabresa",
+  "description": "Pizza com calabresa, cebola e azeitona",
+  "value": 45.90,
+  "category": "Pizza"
 }
 ```
 
 **❌ 400 Bad Request**
 ```json
-{ "error": "Invalid item data", "statusCode": 400 }
-```
-
-**❌ 500 Internal Server Error**
-```json
-{ "error": "Unexpected error", "statusCode": 500 }
+{ "message": "Erro ao criar item", "error": "..." }
 ```
 
 ---
 
-### PUT `/item/:id` – Atualizar item
-**Acesso:** Admin
-
-**Request (exemplo):**
-```json
-{
-  "name": "Pizza Calabresa Grande",
-  "price": 52.00,
-  "stock": 8
-}
-```
-
-**Responses:**
-
-**✅ 200 OK**
-```json
-{
-  "id": "1",
-  "name": "Pizza Calabresa Grande",
-  "price": 52.00,
-  "stock": 8
-}
-```
-
-**❌ 400 Bad Request**
-```json
-{ "error": "Invalid item data", "statusCode": 400 }
-```
-
-**❌ 404 Not Found**
-```json
-{ "error": "Item not found", "statusCode": 404 }
-```
-
----
-
-### GET `/item` – Listar itens
-**Acesso:** Admin
+### GET `/api/items` – Listar todos os itens
+**Acesso:** Público
 
 **Responses:**
 
 **✅ 200 OK**
 ```json
 [
-  { "id": "1", "name": "Pizza Calabresa", "price": 45.00, "stock": 10 },
-  { "id": "2", "name": "Pizza Marguerita", "price": 42.00, "stock": 5 }
+  {
+    "id": 1,
+    "nameItem": "Pizza Calabresa",
+    "description": "Pizza com calabresa, cebola e azeitona",
+    "value": 45.90,
+    "category": "Pizza"
+  },
+  {
+    "id": 2,
+    "nameItem": "Pizza Margherita",
+    "description": "Pizza com molho de tomate, mussarela e manjericão",
+    "value": 42.90,
+    "category": "Pizza"
+  }
 ]
-```
-
-**❌ 401 Unauthorized**
-```json
-{ "error": "Unauthorized", "statusCode": 401 }
 ```
 
 ---
 
-### DELETE `/item/:id` – Remover item
-**Acesso:** Admin
+### GET `/api/items/{id}` – Buscar item por ID
+**Acesso:** Público
 
 **Responses:**
 
-**✅ 204 No Content**
+**✅ 200 OK**
+```json
+{
+  "id": 1,
+  "nameItem": "Pizza Calabresa",
+  "description": "Pizza com calabresa, cebola e azeitona",
+  "value": 45.90,
+  "category": "Pizza"
+}
+```
 
 **❌ 404 Not Found**
 ```json
-{ "error": "Item not found", "statusCode": 404 }
+{ "message": "Item não encontrado" }
+```
+
+---
+
+### GET `/api/items/search` – Buscar itens
+**Acesso:** Público
+**Query Parameters:** `?query=Pizza&category=Pizza`
+
+**Responses:**
+
+**✅ 200 OK**
+```json
+[
+  {
+    "id": 1,
+    "nameItem": "Pizza Calabresa",
+    "description": "Pizza com calabresa, cebola e azeitona",
+    "value": 45.90,
+    "category": "Pizza"
+  }
+]
+```
+
+---
+
+### PUT `/api/items/{id}` – Atualizar item
+**Acesso:** Admin
+**Header:** `Authorization: Bearer {admin_token}`
+
+**Request:**
+```json
+{
+  "id": 1,
+  "nameItem": "Pizza Calabresa Grande",
+  "description": "Pizza grande com calabresa, cebola e azeitona",
+  "value": 52.90,
+  "category": "Pizza"
+}
+```
+
+**Responses:**
+
+**✅ 200 OK**
+```json
+{
+  "id": 1,
+  "nameItem": "Pizza Calabresa Grande",
+  "description": "Pizza grande com calabresa, cebola e azeitona",
+  "value": 52.90,
+  "category": "Pizza"
+}
+```
+
+---
+
+### DELETE `/api/items/{id}` – Remover item
+**Acesso:** Admin
+**Header:** `Authorization: Bearer {admin_token}`
+
+**Responses:**
+
+**✅ 200 OK**
+```json
+{ "message": "Item removido com sucesso" }
 ```
 
 ---
 
 ### 🛒 Cart
 
-### POST `/cart-item` – Adicionar item ao carrinho
+### POST `/api/cart/item` – Adicionar item ao carrinho
 **Acesso:** User
+**Header:** `Authorization: Bearer {token}`
 
-**Request (exemplo):**
+**Request:**
 ```json
 {
-  "itemId": "2",
+  "itemId": 2,
   "quantity": 1
 }
 ```
@@ -312,191 +350,206 @@ A etapa de modelagem começou com a modelagem do banco de ados:
 **✅ 201 Created**
 ```json
 {
-  "cartItemId": "10",
-  "itemId": "2",
-  "name": "Pizza Marguerita",
-  "quantity": 1,
-  "price": 42.00,
-  "subtotal": 42.00
-}
-```
-
-**❌ 400 Bad Request**
-```json
-{ "error": "Invalid cart item data", "statusCode": 400 }
-```
-
-**❌ 404 Not Found**
-```json
-{ "error": "Item not found", "statusCode": 404 }
-```
-
----
-
-### PUT `/cart-item/:id` – Atualizar item do carrinho
-**Acesso:** User
-
-**Request (exemplo):**
-```json
-{
-  "quantity": 2
-}
-```
-
-**Responses:**
-
-**✅ 200 OK**
-```json
-{
-  "cartItemId": "10",
-  "itemId": "2",
-  "quantity": 2,
-  "subtotal": 84.00
+  "id": 10,
+  "userId": 123,
+  "itemId": 2,
+  "quantity": 1
 }
 ```
 
 **❌ 404 Not Found**
 ```json
-{ "error": "Cart item not found", "statusCode": 404 }
+{ "message": "Item não encontrado" }
 ```
 
 ---
 
-### GET `/cart-item` – Listar itens do carrinho
+### GET `/api/cart` – Listar itens do carrinho
 **Acesso:** User
+**Header:** `Authorization: Bearer {token}`
 
 **Responses:**
 
 **✅ 200 OK**
 ```json
 [
-  { "cartItemId": "10", "itemId": "2", "name": "Pizza Marguerita", "quantity": 2, "price": 42.00 }
+  {
+    "id": 10,
+    "itemId": 2,
+    "itemName": "Pizza Margherita",
+    "itemPrice": 42.90,
+    "quantity": 2,
+    "totalPrice": 85.80
+  }
 ]
 ```
 
 ---
 
-### DELETE `/cart-item/:id` – Remover item do carrinho
+### PUT `/api/cart/item/{id}` – Atualizar item do carrinho
 **Acesso:** User
+**Header:** `Authorization: Bearer {token}`
+
+**Request:**
+```json
+{
+  "quantity": 3
+}
+```
+
+**Responses:**
+
+**✅ 200 OK**
+```json
+{ "message": "Item do carrinho atualizado com sucesso" }
+```
+
+**❌ 404 Not Found**
+```json
+{ "message": "Item do carrinho não encontrado" }
+```
+
+---
+
+### DELETE `/api/cart/item/{id}` – Remover item do carrinho
+**Acesso:** User
+**Header:** `Authorization: Bearer {token}`
+
+**Responses:**
+
+**✅ 200 OK**
+```json
+{ "message": "Item removido do carrinho com sucesso" }
+```
+
+---
+
+### DELETE `/api/cart/clear` – Limpar carrinho
+**Acesso:** User
+**Header:** `Authorization: Bearer {token}`
 
 **Responses:**
 
 **✅ 204 No Content**
 
-**❌ 404 Not Found**
-```json
-{ "error": "Cart item not found", "statusCode": 404 }
-```
-
 ---
 
 ### 🧾 Orders
 
-### POST `/order` – Criar pedido
+### POST `/api/orders` – Criar pedido (a partir do carrinho)
 **Acesso:** User
+**Header:** `Authorization: Bearer {token}`
 
-**Request (exemplo):**
-```json
-{
-  "items": [
-    { "itemId": "1", "quantity": 1 },
-    { "itemId": "2", "quantity": 1 }
-  ],
-  "paymentMethod": "card",
-  "addressId": "addr_123"
-}
-```
+**Request:** Sem body (usa itens do carrinho)
 
 **Responses:**
 
 **✅ 201 Created**
 ```json
 {
-  "orderId": "999",
-  "status": "pending",
-  "items": [
-    { "itemId": "1", "quantity": 1 },
-    { "itemId": "2", "quantity": 1 }
-  ]
+  "id": 999,
+  "userId": 123,
+  "enderecoEntregaId": 1,
+  "dataPedido": "2025-10-05T22:30:00.000Z",
+  "status": "PENDING",
+  "total": 85.80
 }
 ```
 
 **❌ 400 Bad Request**
 ```json
-{ "error": "Invalid order data", "statusCode": 400 }
+{ "message": "Carrinho vazio" }
 ```
 
 ---
 
-### GET `/order/:id` – Buscar pedido específico
-**Acesso:** User
-
-**Responses:**
-
-**✅ 200 OK**
-```json
-{
-  "orderId": "999",
-  "status": "pending",
-  "items": [
-    { "itemId": "1", "quantity": 1 },
-    { "itemId": "2", "quantity": 1 }
-  ]
-}
-```
-
-**❌ 404 Not Found**
-```json
-{ "error": "Order not found", "statusCode": 404 }
-```
-
----
-
-### DELETE `/order/:id` – Cancelar pedido
-**Acesso:** User
-
-**Responses:**
-
-**✅ 204 No Content**
-
-**❌ 404 Not Found**
-```json
-{ "error": "Order not found", "statusCode": 404 }
-```
-
----
-
-### GET `/orders` – Listar todos pedidos
-**Acesso:** Admin/Employee
+### GET `/api/orders` – Listar pedidos do usuário
+**Acesso:** User/Admin/Employee
+**Header:** `Authorization: Bearer {token}`
 
 **Responses:**
 
 **✅ 200 OK**
 ```json
 [
-  { "orderId": "999", "status": "pending", "userId": "123" },
-  { "orderId": "1000", "status": "completed", "userId": "124" }
+  {
+    "id": 999,
+    "userId": 123,
+    "orderDate": "2025-10-05T22:30:00.000Z",
+    "status": "PENDING",
+    "totalAmount": 85.80,
+    "itemCount": 2
+  }
 ]
 ```
 
 ---
 
-### PATCH `/cancel/:id` – Cancelar pedido (qualquer usuário)
-**Acesso:** Admin/Employee/User
+### GET `/api/orders/{id}` – Buscar pedido específico
+**Acesso:** User/Admin/Employee
+**Header:** `Authorization: Bearer {token}`
 
 **Responses:**
 
 **✅ 200 OK**
 ```json
 {
-  "orderId": "999",
-  "status": "canceled"
+  "id": 999,
+  "userId": 123,
+  "orderDate": "2025-10-05T22:30:00.000Z",
+  "status": "PENDING",
+  "totalAmount": 85.80,
+  "items": [
+    {
+      "itemId": 2,
+      "itemName": "Pizza Margherita",
+      "quantity": 2,
+      "itemValue": 42.90,
+      "total": 85.80
+    }
+  ]
 }
 ```
 
 **❌ 404 Not Found**
 ```json
-{ "error": "Order not found", "statusCode": 404 }
+{ "message": "Pedido não encontrado" }
+```
+
+---
+
+### PUT `/api/orders/{id}/status` – Atualizar status do pedido
+**Acesso:** Admin/Employee
+**Header:** `Authorization: Bearer {admin_token}`
+
+**Request:**
+```json
+"CONFIRMED"
+```
+
+**Responses:**
+
+**✅ 200 OK**
+```json
+{
+  "message": "Status do pedido atualizado com sucesso",
+  "status": "CONFIRMED"
+}
+```
+
+**Status válidos:** `PENDING`, `CONFIRMED`, `PREPARING`, `READY`, `DELIVERED`, `CANCELLED`
+
+---
+
+### DELETE `/api/orders/{id}` – Remover pedido
+**Acesso:** Admin
+**Header:** `Authorization: Bearer {admin_token}`
+
+**Responses:**
+
+**✅ 200 OK**
+```json
+{ "message": "Pedido removido com sucesso" }
 ```
 
 ## Considerações de Segurança
