@@ -513,12 +513,8 @@ Servidor de Aplicação
 - Armazenamento: 10 GB livre.
 
 Banco de Dados
-- Banco de dados SQL
+- Bnaco de Dados SQL server
 - Usuário com permissões de criação e alteração de tabelas
-
-3. Configure o ambiente de implantação, incluindo a instalação de dependências e configuração de variáveis de ambiente.
-4. Faça o deploy da aplicação no ambiente escolhido, seguindo as instruções específicas da plataforma de hospedagem.
-5. Realize testes para garantir que a aplicação esteja funcionando corretamente no ambiente de produção.
 
 ## Testes
 
