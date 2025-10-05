@@ -29,6 +29,13 @@ namespace web_api.Controllers
                     return Unauthorized(new { message = "Usuário não autenticado" });
                 }
 
+                // Verificar se o item existe
+                var item = await _context.Items.FindAsync(cartItem.ItemId);
+                if (item == null)
+                {
+                    return NotFound(new { message = "Item não encontrado" });
+                }
+
                 var userId = int.Parse(userIdClaim.Value);
                 cartItem.UserId = userId;
 
@@ -117,7 +124,7 @@ namespace web_api.Controllers
         }
 
         [HttpPut("item/{id}")]
-        public async Task<IActionResult> UpdateCartItem(int id, [FromBody] int quantity)
+        public async Task<IActionResult> UpdateCartItem(int id, [FromBody] UpdateCartItemDto updateDto)
         {
             try
             {
@@ -137,15 +144,12 @@ namespace web_api.Controllers
                     return NotFound(new { message = "Item do carrinho não encontrado" });
                 }
 
-                if (quantity <= 0)
+                if (updateDto.quantity <= 0)
                 {
-                    _context.UserCarts.Remove(cartItem);
-                }
-                else
-                {
-                    cartItem.Quantity = quantity;
+                    return BadRequest(new { message = "Quantidade deve ser maior que zero" });
                 }
 
+                cartItem.Quantity = updateDto.quantity;
                 await _context.SaveChangesAsync();
                 return Ok(new { message = "Item do carrinho atualizado com sucesso" });
             }
@@ -207,7 +211,7 @@ namespace web_api.Controllers
                 _context.UserCarts.RemoveRange(cartItems);
                 await _context.SaveChangesAsync();
 
-                return Ok(new { message = "Carrinho limpo com sucesso" });
+                return NoContent(); // Status 204
             }
             catch (Exception ex)
             {
