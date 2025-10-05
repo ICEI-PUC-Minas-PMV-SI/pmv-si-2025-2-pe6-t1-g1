@@ -513,7 +513,7 @@ Servidor de Aplicação
 - Armazenamento: 10 GB livre.
 
 Banco de Dados
-- Bnaco de Dados SQL server
+- Banco de Dados SQL server
 - Usuário com permissões de criação e alteração de tabelas
 
 ## Testes
