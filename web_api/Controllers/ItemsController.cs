@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using test.Models;
@@ -23,7 +22,7 @@ namespace web_api.Controllers
 
         //Endpoints
 
-        [Authorize(Roles = "Admin")]  // Exige que o usuário tenha a função "Admin" para acessar este endpoint
+        [AllowAnonymous]  // Permite acesso anônimo a este endpoint específico
         [HttpGet] // GET: api/Items - Busca todos os items
         public async Task<IActionResult> GetAll()
         {
@@ -31,7 +30,7 @@ namespace web_api.Controllers
             return Ok(model);
         }
 
-        [Authorize (Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")] // PUT: api/Items/? - Atualiza um item existente
         public async Task<IActionResult> Update(int id, Item model)
         {
@@ -48,7 +47,7 @@ namespace web_api.Controllers
             return NoContent();
         }
 
-        [Authorize (Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost] // POST: api/Items - Cria um novo item
         public async Task<IActionResult> Create(Item model)
         {
@@ -59,7 +58,7 @@ namespace web_api.Controllers
             return CreatedAtAction("GetById", new { id = model.Id }, model);
         }
 
-        [Authorize (Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")] // DELETE: api/Items/? - Deleta um item existente
         public async Task<IActionResult> Delete(int id)
         {
