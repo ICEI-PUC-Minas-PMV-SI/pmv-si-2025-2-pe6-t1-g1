@@ -20,6 +20,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IJwtService, JwtService>();
 
 // Configure JWT Authentication
+var jwtKey = builder.Configuration["Jwt:Key"] ?? "ThisIsASecretKeyForWebApiPizzariaSystemDevelopment2024";
+var jwtIssuer = builder.Configuration["Jwt:Issuer"] ?? "WebApiPizzaria";
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -29,10 +32,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            ValidIssuer = builder.Configuration["Jwt:Issuer"],
-            ValidAudience = builder.Configuration["Jwt:Issuer"],
-            IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
+            ValidIssuer = jwtIssuer,
+            ValidAudience = jwtIssuer,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey)),
             ClockSkew = TimeSpan.Zero
         };
     });
