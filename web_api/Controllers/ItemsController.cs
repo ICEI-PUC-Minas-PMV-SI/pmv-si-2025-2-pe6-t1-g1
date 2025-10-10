@@ -46,32 +46,6 @@ namespace web_api.Controllers
             }
         }
 
-        [HttpGet("search")]
-        public async Task<ActionResult<IEnumerable<Item>>> SearchItems([FromQuery] string query, [FromQuery] string category)
-        {
-            try
-            {
-                var itemsQuery = _context.Items.AsQueryable();
-
-                if (!string.IsNullOrEmpty(query))
-                {
-                    itemsQuery = itemsQuery.Where(i => i.NameItem.Contains(query) || i.Description.Contains(query));
-                }
-
-                if (!string.IsNullOrEmpty(category))
-                {
-                    itemsQuery = itemsQuery.Where(i => i.Category.Contains(category));
-                }
-
-                var items = await itemsQuery.ToListAsync();
-                return Ok(items);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = "Erro ao buscar itens", error = ex.Message });
-            }
-        }
-
         [HttpGet("{id}")]
         public async Task<ActionResult<Item>> GetItem(int id)
         {
