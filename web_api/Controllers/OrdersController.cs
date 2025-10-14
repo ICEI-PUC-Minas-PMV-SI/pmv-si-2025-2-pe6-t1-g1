@@ -179,31 +179,24 @@ namespace web_api.Controllers
 
         [HttpPut("{id}/status")]
         [Authorize(Roles = "ADMIN,EMPLOYEE")]
-        public async Task<IActionResult> UpdateOrderStatus(int id, [FromBody] string status)
+        public async Task<IActionResult> UpdateOrderStatus(int id, [FromBody] UpdateStatusDto request)
         {
-            try
+            var order = await _context.Orders.FindAsync(id);
+            if (order == null)
             {
-                var order = await _context.Orders.FindAsync(id);
-                if (order == null)
-                {
-                    return NotFound(new { message = "Pedido não encontrado" });
-                }
-
-                var validStatuses = new[] { "PENDING", "CONFIRMED", "PREPARING", "READY", "DELIVERED", "CANCELLED" };
-                if (!validStatuses.Contains(status.ToUpper()))
-                {
-                    return BadRequest(new { message = "Status inválido" });
-                }
-
-                order.Status = status.ToUpper();
-                await _context.SaveChangesAsync();
-
-                return Ok(new { message = "Status do pedido atualizado com sucesso", status = order.Status });
+                return NotFound(new { message = "Pedido não encontrado" });
             }
-            catch (Exception ex)
+
+            var validStatuses = new[] { "PENDING", "CONFIRMED", "PREPARING", "READY", "DELIVERED", "CANCELLED" };
+            if (!validStatuses.Contains(request.Status.ToUpper()))
             {
-                return BadRequest(new { message = "Erro ao atualizar status do pedido", error = ex.Message });
+                return BadRequest(new { message = "Status inválido" });
             }
+
+            order.Status = request.Status.ToUpper();
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Status do pedido atualizado com sucesso", status = order.Status });
         }
 
         [HttpDelete("{id}")]

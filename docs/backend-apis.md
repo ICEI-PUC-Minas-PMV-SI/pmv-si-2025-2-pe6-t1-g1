@@ -570,17 +570,33 @@ Banco de Dados
 
 ## Testes
 
-[Descreva a estratégia de teste, incluindo os tipos de teste a serem realizados (unitários, integração, carga, etc.) e as ferramentas a serem utilizadas.]
+Para facilitar os testes e garantir que novos desenvolvimentos não seriam enviados a branch 
+principal com erros, foi implementado um diretório de testes usando cypress e nodeJS, que serão executados antes de cada atualização do código principal
 
-1. Crie casos de teste para cobrir todos os requisitos funcionais e não funcionais da aplicação.
-2. Implemente testes unitários para testar unidades individuais de código, como funções e classes.
-3. Realize testes de integração para verificar a interação correta entre os componentes da aplicação.
-4. Execute testes de carga para avaliar o desempenho da aplicação sob carga significativa.
-5. Utilize ferramentas de teste adequadas, como frameworks de teste e ferramentas de automação de teste, para agilizar o processo de teste.
+### Casos de teste:
+<img width="770" height="691" alt="image" src="https://github.com/user-attachments/assets/ef10669b-b7ea-45ff-8de6-3a72ab1df259" />
+
+<img width="770" height="691" alt="image" src="https://github.com/user-attachments/assets/09900f13-e1af-461a-8019-4dd914bbe8bc" />
+
+<img width="770" height="691" alt="image" src="https://github.com/user-attachments/assets/552ed115-7b0f-4171-af05-0ef8817da4b7" />
+
+<img width="770" height="691" alt="image" src="https://github.com/user-attachments/assets/5f6c363e-b4a0-439b-9848-d73e6b19e2f8" />
+
+
+### Sumarização de resultados:
+
+<img width="1005" height="310" alt="image" src="https://github.com/user-attachments/assets/905b5b1a-af1a-4e4f-ae29-bf8c1315c14c" />
+
+
+
+
+
+
 
 # Referências
 
-Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvolvimento do trabalho.
+CYPRESS. Testing Frameworks for Javascript | Write, Run, Debug. Disponível em: https://www.cypress.io/
+. Acesso em: 9 out. 2025.
 
 # Planejamento
 
@@ -594,11 +610,11 @@ Atualizado em: 29/09/2025
 
 | Responsável | Tarefa/Requisito                   | Iniciado em    | Prazo      | Status | Terminado em |
 | :----       | :----                               | :----:        | :----:     | :----: | :----:       |
-| Samuel      | Desenvolver endpoints de Users     | 22/09/2025    | 05/09/2025 | ✔️     | 05/09/2025   |
-| Pedro       | Criar endpoints de Users/Admin     | 22/09/2025    | 29/09/2025 | 📝     |              |
+| Samuel      | Desenvolver endpoints de Users     | 22/09/2025    | 05/09/2025 | ✔️     | 05/10/2025   |
+| Pedro       | Criar endpoints de Users/Admin     | 22/09/2025    | 29/09/2025 | ✔️      | 05/10/2025   |
 | Victor      | Desenvolver endpoints de Items/Admin | 22/09/2025  | 29/09/2025 | ✔️     |  28/09/2025  |
-| Luigi       | Criar endpoints de Cart/User       | 22/09/2025    | 29/09/2025 | 📝     |              |
-| Vitor       | Criar endpoints de Orders          | 22/09/2025    | 29/09/2025 | ✔️     | 29/09/2025   |
+| Luigi       | Criar endpoints de Cart/User       | 22/09/2025    | 29/09/2025 | ✔️      | 05/10/2025   |
+| Vitor       | Criar endpoints de Orders          | 22/09/2025    | 29/09/2025 |   ✔️   | 29/09/2025   |
 | Bruno       | Setup da API + modelagem do banco + models  | 22/09/2025    | 24/09/2025 |  ✔️    | 24/09/2025   |
 
 
@@ -608,13 +624,9 @@ Atualizado em: 21/04/2024
 
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
-| AlunaX        | Página inicial   | 01/02/2024     | 07/03/2024 | ✔️    | 05/02/2024      |
-| AlunaZ        | CSS unificado    | 03/02/2024     | 10/03/2024 | 📝    |                 |
-| AlunoY        | Página de login  | 01/02/2024     | 07/03/2024 | ⌛     |                 |
-| AlunoK        | Script de login  |  01/01/2024    | 12/03/2024 | ❌    |                |
-| Bruno         | Documentar APIs  |  29/09/20505   | 01/10/2025 | ⌛    |                |
-| Bruno         | Documentar objetivo + modelagem |  29/09/20505   | 01/10/2025 | ⌛    |                |
-| Victor.A       | Documentação de implantação  |  29/09/20505   | 01/10/2025 | ⌛    |                |
+| Bruno         | Documentar APIs  |  29/09/20505   | 01/10/2025 | ✔️    | 05/10/2025   |
+| Bruno         | Documentar objetivo + modelagem |  29/09/20505   | 01/10/2025 | ✔️    | 05/10/2025   |
+| Victor.A       | Documentação de implantação  |  29/09/20505   | 01/10/2025 | ✔️    | 05/10/2025   |
 
 Legenda:
 - ✔️: terminado
