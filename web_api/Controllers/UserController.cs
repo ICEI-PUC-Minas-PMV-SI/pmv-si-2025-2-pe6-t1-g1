@@ -164,6 +164,17 @@ namespace web_api.Controllers
             return NoContent();
         }
 
+
+        // ADMIN ENDPOINT: GET /alluser
+        [HttpGet("all_users")]
+        [Authorize(Roles = "ADMIN")]
+        public async Task<ActionResult> GetAll()
+        {
+            var model = await _context.Users.ToListAsync();
+            return Ok(model);
+        }
+
+
         // ADMIN ENDPOINT: GET /user/{id}
         [HttpGet("{id}")]
         [Authorize(Roles = "ADMIN")]
