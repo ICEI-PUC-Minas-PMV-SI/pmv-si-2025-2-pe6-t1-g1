@@ -196,29 +196,76 @@ namespace web_api.Controllers
                 Role = user.Role
             });
         }
-
-        // ADMIN ENDPOINT: PUT /user/{id}
+     
+        //ADMIN ENDPOINT: PUT/user{id}
         [HttpPut("{id}")]
         [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<UserResponseDto>> UpdateUser(int id, [FromBody] UserUpdateDto updateDto)
         {
-            var user = await _context.Users.FindAsync(id);
+           
+            var user = await _context.Users
+                                     .Include(u => u.Addresses) 
+                                     .FirstOrDefaultAsync(u => u.Id == id);
+
             if (user == null)
             {
                 return NotFound();
             }
 
+           
             user.Name = updateDto.Name ?? user.Name;
             user.Phone = updateDto.Phone ?? user.Phone;
             user.Role = updateDto.Role ?? user.Role;
+            
 
             if (!string.IsNullOrEmpty(updateDto.Password))
             {
                 user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(updateDto.Password);
             }
 
+           
+            if (updateDto.Address != null)
+            {
+                
+                var existingAddress = user.Addresses.FirstOrDefault();
+
+                if (existingAddress == null)
+                {
+                    
+                    var newAddress = new UserAddress
+                    {
+                        UserId = user.Id, 
+                        Street = updateDto.Address.Street,
+                        Number = updateDto.Address.Number,
+                        ZipCode = updateDto.Address.ZipCode,
+                        Complement = updateDto.Address.Complement,
+                        City = updateDto.Address.City,
+                        Neighborhood = updateDto.Address.Neighborhood,
+                        State = updateDto.Address.State               
+                    };
+
+                    
+                    _context.UserAddresses.Add(newAddress);
+                }
+                else
+                {
+                   
+                    existingAddress.Street = updateDto.Address.Street ?? existingAddress.Street;
+                    existingAddress.Number = updateDto.Address.Number ?? existingAddress.Number;
+                    existingAddress.ZipCode = updateDto.Address.ZipCode ?? existingAddress.ZipCode;
+                    existingAddress.Complement = updateDto.Address.Complement ?? existingAddress.Complement;
+                    existingAddress.City = updateDto.Address.City ?? existingAddress.City;
+                    existingAddress.Neighborhood = updateDto.Address.Neighborhood ?? existingAddress.Neighborhood;
+                    existingAddress.State = updateDto.Address.State ?? existingAddress.State;
+
+                    _context.UserAddresses.Update(existingAddress);
+                }
+            }
+           
+
             await _context.SaveChangesAsync();
 
+           
             return Ok(new UserResponseDto
             {
                 Id = user.Id,
@@ -246,5 +293,8 @@ namespace web_api.Controllers
 
             return NoContent();
         }
+
+
+
     }
 }

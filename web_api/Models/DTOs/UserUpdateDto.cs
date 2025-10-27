@@ -15,5 +15,7 @@ namespace web_api.Models.DTOs
 
         [MaxLength(20)]
         public string? Role { get; set; }
+
+        public AddressUpdateDto? Address { get; set; }
     }
 }

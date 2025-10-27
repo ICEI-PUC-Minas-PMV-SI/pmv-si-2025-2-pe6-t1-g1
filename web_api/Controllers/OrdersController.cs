@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using web_api.Models;
+using web_api.Models.DTOs;
 using System.Security.Claims;
 
 namespace web_api.Controllers
