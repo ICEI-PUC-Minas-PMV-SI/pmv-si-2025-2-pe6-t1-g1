@@ -1,0 +1,82 @@
+/* Reset e configurações básicas */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    display: flex;
+}
+aside {
+    width: 18vw;
+    height: 100vh;
+    background-color: #EB3738;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+article{
+    width: 82vw;
+}
+
+#logo-div {
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    color: white
+}
+
+.logo-div-link {
+    color: white;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+#user-header{
+    margin-top: 4vh;
+    margin-bottom: 4vh;
+    text-align: center;
+    width: 100%;
+}
+
+#user-header-title{
+    color: #EB3738;
+    font-size: 24px;
+    font-size: ;
+}
+#user-controls{
+    display: flex;
+    justify-content:flex-end;
+    width: 100%;
+    padding-right: 4vw;
+}
+
+#add-user-btn{
+    width: 135px;
+    height: 43px;
+    border-radius: 50px;
+    border: none;
+    background-color: #46DA28;
+    color: white;
+    padding: 2px;
+    font-weight: bold;
+    margin: 3px;
+}
+
+#search-user{
+    width: 170px;
+    height: 43px;
+    border-radius: 50px;
+    border-color: #514747;
+    color: #514747;
+    text-align: center;
+    padding: 2px;
+    font-weight: bold;
+    margin: 3px;
+}
