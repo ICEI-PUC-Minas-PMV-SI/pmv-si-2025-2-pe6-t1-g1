@@ -29,7 +29,7 @@ function setupEventListeners() {
     }
     
     if (addUserBtn) {
-        addUserBtn.addEventListener('click', handleAddUser);
+        addUserBtn.addEventListener('click', () => handleAddUser());
     }
 }
 
@@ -133,7 +133,11 @@ function handleSearch(event) {
 }
 
 function handleAddUser() {
-    showMessage('Funcionalidade de adicionar usuário será implementada em breve.', 'info');
+
+    
+        window.location.href = 'http://127.0.0.1:5500/frontend/cadastro_usuario/usuarios.html#';
+   
+
 }
 
 function editUser(userId) {
