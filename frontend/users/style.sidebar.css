@@ -1,4 +1,3 @@
-/* Reset e configurações básicas */
 * {
     margin: 0;
     padding: 0;
@@ -20,8 +19,17 @@ aside {
     padding-top: 20px;
 }
 
+main {
+    height: 100vh; 
+    display: flex;
+    flex-direction: column;
+}
+
 article{
     width: 82vw;
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
 }
 
 #logo-div {
@@ -48,7 +56,6 @@ article{
 #user-header-title{
     color: #EB3738;
     font-size: 24px;
-    font-size: ;
 }
 #user-controls{
     display: flex;
@@ -79,4 +86,280 @@ article{
     padding: 2px;
     font-weight: bold;
     margin: 3px;
+}
+
+.users-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-right: 4vw;
+    padding-left: 4vw;
+    margin-top: 5px;
+    height: calc(100vh - 200px); 
+    min-height: 400px; 
+    overflow-y: auto;
+    overflow-x: hidden; 
+}
+
+.users-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.users-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.users-list::-webkit-scrollbar-thumb {
+    background: #FFA500;
+    border-radius: 10px;
+}
+
+.users-list::-webkit-scrollbar-thumb:hover {
+    background: #e6940a;
+}
+
+.user-row {
+    display: flex;
+    align-items: center;
+    background: white;
+    border: 2px solid #FFA500;
+    border-radius: 15px;
+    padding: 15px 20px;
+    margin-bottom: 8px;
+    transition: all 0.2s ease;
+    font-size: 14px;
+}
+
+.user-row:hover {
+    box-shadow: 0 4px 12px rgba(255, 165, 0, 0.2);
+    transform: translateY(-1px);
+}
+
+.user-number {
+    min-width: 30px;
+    font-weight: bold;
+    color: #333;
+    font-size: 18px;
+}
+
+.user-name {
+    flex: 1;
+    font-weight: 600;
+    color: #333;
+    padding-left: 15px;
+}
+
+.user-email {
+    flex: 1.2;
+    color: #666;
+    padding-left: 15px;
+}
+
+.user-phone {
+    flex: 1;
+    color: #666;
+    padding-left: 15px;
+}
+
+.user-address {
+    flex: 1.5;
+    color: #666;
+    padding-left: 15px;
+}
+
+.user-role {
+    min-width: 120px;
+    padding-left: 15px;
+}
+
+.role-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+    min-width: 80px;
+}
+
+.role-admin {
+    background: #FF6B6B;
+    color: white;
+}
+
+.role-manager {
+    background: #FFA500;
+    color: white;
+}
+
+.role-user {
+    background: #4ECDC4;
+    color: white;
+}
+
+.role-employee {
+    background: #45B7D1;
+    color: white;
+}
+
+.role-employer {
+    background: #96CEB4;
+    color: white;
+}
+
+.user-actions {
+    display: flex;
+    gap: 8px;
+    min-width: 160px;
+    padding-left: 15px;
+}
+
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: none;
+    min-width: 70px;
+}
+
+.btn-delete {
+    background: #CCCCCC;
+    color: #666;
+}
+
+.btn-delete:hover {
+    background: #BBBBBB;
+    color: #555;
+}
+
+.btn-edit {
+    background: #4CAF50;
+    color: white;
+}
+
+.btn-edit:hover {
+    background: #45a049;
+}
+
+.btn-retry {
+    background: #667eea;
+    color: white;
+    padding: 12px 24px;
+    font-size: 1rem;
+}
+
+.btn-retry:hover {
+    background: #5a6fd8;
+    transform: translateY(-1px);
+}
+
+/* Estados de carregamento e erro */
+.loading {
+    text-align: center;
+    padding: 40px;
+    font-size: 1.1rem;
+    color: #718096;
+}
+
+.no-users {
+    text-align: center;
+    padding: 40px;
+    color: #718096;
+}
+
+.error-container {
+    text-align: center;
+    padding: 40px;
+    background: #fed7d7;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+
+.error-container .error-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.error-container h3 {
+    color: #c53030;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+.error-container p {
+    color: #742a2a;
+    margin-bottom: 20px;
+}
+
+/* Mensagens */
+.message {
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.message-info {
+    background: #bee3f8;
+    color: #2a69ac;
+    border: 1px solid #90cdf4;
+}
+
+.message-success {
+    background: #c6f6d5;
+    color: #2f855a;
+    border: 1px solid #9ae6b4;
+}
+
+.message-error {
+    background: #fed7d7;
+    color: #c53030;
+    border: 1px solid #feb2b2;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .user-row {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .user-address {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .user-row {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+    
+    .user-number {
+        align-self: flex-start;
+    }
+    
+    .user-name, .user-email, .user-phone {
+        padding-left: 0;
+        margin-bottom: 5px;
+    }
+    
+    .user-role {
+        padding-left: 0;
+        margin-bottom: 10px;
+    }
+    
+    .user-actions {
+        padding-left: 0;
+        width: 100%;
+        justify-content: center;
+    }
 }
