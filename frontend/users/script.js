@@ -25,7 +25,7 @@ function initializeApp() {
 
 function setupEventListeners() {
     if (searchInput) {
-        searchInput.addEventListener('input', handleSearch);
+        searchInput.addEventListener('change', handleSearch);
     }
     
     if (addUserBtn) {
@@ -112,26 +112,23 @@ function createUserCard(user, index) {
 }
 
 function handleSearch(event) {
-    const searchTerm = event.target.value.toLowerCase().trim();
+    const selectedRole = event.target.value.trim();
     
-    if (!searchTerm) {
+    if (!selectedRole) {
         renderUsers(usersData);
         return;
     }
     
     const filteredUsers = usersData.filter(user => {
-        return (
-            (user.name && user.name.toLowerCase().includes(searchTerm)) ||
-            (user.email && user.email.toLowerCase().includes(searchTerm)) ||
-            (user.phone && user.phone.toLowerCase().includes(searchTerm)) ||
-            (user.role && getRoleLabel(user.role).toLowerCase().includes(searchTerm))
-        );
+        return user.role && user.role.toUpperCase() === selectedRole.toUpperCase();
     });
     
     renderUsers(filteredUsers);
     
     if (filteredUsers.length === 0) {
-        showMessage('Nenhum usuário encontrado com o termo pesquisado.', 'info');
+        showMessage(`Nenhum usuário encontrado com o role "${selectedRole}".`, 'info');
+    } else {
+        showMessage(`${filteredUsers.length} usuário(s) encontrado(s) com role "${selectedRole}".`, 'success');
     }
 }
 

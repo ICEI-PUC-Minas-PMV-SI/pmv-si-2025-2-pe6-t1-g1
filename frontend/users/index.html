@@ -22,7 +22,12 @@
                 <h1 id="user-header-title">Usuários</h1>
             </section>
             <section id="user-controls">
-                <input type="text" id="search-user" placeholder="filtrar">
+                <select id="search-user">
+                    <option value="">Todos os usuários</option>
+                    <option value="ADMIN">ADMIN</option>
+                    <option value="USER">USER</option>
+                    <option value="EMPLOYER">EMPLOYER</option>
+                </select>
                 <button id="add-user-btn">Adicionar Usuário</button>
             </section>
             <section>
@@ -31,7 +36,7 @@
 
         </article>
 
-        
+
     </main>
     <script src="script.js"></script>
 </body>
