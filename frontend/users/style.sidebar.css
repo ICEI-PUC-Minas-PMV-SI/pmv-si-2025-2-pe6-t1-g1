@@ -8,6 +8,9 @@
 body{
     display: flex;
 }
+button {
+    cursor: pointer;
+}
 aside {
     width: 18vw;
     height: 100vh;
