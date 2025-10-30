@@ -56,16 +56,16 @@ Para validação do frontend web da aplicação, foram feitos testes manuais do 
 
 
 ### 1 - Cadastrar usuário com dados válidos 
-<img width="980" height="400" alt="Cadastro" src="https://github.com/user-attachments/assets/ef0e5bff-61fd-4b87-8ed2-ce5fc73cccc1" />
+<img width="600" height="500" alt="Cadastro" src="https://github.com/user-attachments/assets/ef0e5bff-61fd-4b87-8ed2-ce5fc73cccc1" />
 <img width="1555" height="273" alt="banco" src="https://github.com/user-attachments/assets/89601719-0734-47fe-b262-ab48dd2834ca" />
 
 ### 2 - Campo obrigatório vazio
 
-<img width="980" height="400" alt="obrigatorio" src="https://github.com/user-attachments/assets/61a00393-0419-4b7e-8bf3-96fdeaaad472" />
+<img width="600" height="500" alt="obrigatorio" src="https://github.com/user-attachments/assets/61a00393-0419-4b7e-8bf3-96fdeaaad472" />
 
 ### 3 - E-mail já cadastrado
 
-<img width="980" height="400" alt="email ja cadastrado" src="https://github.com/user-attachments/assets/5c4d3fcd-5d46-4e34-85ad-3d501a0cb1e7" />
+<img width="600" height="500" alt="email ja cadastrado" src="https://github.com/user-attachments/assets/5c4d3fcd-5d46-4e34-85ad-3d501a0cb1e7" />
 
 
 1. Crie casos de teste para cobrir todos os requisitos funcionais e não funcionais da aplicação.
