@@ -91,7 +91,7 @@ Atualizado em: 21/04/2024
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
 | Vitor Gonçalves        | Tela Cadastro de Usuário | 20/10/2025     | 31/10/2025 | ✔️    | 30/10/2025      |
-| AlunaZ        | Objetivos    | 03/02/2024     | 10/02/2024 | 📝    |                 |
+| Samuel Lacerda        | Tela login    | 27/10/2025     | 31/10/2025 | ✔️    |   31/10/2025              |
 | AlunoY        | Histórias de usuário  | 01/01/2024     | 07/01/2005 | ⌛     |                 |
 | AlunoK        | Personas 1  |    01/01/2024        | 12/02/2005 | ❌    |       |
 
