@@ -16,7 +16,6 @@
 
 ### Design Visual
 
-[Descreva o estilo visual da interface, incluindo paleta de cores, tipografia, ícones e outros elementos gráficos.]
 A cor predominante na plataforma é o vermelho (#EB3738). Essa tonalidade é amplamente utilizada em serviços de alimentação, pois está associada à comida e pode estimular o apetite. A escolha da fonte Poppins, sem serifa, reforça a proposta de um produto moderno e intuitivo. Já o logotipo faz referência a utensílios comuns de cozinha.
 
 ## Fluxo de Dados
@@ -110,8 +109,8 @@ Atualizado em: 21/04/2024
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
 | Vitor Gonçalves        | Testes Tela Cadastro   | 27/10/2025     | 31/10/2025 | ✔️    | 30/10/2025      |
-| Bruno Tetzner       | Listagem de usuários  |    25/10/2025        | 31/10/2025 | ✔️   | 25/10/2025      |
-| Bruno Tetzner       | Documentação do layout e considerações de segurança  |    25/10/2025        | 31/10/2025 | ✔️   | 25/10/2025      |
+| Bruno Tetzner       | Listagem de usuários  |    25/10/2025        | 31/10/2025 | ✔️   | 31/10/2025      |
+| Bruno Tetzner       | Documentação do layout e considerações de segurança  |    25/10/2025        | 31/10/2025 | ✔️   | 31/10/2025      |
 
 | AlunaZ        | CSS unificado    | 03/02/2024     | 10/03/2024 | 📝    |                 |
 | AlunoY        | Página de login  | 01/02/2024     | 07/03/2024 | ⌛     |                 |
