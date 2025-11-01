@@ -22,7 +22,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
   const message = document.getElementById("message");
 
   try {
-    const response = await fetch("http://localhost:5000/api/user/login", {
+    const response = await fetch("http://localhost:5123/api/user/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password })
@@ -34,7 +34,9 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
 
       message.style.color = "green";
       message.textContent = "Login realizado com sucesso!";
-      //Redirect here
+
+      window.location.href = '/frontend/users/index.html#';
+
     } else {
       const err = await response.json();
       message.style.color = "red";

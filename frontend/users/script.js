@@ -1,5 +1,4 @@
 const API_BASE_URL = 'http://localhost:5123/api';
-const MOCK_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI0MDciLCJlbWFpbCI6ImJydW5vQG1haWwuY29tIiwicm9sZSI6IkFETUlOIiwibmJmIjoxNzYxNzM0MDcyLCJleHAiOjE3NjE3NDEyNzIsImlhdCI6MTc2MTczNDA3MiwiaXNzIjoiV2ViQXBpUGl6emFyaWEiLCJhdWQiOiJXZWJBcGlQaXp6YXJpYSJ9.KSV9e7S7fD7G3uDCTHYcEtUP9FFzuJ9k6YmMdWbEk8s';
 
 let usersSection;
 let searchInput;
@@ -35,11 +34,12 @@ function setupEventListeners() {
 
 async function fetchUsers() {
     try {
+        const token = localStorage.getItem('token');
         const response = await fetch(`${API_BASE_URL}/user/all_users`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${MOCK_TOKEN}`
+                'Authorization': `Bearer ${token}`
             }
         });
 
@@ -135,7 +135,7 @@ function handleSearch(event) {
 function handleAddUser() {
 
     
-        window.location.href = 'http://127.0.0.1:5500/frontend/cadastro_usuario/usuarios.html#';
+        window.location.href = '/frontend/cadastro_usuario/usuarios.html#';
    
 
 }
