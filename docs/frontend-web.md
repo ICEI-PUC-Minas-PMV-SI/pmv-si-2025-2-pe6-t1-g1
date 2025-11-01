@@ -7,23 +7,31 @@
 [Descreva o projeto da interface Web da aplicação, incluindo o design visual, layout das páginas, interações do usuário e outros aspectos relevantes.]
 
 ### Wireframes
+<img width="1366" height="768" alt="Login desktop" src="https://github.com/user-attachments/assets/94951727-dc0f-4ef6-a96f-f7f441e6b0c7" />
+<img width="1366" height="768" alt="orders" src="https://github.com/user-attachments/assets/99ee2ed7-659b-4f50-aea4-249728b1f5e8" />
+<img width="1366" height="768" alt="items" src="https://github.com/user-attachments/assets/b362fdbb-31d0-488b-9fde-bbb4e8686636" />
+<img width="1366" height="768" alt="users" src="https://github.com/user-attachments/assets/25b7af2c-b356-4cd6-a459-3d25fe0047f8" />
 
-[Inclua os wireframes das páginas principais da interface, mostrando a disposição dos elementos na página.]
+
 
 ### Design Visual
 
 [Descreva o estilo visual da interface, incluindo paleta de cores, tipografia, ícones e outros elementos gráficos.]
+A cor predominante na plataforma é o vermelho (#EB3738). Essa tonalidade é amplamente utilizada em serviços de alimentação, pois está associada à comida e pode estimular o apetite. A escolha da fonte Poppins, sem serifa, reforça a proposta de um produto moderno e intuitivo. Já o logotipo faz referência a utensílios comuns de cozinha.
 
 ## Fluxo de Dados
 
 [Diagrama ou descrição do fluxo de dados na aplicação.]
 
 ## Tecnologias Utilizadas
-[Lista das tecnologias principais que serão utilizadas no projeto.]
+- HTML 5
+- CSS 3
+- JavaScript
 
 ## Considerações de Segurança
 
-[Discuta as considerações de segurança relevantes para a aplicação distribuída, como autenticação, autorização, proteção contra ataques, etc.]
+Visando fornecer segurança para os usuários,foi implementado um login consumindo uma API que gera um JWT token, que é persistido no localstorage para permitir a navegação do usuário.
+Outro recurso importante impregeado é um uso de permissões, que fazem com que clientes e colaboradores não tenham acesso a listagem de usuários da plataforma.
 
 ## Implantação
 
@@ -86,13 +94,13 @@ Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvo
 
 ### Semana 1
 
-Atualizado em: 21/04/2024
+Atualizado em: 31/10/2024
 
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
 | Vitor Gonçalves        | Tela Cadastro de Usuário | 20/10/2025     | 31/10/2025 | ✔️    | 30/10/2025      |
 | Samuel Lacerda        | Tela login    | 20/10/2025     | 31/10/2025 | ✔️    |   31/10/2025              |
-| AlunoY        | Histórias de usuário  | 01/01/2024     | 07/01/2005 | ⌛     |                 |
+| Bruno Tetzner | Figma            | 20/10/2025     | 25/10/2025 | ✔️   |  25/10/2025               |
 | AlunoK        | Personas 1  |    01/01/2024        | 12/02/2005 | ❌    |       |
 
 #### Semana 2
@@ -102,6 +110,9 @@ Atualizado em: 21/04/2024
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
 | Vitor Gonçalves        | Testes Tela Cadastro   | 27/10/2025     | 31/10/2025 | ✔️    | 30/10/2025      |
+| Bruno Tetzner       | Listagem de usuários  |    25/10/2025        | 31/10/2025 | ✔️   | 25/10/2025      |
+| Bruno Tetzner       | Documentação do layout e considerações de segurança  |    25/10/2025        | 31/10/2025 | ✔️   | 25/10/2025      |
+
 | AlunaZ        | CSS unificado    | 03/02/2024     | 10/03/2024 | 📝    |                 |
 | AlunoY        | Página de login  | 01/02/2024     | 07/03/2024 | ⌛     |                 |
 | AlunoK        | Script de login  |  01/01/2024    | 12/03/2024 | ❌    |       |
