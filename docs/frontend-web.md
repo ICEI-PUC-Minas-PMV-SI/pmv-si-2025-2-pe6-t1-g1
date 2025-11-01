@@ -111,7 +111,6 @@ Atualizado em: 21/04/2024
 | Vitor Gonçalves        | Testes Tela Cadastro   | 27/10/2025     | 31/10/2025 | ✔️    | 30/10/2025      |
 | Bruno Tetzner       | Listagem de usuários  |    25/10/2025        | 31/10/2025 | ✔️   | 31/10/2025      |
 | Bruno Tetzner       | Documentação do layout e considerações de segurança  |    25/10/2025        | 31/10/2025 | ✔️   | 31/10/2025      |
-
 | AlunaZ        | CSS unificado    | 03/02/2024     | 10/03/2024 | 📝    |                 |
 | AlunoY        | Página de login  | 01/02/2024     | 07/03/2024 | ⌛     |                 |
 | AlunoK        | Script de login  |  01/01/2024    | 12/03/2024 | ❌    |       |
