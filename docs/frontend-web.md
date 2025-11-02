@@ -59,10 +59,20 @@ Para validação do frontend web da aplicação, foram feitos testes manuais do 
 <img width="1555" height="922" alt="image" src="https://github.com/user-attachments/assets/e6200fb0-484e-4d24-9811-d76a5d856cc7" />
 
 
-## Cadastro de Usuários
+## Tela Cadastro de Usuários
 
+### Cenário 
+Cadastrar usuário com dados válidos
 
-### 1 - Cadastrar usuário com dados válidos 
+### Passos
+
+1. Preencha todos os campos (nome, e-mail, telefone, senha, confirmar senha) com dados válidos.
+2. Clique em “Cadastrar”.
+
+### Resultado esperado
+
+Exibe mensagem de sucesso (“Usuário cadastrado com sucesso”) e limpa o formulário ou redireciona para outra página.
+
 <img width="600" height="500" alt="Cadastro" src="https://github.com/user-attachments/assets/ef0e5bff-61fd-4b87-8ed2-ce5fc73cccc1" />
 
 ### 2 - Campo obrigatório vazio
