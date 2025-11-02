@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carrinho de Compras</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="container">
+    <h2>Seu Carrinho</h2>
+    
+    <div class="message" id="message"></div>
+
+    <div id="cart-items-list">
+      </div>
+
+    <div class="cart-summary">
+      <div class="summary-row">
+        <span>Subtotal:</span>
+        <span id="subtotal">R$ 0,00</span>
+      </div>
+      <div class="summary-row total">
+        <span>Total:</span>
+        <span id="total-price">R$ 0,00</span>
+      </div>
+    </div>
+
+    <div class="cart-buttons">
+      <button id="clear-cart-btn" class="button-secondary">Limpar Carrinho</button>
+      <button id="checkout-btn">Finalizar Compra</button>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
