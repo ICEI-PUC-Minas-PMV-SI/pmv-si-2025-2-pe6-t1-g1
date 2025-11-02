@@ -1,6 +1,5 @@
 // URL da API
 const API_URL = 'https://localhost:7144/api';
-const MOCK_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwiZW1haWwiOiJ2aWN0b3JAZXhhbXBsZS5jb20iLCJyb2xlIjoiQURNSU4iLCJuYmYiOjE3NjE5NTM1OTMsImV4cCI6MTc2MTk2MDc5MywiaWF0IjoxNzYxOTUzNTkzLCJpc3MiOiJXZWJBcGlQaXp6YXJpYSIsImF1ZCI6IldlYkFwaVBpenphcmlhIn0.S-d1dI9FD0QM16Ps3Kacs_fBhJYq0joWBDOT6b7dCIE'
 
 let itemsSection;
 let itemsData = [];
@@ -120,12 +119,13 @@ document.addEventListener("DOMContentLoaded", function() {
 async function fetchItems() {
     try {
         // Faz a requisição GET para a API
+        const token = localStorage.getItem('token');
         const response = await fetch(`${API_URL}/Items`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${MOCK_TOKEN}`
+                'Authorization': `Bearer ${token}`
             },
             cache: 'no-cache',
             credentials: 'same-origin'
