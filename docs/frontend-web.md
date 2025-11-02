@@ -64,7 +64,6 @@ Para validação do frontend web da aplicação, foram feitos testes manuais do 
 
 ### 1 - Cadastrar usuário com dados válidos 
 <img width="600" height="500" alt="Cadastro" src="https://github.com/user-attachments/assets/ef0e5bff-61fd-4b87-8ed2-ce5fc73cccc1" />
-<img width="1555" height="273" alt="banco" src="https://github.com/user-attachments/assets/89601719-0734-47fe-b262-ab48dd2834ca" />
 
 ### 2 - Campo obrigatório vazio
 
