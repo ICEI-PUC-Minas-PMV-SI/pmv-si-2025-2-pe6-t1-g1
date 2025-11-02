@@ -71,7 +71,7 @@ Cadastrar usuário com dados válidos
 
 ### Resultado esperado
 
-Exibe mensagem de sucesso (“Usuário cadastrado com sucesso”) e limpa o formulário ou redireciona para outra página.
+Exibe mensagem de sucesso (“Usuário cadastrado com sucesso”).
 
 <img width="600" height="500" alt="Cadastro" src="https://github.com/user-attachments/assets/ef0e5bff-61fd-4b87-8ed2-ce5fc73cccc1" />
 
