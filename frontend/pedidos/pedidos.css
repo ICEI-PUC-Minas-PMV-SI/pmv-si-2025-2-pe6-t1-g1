@@ -1,0 +1,138 @@
+/* Baseado no style.css fornecido */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #ffcc00 0%, #ff0000 100%);
+  margin: 0;
+  padding: 40px 15px; /* Padding para mobile e rolagem */
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  color: #222;
+}
+
+.container {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  padding: 30px 40px;
+  width: 100%;
+  max-width: 900px; /* Mais largo para um dashboard */
+  text-align: left;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+  margin-bottom: 25px;
+  color: #e60000;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Filtros */
+.filters {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.filters label {
+  font-weight: 600;
+  color: #333;
+}
+
+/* Lista de Pedidos */
+#order-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-height: 60vh; /* Altura máxima para a lista rolar */
+  overflow-y: auto; /* Adiciona scroll */
+  padding-right: 10px;
+}
+
+/* Card de Pedido */
+.order-card {
+  background: #f9f9f9;
+  border-left: 6px solid #ffcc00; /* Cor padrão */
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
+  gap: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.order-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.order-info h3 {
+  margin: 0;
+  color: #333;
+}
+.order-info span {
+  color: #555;
+  font-size: 14px;
+}
+.order-total {
+  font-weight: 700;
+  font-size: 1.1em !important;
+  color: #000 !important;
+  margin-top: 5px;
+}
+
+.order-status {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.order-status label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Estilo do Dropdown (baseado nos inputs) */
+.status-select {
+  padding: 10px;
+  border: 2px solid #ffcc00;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.3s;
+  background-color: #fff;
+  cursor: pointer;
+}
+.status-select:focus {
+  border-color: #e60000;
+  box-shadow: 0 0 5px #e60000;
+}
+
+/* Cores de Status (baseado nos status do seu Controller) */
+.status-pending { border-left-color: #868e96; }
+.status-confirmed { border-left-color: #007bff; }
+.status-preparing { border-left-color: #fd7e14; }
+.status-ready { border-left-color: #ffc107; }
+.status-delivered { border-left-color: #28a745; }
+.status-cancelled { border-left-color: #dc3545; }
+
+
+/* Mensagens de Feedback */
+.message {
+  margin-bottom: 15px;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+  display: none;
+}
+.success { color: green; background-color: #e0ffe0; display: block; }
+.error { color: red; background-color: #ffe0e0; display: block; }
