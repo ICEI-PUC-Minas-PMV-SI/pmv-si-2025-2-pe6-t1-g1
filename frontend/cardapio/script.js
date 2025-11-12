@@ -152,11 +152,12 @@ async function fetchItems() {
  */
 async function createItem(item) {
     try {
+        const token = localStorage.getItem('token'); 
         const response = await fetch(`${API_URL}/Items`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${MOCK_TOKEN}`
+                'Authorization': `Bearer ${token}` 
             },
             body: JSON.stringify(item)
         });
@@ -174,17 +175,22 @@ async function createItem(item) {
 }
 
 /**
- * Atualiza um item existente através da API
  * @param {Object} item - Dados do item a ser atualizado
  * @returns {Promise<Object>} Promise que resolve com o item atualizado
  */
 async function updateItem(item) {
     try {
-        const response = await fetch(`${API_URL}/Items/${item.id}`, {
+        const token = localStorage.getItem('token');
+        
+        // --- CORREÇÃO AQUI ---
+        // Adicionamos o ID do item na URL
+        const response = await fetch(`${API_URL}/Items/${item.id}`, { 
+        // ---------------------
+            
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${MOCK_TOKEN}`
+                'Authorization': `Bearer ${token}` 
             },
             body: JSON.stringify(item)
         });
@@ -294,11 +300,16 @@ async function deleteItem(itemId) {
     
     if (isConfirmed) {
         try {
+
+            const token = localStorage.getItem('token'); 
+
             const response = await fetch(`${API_URL}/Items/${itemId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${MOCK_TOKEN}`
+                   
+                    'Authorization': `Bearer ${token}` 
+                   
                 }
             });
 
