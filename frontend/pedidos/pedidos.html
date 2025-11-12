@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fila de Pedidos</title>
+  <link rel="stylesheet" href="pedidos.css" />
+</head>
+<body>
+
+  <div class="container">
+    <h2>Fila de Pedidos</h2>
+    
+    <div class="message" id="message"></div>
+
+    <div class="filters">
+      <label for="statusFilter">Filtrar por Status:</label>
+      <select id="statusFilter" class="status-select">
+        <option value="todos">Todos</option>
+        <option value="PENDING">Pendentes</option>
+        <option value="CONFIRMED">Confirmados</option>
+        <option value="PREPARING">Preparando</option>
+        <option value="READY">Pronto para Entrega</option>
+        <option value="DELIVERED">Entregue</option>
+        <option value="CANCELLED">Cancelado</option>
+      </select>
+    </div>
+
+    <div id="order-list">
+      </div>
+  </div>
+
+  <script src="pedidos.js"></script>
+</body>
+</html>
