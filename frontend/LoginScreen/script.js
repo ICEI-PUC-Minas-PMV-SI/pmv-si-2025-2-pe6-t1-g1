@@ -22,7 +22,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
   const message = document.getElementById("message");
 
   try {
-    const response = await fetch("http://localhost:5123/api/user/login", {
+    const response = await fetch("https://localhost:7144/api/User/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password })

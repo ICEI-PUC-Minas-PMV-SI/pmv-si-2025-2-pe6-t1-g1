@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:5123/api';
+const API_BASE_URL = 'https://localhost:7144/api';
 
 let usersSection;
 let searchInput;
@@ -10,6 +10,12 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initializeApp() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        alert('Acesso negado. Por favor, faça o login.');
+        window.location.href = '/frontend/LoginScreen/index.html#'; 
+        return; 
+    }
     usersSection = document.querySelector('section:last-of-type');
     searchInput = document.getElementById('search-user');
     addUserBtn = document.getElementById('add-user-btn');
@@ -35,7 +41,7 @@ function setupEventListeners() {
 async function fetchUsers() {
     try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`${API_BASE_URL}/user/all_users`, {
+        const response = await fetch(`${API_BASE_URL}/User/all_users`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -141,10 +147,11 @@ function handleAddUser() {
 }
 
 function editUser(userId) {
-    const user = usersData.find(u => u.id === userId);
-    if (user) {
-        showMessage(`Funcionalidade de editar usuário "${user.name}" será implementada em breve.`, 'info');
-    }
+   
+    const editPagePath = '/frontend/edit_user/index.html'; 
+    
+
+    window.location.href = `${editPagePath}?id=${userId}`;
 }
 
 function deleteUser(userId) {
@@ -185,6 +192,8 @@ function showMessage(message, type = 'info') {
     const existingMessages = document.querySelectorAll('.message');
     existingMessages.forEach(msg => msg.remove());
     
+    const messageDiv = document.createElement('div')
+
     messageDiv.className = `message message-${type}`;
     messageDiv.textContent = message;
     

@@ -38,8 +38,7 @@ form {
   gap: 15px;
 }
 
-/* MODIFICAÇÃO: Adicionei o 'select' aqui para estilizar o dropdown "Função"
-*/
+
 input, select {
   padding: 12px;
   border: 2px solid #ffcc00;
@@ -49,8 +48,7 @@ input, select {
   transition: 0.3s;
 }
 
-/* MODIFICAÇÃO: E aqui também, para o efeito de 'focus'
-*/
+
 input:focus, select:focus {
   border-color: #e60000;
   box-shadow: 0 0 5px #e60000;
