@@ -1,33 +1,35 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // --- CONFIGURAÇÃO ---
-  const API_URL = 'http://localhost:5123/api';
+ 
+  const API_URL = 'https://localhost:7144/api';
   const messageDiv = document.getElementById('message');
   const orderListDiv = document.getElementById('order-list');
   const statusFilter = document.getElementById('statusFilter');
 
-  let allOrders = []; // Armazena todos os pedidos para filtrar
+  let allOrders = []; 
 
-  // --- AUTENTICAÇÃO ---
-  function getToken() {
-    // Busca o token do funcionário/admin do localStorage
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI1IiwiZW1haWwiOiJtYW51YWxAZW1haWwuY29tIiwicm9sZSI6IlVTRVIiLCJuYmYiOjE3NjI5ODYxMTcsImV4cCI6MTc2Mjk5MzMxNywiaWF0IjoxNzYyOTg2MTE3LCJpc3MiOiJXZWJBcGlQaXp6YXJpYSIsImF1ZCI6IldlYkFwaVBpenphcmlhIn0.BmQYv1hb-8mUCiuzspwvdpJ6G-PFOGAJn2McIdhtjRs'; 
+function getToken() {
     
+    const token = localStorage.getItem('token'); 
     
     if (!token) {
-      showMessage('Acesso negado. Você precisa estar autenticado como funcionário.', 'error');
-      return null;
+        showMessage('Acesso negado. Faça o login primeiro.', 'error');
+        
+      
+        window.location.href = '/frontend/LoginScreen/index.html#'; 
+        return null;
     }
+    
+   
     return token;
-  }
+}
 
-  // --- FUNÇÕES DE EXIBIÇÃO ---
   function showMessage(message, type) {
     messageDiv.textContent = message;
     messageDiv.className = `message ${type}`;
   }
 
   function renderOrders(ordersToRender) {
-    orderListDiv.innerHTML = ''; // Limpa a lista
+    orderListDiv.innerHTML = ''; 
 
     if (ordersToRender.length === 0) {
       orderListDiv.innerHTML = '<p style="text-align: center;">Nenhum pedido encontrado.</p>';
@@ -36,11 +38,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     ordersToRender.forEach(order => {
       const orderCard = document.createElement('div');
-      // Adiciona classes de status para o CSS
+
       const statusClass = `status-${order.status.toLowerCase()}`;
       orderCard.className = `order-card ${statusClass}`;
 
-      // Formata a data (do C#) para ser mais legível
+
       const orderTime = new Date(order.orderDate).toLocaleString('pt-BR');
 
       orderCard.innerHTML = `
@@ -66,18 +68,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- FUNÇÕES DE API ---
 
-  /**
-   * Carrega TODOS os pedidos
-   * CORRESPONDE A: GET /api/orders
-   */
   async function loadOrders() {
     const token = getToken();
     if (!token) return;
 
     try {
-      // Esta é a rota correta do seu controller
+     
       const response = await fetch(`${API_URL}/orders`, {
         method: 'GET',
         headers: {
@@ -93,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (response.status === 401) {
         showMessage('Sessão expirada. Faça login novamente.', 'error');
       } else if (response.status === 403) {
-        // 403 é 'Forbidden' (Proibido) - acontece se um 'USER' tentar acessar
+     
         showMessage('Acesso negado. Esta página é apenas para funcionários.', 'error');
       } else {
         showMessage('Erro ao buscar pedidos.', 'error');
@@ -103,10 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  /**
-   * Atualiza o status de um pedido
-   * CORRESPONDE A: PUT /api/orders/{id}/status
-   */
+
   async function updateStatus(orderId, newStatus) {
     const token = getToken();
     if (!token) return;
@@ -126,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (response.ok) {
         showMessage(`Pedido #${orderId} atualizado para "${newStatus}".`, 'success');
-        // Atualiza o status no objeto local para não precisar recarregar tudo
+      
         const orderToUpdate = allOrders.find(o => o.id == orderId);
         if (orderToUpdate) orderToUpdate.status = newStatus;
         filterAndRenderOrders();
@@ -138,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // --- FILTRAGEM E EVENTOS ---
+  
 
   function filterAndRenderOrders() {
     const filterValue = statusFilter.value;
@@ -150,13 +144,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Carrega os pedidos quando a página abre
   loadOrders();
 
-  // Adiciona o listener para o filtro
+  
   statusFilter.addEventListener('change', filterAndRenderOrders);
 
-  // Adiciona listener na lista (event delegation) para os dropdowns de status
+ 
   orderListDiv.addEventListener('change', (e) => {
     if (e.target.classList.contains('status-select')) {
       const orderId = e.target.dataset.id;
