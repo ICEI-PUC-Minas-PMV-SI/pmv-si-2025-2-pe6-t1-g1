@@ -59,6 +59,13 @@ Para validação do frontend web da aplicação, foram feitos testes manuais do 
 ### 3 - Caso não exista um usuário com a permissão selecionada, uma mensagem informativa deve ser renderizada na tela
 <img width="1555" height="922" alt="image" src="https://github.com/user-attachments/assets/e6200fb0-484e-4d24-9811-d76a5d856cc7" />
 
+## Página de cardápio
+
+### 1 - Deve ser possível visualizar todos os items ao acessar a tela
+<img width="1912" height="909" alt="image" src="https://github.com/user-attachments/assets/541a1035-f23f-4a58-a0e9-1a1a0f48c65b" />
+
+### 2 - Deve ser possível filtrar todos os items de acordo com sua categoria
+<img width="1915" height="911" alt="image" src="https://github.com/user-attachments/assets/c30e7983-3d18-4886-a13a-f6b775d98402" />
 
 ## Tela Cadastro de Usuários
 
@@ -109,6 +116,48 @@ Ao deixar um campo obrigatorio vazio o sistema não atualizará
 3. Realize testes de integração para verificar a interação correta entre os componentes da aplicação.
 4. Execute testes de carga para avaliar o desempenho da aplicação sob carga significativa.
 5. Utilize ferramentas de teste adequadas, como frameworks de teste e ferramentas de automação de teste, para agilizar o processo de teste.
+
+## Tela de cardápio
+
+### Cenário
+Adionar novo item.
+<img width="1914" height="912" alt="image" src="https://github.com/user-attachments/assets/a24172a8-bb46-4105-a523-c382a50a8550" />
+
+
+### Passos
+1. Clique no botão "Adicionar novo item"
+2. Preencha todos os campos(Nome do item, Descrição, Valor, Categoria) do modal com formulário.
+3. Clique em "Salvar".
+
+### Resultado Esperado
+O item criado é exibido na tela automaticamente sem exibir mensagens.
+<img width="1917" height="911" alt="image" src="https://github.com/user-attachments/assets/d964f88d-ac57-43ce-ae67-9e7feeadca5a" />
+
+### Cenário
+Editar item criado.
+<img width="1917" height="911" alt="image" src="https://github.com/user-attachments/assets/2261c2cb-9bb9-4619-a05a-388d97f8e2d6" />
+
+### Passos
+1. Clique no botão editar no card do item desejado.
+2. Substitua os campos no modal formulário que deseja.
+3. Clique em "Atualizar"
+
+### Resultado Esperado
+O item após editado será exibido automaticamente na tela sem exibir mensagens.
+<img width="786" height="408" alt="image" src="https://github.com/user-attachments/assets/da49f038-e315-4956-ac53-71108e308225" />
+
+### Cenário
+Deletar item criado.
+<img width="1918" height="955" alt="image" src="https://github.com/user-attachments/assets/83f22d7f-60b6-4ae5-9b88-ff59912342bd" />
+
+### Passos
+1. Clique no botão apagar no card do item desejado.
+2. Clique em "Ok" na confirmação exibida no topo da tela.
+
+### Resultado Esperado
+Após o item ser excluido será exibida uma mensagem temporária na tela de aviso de exclusão.
+<img width="1915" height="908" alt="image" src="https://github.com/user-attachments/assets/585f5879-5f1a-4952-a011-755fef440fce" />
+
 
 # Referências
 
