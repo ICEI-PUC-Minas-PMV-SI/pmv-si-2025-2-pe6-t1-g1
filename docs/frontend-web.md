@@ -189,6 +189,7 @@ Atualizado em: 31/10/2024
 | Bruno Tetzner   | Figma            | 20/10/2025     | 25/10/2025 | ✔️   |  25/10/2025               |
 | Pedro Justino   | fluxograma       | 20/10/2025     | 29/10/2025 | ✔️    | 29/10/2025  |
 | Luigi Mezzogori   | Tela Pedidos       | 20/10/2025     | 28/10/2025 | ✔️    | 30/10/2025  |
+| Victor Alexandre   | Tela Cardápio       | 20/10/2025     | 28/10/2025 | ✔️    | 26/10/2025  |
 
 #### Semana 2
 
@@ -202,6 +203,7 @@ Atualizado em: 21/04/2024
 | Samuel Lacerda        | Testes tela login    | 28/10/2025    | 31/10/2025 | ✔️    | 31/10/2025                |
 |Pedro Justino | Tela e testes de edição de usuário| 26/10/2025 | 31/10/2025 |✔️| 13/11/2025 |
 |Luigi Mezzogori | Aprimorações tela de pedido| 27/10/2025 | 31/10/2025 |✔️| 31/10/2025      |
+|Victor Alexandre | Aprimorações tela de cardápio| 27/10/2025 | 26/10/2025 |✔️| 26/10/2025      |
 
 Legenda:
 - ✔️: terminado
