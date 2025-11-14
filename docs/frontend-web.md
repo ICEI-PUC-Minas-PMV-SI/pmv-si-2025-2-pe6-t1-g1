@@ -19,7 +19,7 @@
 A cor predominante na plataforma é o vermelho (#EB3738). Essa tonalidade é amplamente utilizada em serviços de alimentação, pois está associada à comida e pode estimular o apetite. A escolha da fonte Poppins, sem serifa, reforça a proposta de um produto moderno e intuitivo. Já o logotipo faz referência a utensílios comuns de cozinha.
 
 ## Fluxo de Dados
-Fluxograma do Processo de Pedido
+### Fluxograma do Processo de Pedido
 ![Fluxograma do Processo de Pedido](https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2025-2-pe6-t1-g1/blob/main/docs/img/fluxograma_page-0001.jpg)
 
 
@@ -84,6 +84,20 @@ Exibe mensagem de sucesso (“Usuário cadastrado com sucesso”).
 
 <img width="600" height="500" alt="email ja cadastrado" src="https://github.com/user-attachments/assets/5c4d3fcd-5d46-4e34-85ad-3d501a0cb1e7" />
 
+## Tela de edição de usuário
+
+### Cenário 
+Editar um usuário já criado.
+
+### Passos
+ Preencher os dados do usuário sendo possível alterar o nome, numero, função e senha restando apenas o Email que não pode ser alterado.
+
+### Resultado esperado
+
+Exibe mensagem de sucesso (“Usuário atualizado com sucesso!”).
+
+### 2 - Campo obrigatório vazio
+Ao deixar um campo obrigatorio vazio o sistema não atualizará
 
 1. Crie casos de teste para cobrir todos os requisitos funcionais e não funcionais da aplicação.
 2. Implemente testes unitários para testar unidades individuais de código, como funções e classes.
