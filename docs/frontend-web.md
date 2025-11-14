@@ -64,15 +64,15 @@ Para validação do frontend web da aplicação, foram feitos testes manuais do 
 
 ### 1 - Deve ser possível visualizar todos os Pedidos ao acessar a tela 
 
-<img width="1544" height="929" alt="image" src="https://github.com/user-attachments/assets/03a1ede8-ac46-4833-9320-17fe75cc53a7" />
+<img width="1544" height="929" alt="image" src="https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2025-2-pe6-t1-g1/refs/heads/main/docs/img/3.jpeg" />
 
 ### 2 - Deve ser possível filtrar Pedidos de acordo com a etapa de preparo 
 
-<img width="1555" height="922" alt="image" src="https://github.com/user-attachments/assets/eab09e64-3695-42f2-9b23-83b18b9db3cc" />
+<img width="1555" height="922" alt="image" src="https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2025-2-pe6-t1-g1/refs/heads/main/docs/img/2.jpeg" />
 
 ### 3 - Caso não exista um Pedido com a etapa selecionada, uma mensagem informativa deve ser renderizada na tela
 
-<img width="1555" height="922" alt="image" src="https://github.com/user-attachments/assets/e6200fb0-484e-4d24-9811-d76a5d856cc7" />
+<img width="1555" height="922" alt="image" src="https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2025-2-pe6-t1-g1/refs/heads/main/docs/img/1.jpeg" />
 
 
 ## Página de cardápio
