@@ -1,6 +1,6 @@
 # Front-end Web
 
-[Inclua uma breve descrição do projeto e seus objetivos.]
+"A aplicação web da FatiaCerta é uma plataforma de gestão interna, desenvolvida para uso exclusivo dos funcionários. O sistema visa otimizar os processos operacionais, centralizando funcionalidades como o gerenciamento de usuários, a administração do cardápio e o monitoramento completo do ciclo de pedidos e seus respectivos status.
 
 ## Projeto da Interface Web
 
