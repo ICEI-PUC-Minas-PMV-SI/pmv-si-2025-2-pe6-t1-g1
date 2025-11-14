@@ -89,6 +89,7 @@ Exibe mensagem de sucesso (“Usuário cadastrado com sucesso”).
 ### Cenário 
 Editar um usuário já criado.
 
+![Edição de usuário](https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2025-2-pe6-t1-g1/blob/main/docs/img/editar%20inicial.png)
 ### Passos
  Preencher os dados do usuário sendo possível alterar o nome, numero, função e senha restando apenas o Email que não pode ser alterado.
 
@@ -96,8 +97,12 @@ Editar um usuário já criado.
 
 Exibe mensagem de sucesso (“Usuário atualizado com sucesso!”).
 
+![Edição de usuário sucesso](https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2025-2-pe6-t1-g1/blob/main/docs/img/print%20de%20sucesso%20(1).png)
+
 ### 2 - Campo obrigatório vazio
 Ao deixar um campo obrigatorio vazio o sistema não atualizará
+
+![Edição de usuário erro](https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2025-2-pe6-t1-g1/blob/main/docs/img/preenchimento%20obrigatorio.png)
 
 1. Crie casos de teste para cobrir todos os requisitos funcionais e não funcionais da aplicação.
 2. Implemente testes unitários para testar unidades individuais de código, como funções e classes.
@@ -113,18 +118,16 @@ Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvo
 
 ##  Quadro de tarefas
 
-> Apresente a divisão de tarefas entre os membros do grupo e o acompanhamento da execução, conforme o exemplo abaixo.
-
 ### Semana 1
 
 Atualizado em: 31/10/2024
 
-| Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
-| :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
-| Vitor Gonçalves        | Tela Cadastro de Usuário | 20/10/2025     | 31/10/2025 | ✔️    | 30/10/2025      |
-| Samuel Lacerda        | Tela login    | 20/10/2025     | 31/10/2025 | ✔️    |   31/10/2025              |
-| Bruno Tetzner | Figma            | 20/10/2025     | 25/10/2025 | ✔️   |  25/10/2025               |
-| AlunoK        | Personas 1  |    01/01/2024        | 12/02/2005 | ❌    |       |
+| Responsável     | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
+| :----           |    :----         |      :----:    | :----:     | :----: | :----:          |
+| Vitor Gonçalves | Tela Cadastro de Usuário | 20/10/2025     | 31/10/2025 | ✔️    | 30/10/2025      |
+| Samuel Lacerda  | Tela login       | 20/10/2025     | 31/10/2025 | ✔️    |   31/10/2025              |
+| Bruno Tetzner   | Figma            | 20/10/2025     | 25/10/2025 | ✔️   |  25/10/2025               |
+| Pedro Justino   | fluxograma       | 20/10/2025     | 29/10/2025 | ✔️    | 29/10/2025  |
 
 #### Semana 2
 
@@ -136,8 +139,7 @@ Atualizado em: 21/04/2024
 | Bruno Tetzner       | Listagem de usuários  |    25/10/2025        | 31/10/2025 | ✔️   | 31/10/2025      |
 | Bruno Tetzner       | Documentação do layout e considerações de segurança  |    25/10/2025        | 31/10/2025 | ✔️   | 31/10/2025      |
 | Samuel Lacerda        | Testes tela login    | 28/10/2025    | 31/10/2025 | ✔️    | 31/10/2025                |
-| AlunoY        | Página de login  | 01/02/2024     | 07/03/2024 | ⌛     |                 |
-| AlunoK        | Script de login  |  01/01/2024    | 12/03/2024 | ❌    |       |
+|Pedro Justino | Tela e testes de edição de usuário| 26/10/2025 | 31/10/2025 |✔️| 13/11/2025 |
 
 Legenda:
 - ✔️: terminado
