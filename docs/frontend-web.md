@@ -19,8 +19,8 @@
 A cor predominante na plataforma é o vermelho (#EB3738). Essa tonalidade é amplamente utilizada em serviços de alimentação, pois está associada à comida e pode estimular o apetite. A escolha da fonte Poppins, sem serifa, reforça a proposta de um produto moderno e intuitivo. Já o logotipo faz referência a utensílios comuns de cozinha.
 
 ## Fluxo de Dados
-
-[fluxograma.pdf](https://github.com/user-attachments/files/23551749/fluxograma.pdf)
+Fluxograma do Processo de Pedido
+![Fluxograma do Processo de Pedido](https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2025-2-pe6-t1-g1/blob/main/docs/img/fluxograma_page-0001.jpg)
 
 
 ## Tecnologias Utilizadas
