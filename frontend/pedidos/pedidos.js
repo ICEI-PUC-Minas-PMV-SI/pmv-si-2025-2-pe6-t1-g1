@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  const API_URL = 'http://localhost:5123/api';
+  const API_URL = 'https://localhost:7144/api';
 
   const messageContainer = document.getElementById('message-container');
   const orderListDiv = document.getElementById('items-container'); 
@@ -214,4 +214,5 @@ function showMessage(message, type) {
       updateStatus(orderId, newStatus);
     }
   });
+
 });
