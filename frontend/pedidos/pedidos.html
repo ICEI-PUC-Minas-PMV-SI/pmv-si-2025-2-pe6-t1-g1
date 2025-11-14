@@ -1,35 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fila de Pedidos</title>
-  <link rel="stylesheet" href="pedidos.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fila de Pedidos</title>
+    <link rel="stylesheet" href="pedidos.css">
 </head>
 <body>
-
-  <div class="container">
-    <h2>Fila de Pedidos</h2>
-    
-    <div class="message" id="message"></div>
-
-    <div class="filters">
-      <label for="statusFilter">Filtrar por Status:</label>
-      <select id="statusFilter" class="status-select">
-        <option value="todos">Todos</option>
-        <option value="PENDING">Pendentes</option>
-        <option value="CONFIRMED">Confirmados</option>
-        <option value="PREPARING">Preparando</option>
-        <option value="READY">Pronto para Entrega</option>
-        <option value="DELIVERED">Entregue</option>
-        <option value="CANCELLED">Cancelado</option>
-      </select>
+   <aside>
+    <div id="logo"><img src="../imgs/logo-fatia-certa.png" alt="Logo"></div>
+    <div id="logo-div">
+        <a href="/frontend/pedidos/pedidos.html" class="logo-div-link">Pedidos</a>
+        <a href="/frontend/users/index.html" class="logo-div-link">Usuários</a>
+        <a href="/frontend/cardapio/cardapio.html" class="logo-div-link">Cardápio</a>
     </div>
+   </aside>
 
-    <div id="order-list">
-      </div>
-  </div>
+    <main> 
+        <article>
+            <section id="header">
+                <h1 id="header-title">Fila de Pedidos</h1>
+            </section>
+            
+            <section id="controls">
+                <select id="status-filter" class="styled-select">
+                    <option value="todos">Todos os Status</option>
+                    <option value="PENDING">Pendentes</option>
+                    <option value="CONFIRMED">Confirmados</option>
+                    <option value="PREPARING">Preparando</option>
+                    <option value="READY">Pronto p/ Entrega</option>
+                    <option value="DELIVERED">Entregue</option>
+                    <option value="CANCELLED">Cancelado</option>
+                </select>
+            </section>
+            <br>
+            <div id="message-container"></div>
 
-  <script src="pedidos.js"></script>
+            <section id="items-container">
+                </section>
+
+        </article>
+    </main>
+
+    <script src="pedidos.js"></script>
 </body>
 </html>
