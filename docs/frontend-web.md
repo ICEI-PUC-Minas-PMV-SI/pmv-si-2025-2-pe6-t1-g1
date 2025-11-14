@@ -7,23 +7,31 @@
 [Descreva o projeto da interface Web da aplicação, incluindo o design visual, layout das páginas, interações do usuário e outros aspectos relevantes.]
 
 ### Wireframes
+<img width="1366" height="768" alt="Login desktop" src="https://github.com/user-attachments/assets/94951727-dc0f-4ef6-a96f-f7f441e6b0c7" />
+<img width="1366" height="768" alt="orders" src="https://github.com/user-attachments/assets/99ee2ed7-659b-4f50-aea4-249728b1f5e8" />
+<img width="1366" height="768" alt="items" src="https://github.com/user-attachments/assets/b362fdbb-31d0-488b-9fde-bbb4e8686636" />
+<img width="1366" height="768" alt="users" src="https://github.com/user-attachments/assets/25b7af2c-b356-4cd6-a459-3d25fe0047f8" />
 
-[Inclua os wireframes das páginas principais da interface, mostrando a disposição dos elementos na página.]
+
 
 ### Design Visual
 
-[Descreva o estilo visual da interface, incluindo paleta de cores, tipografia, ícones e outros elementos gráficos.]
+A cor predominante na plataforma é o vermelho (#EB3738). Essa tonalidade é amplamente utilizada em serviços de alimentação, pois está associada à comida e pode estimular o apetite. A escolha da fonte Poppins, sem serifa, reforça a proposta de um produto moderno e intuitivo. Já o logotipo faz referência a utensílios comuns de cozinha.
 
 ## Fluxo de Dados
+### Fluxograma do Processo de Pedido
+![Fluxograma do Processo de Pedido](https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2025-2-pe6-t1-g1/blob/main/docs/img/fluxograma_page-0001.jpg)
 
-[Diagrama ou descrição do fluxo de dados na aplicação.]
 
 ## Tecnologias Utilizadas
-[Lista das tecnologias principais que serão utilizadas no projeto.]
+- HTML 5
+- CSS 3
+- JavaScript
 
 ## Considerações de Segurança
 
-[Discuta as considerações de segurança relevantes para a aplicação distribuída, como autenticação, autorização, proteção contra ataques, etc.]
+Visando fornecer segurança para os usuários,foi implementado um login consumindo uma API que gera um JWT token, que é persistido no localstorage para permitir a navegação do usuário.
+Outro recurso importante impregeado é um uso de permissões, que fazem com que clientes e colaboradores não tenham acesso a listagem de usuários da plataforma.
 
 ## Implantação
 
@@ -37,7 +45,64 @@
 
 ## Testes
 
-[Descreva a estratégia de teste, incluindo os tipos de teste a serem realizados (unitários, integração, carga, etc.) e as ferramentas a serem utilizadas.]
+Para validação do frontend web da aplicação, foram feitos testes manuais do fluxo. Seguem os resultados obtidos
+
+## Pagína de usuários
+
+
+### 1 - Deve ser possível visualizar todos os usuários ao acessar a tela 
+<img width="1544" height="929" alt="image" src="https://github.com/user-attachments/assets/03a1ede8-ac46-4833-9320-17fe75cc53a7" />
+
+### 2 - Deve ser possível filtrar usuários de acordo com sua permissão 
+<img width="1555" height="922" alt="image" src="https://github.com/user-attachments/assets/eab09e64-3695-42f2-9b23-83b18b9db3cc" />
+
+### 3 - Caso não exista um usuário com a permissão selecionada, uma mensagem informativa deve ser renderizada na tela
+<img width="1555" height="922" alt="image" src="https://github.com/user-attachments/assets/e6200fb0-484e-4d24-9811-d76a5d856cc7" />
+
+
+## Tela Cadastro de Usuários
+
+### Cenário 
+Cadastrar usuário com dados válidos
+
+### Passos
+
+1. Preencha todos os campos (nome, e-mail, telefone, senha, confirmar senha) com dados válidos.
+2. Clique em “Cadastrar”.
+
+### Resultado esperado
+
+Exibe mensagem de sucesso (“Usuário cadastrado com sucesso”).
+
+<img width="600" height="500" alt="Cadastro" src="https://github.com/user-attachments/assets/ef0e5bff-61fd-4b87-8ed2-ce5fc73cccc1" />
+
+### 2 - Campo obrigatório vazio
+
+<img width="600" height="500" alt="obrigatorio" src="https://github.com/user-attachments/assets/61a00393-0419-4b7e-8bf3-96fdeaaad472" />
+
+### 3 - E-mail já cadastrado
+
+<img width="600" height="500" alt="email ja cadastrado" src="https://github.com/user-attachments/assets/5c4d3fcd-5d46-4e34-85ad-3d501a0cb1e7" />
+
+## Tela de edição de usuário
+
+### Cenário 
+Editar um usuário já criado.
+
+![Edição de usuário](https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2025-2-pe6-t1-g1/blob/main/docs/img/editar%20inicial.png)
+### Passos
+ Preencher os dados do usuário sendo possível alterar o nome, numero, função e senha restando apenas o Email que não pode ser alterado.
+
+### Resultado esperado
+
+Exibe mensagem de sucesso (“Usuário atualizado com sucesso!”).
+
+![Edição de usuário sucesso](https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2025-2-pe6-t1-g1/blob/main/docs/img/print%20de%20sucesso%20(1).png)
+
+### 2 - Campo obrigatório vazio
+Ao deixar um campo obrigatorio vazio o sistema não atualizará
+
+![Edição de usuário erro](https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2025-2-pe6-t1-g1/blob/main/docs/img/preenchimento%20obrigatorio.png)
 
 1. Crie casos de teste para cobrir todos os requisitos funcionais e não funcionais da aplicação.
 2. Implemente testes unitários para testar unidades individuais de código, como funções e classes.
@@ -53,18 +118,16 @@ Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvo
 
 ##  Quadro de tarefas
 
-> Apresente a divisão de tarefas entre os membros do grupo e o acompanhamento da execução, conforme o exemplo abaixo.
-
 ### Semana 1
 
-Atualizado em: 21/04/2024
+Atualizado em: 31/10/2024
 
-| Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
-| :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
-| AlunaX        | Introdução | 01/02/2024     | 07/02/2024 | ✔️    | 05/02/2024      |
-| AlunaZ        | Objetivos    | 03/02/2024     | 10/02/2024 | 📝    |                 |
-| AlunoY        | Histórias de usuário  | 01/01/2024     | 07/01/2005 | ⌛     |                 |
-| AlunoK        | Personas 1  |    01/01/2024        | 12/02/2005 | ❌    |       |
+| Responsável     | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
+| :----           |    :----         |      :----:    | :----:     | :----: | :----:          |
+| Vitor Gonçalves | Tela Cadastro de Usuário | 20/10/2025     | 31/10/2025 | ✔️    | 30/10/2025      |
+| Samuel Lacerda  | Tela login       | 20/10/2025     | 31/10/2025 | ✔️    |   31/10/2025              |
+| Bruno Tetzner   | Figma            | 20/10/2025     | 25/10/2025 | ✔️   |  25/10/2025               |
+| Pedro Justino   | fluxograma       | 20/10/2025     | 29/10/2025 | ✔️    | 29/10/2025  |
 
 #### Semana 2
 
@@ -72,10 +135,11 @@ Atualizado em: 21/04/2024
 
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
-| AlunaX        | Página inicial   | 01/02/2024     | 07/03/2024 | ✔️    | 05/02/2024      |
-| AlunaZ        | CSS unificado    | 03/02/2024     | 10/03/2024 | 📝    |                 |
-| AlunoY        | Página de login  | 01/02/2024     | 07/03/2024 | ⌛     |                 |
-| AlunoK        | Script de login  |  01/01/2024    | 12/03/2024 | ❌    |       |
+| Vitor Gonçalves        | Testes Tela Cadastro   | 27/10/2025     | 31/10/2025 | ✔️    | 30/10/2025      |
+| Bruno Tetzner       | Listagem de usuários  |    25/10/2025        | 31/10/2025 | ✔️   | 31/10/2025      |
+| Bruno Tetzner       | Documentação do layout e considerações de segurança  |    25/10/2025        | 31/10/2025 | ✔️   | 31/10/2025      |
+| Samuel Lacerda        | Testes tela login    | 28/10/2025    | 31/10/2025 | ✔️    | 31/10/2025                |
+|Pedro Justino | Tela e testes de edição de usuário| 26/10/2025 | 31/10/2025 |✔️| 13/11/2025 |
 
 Legenda:
 - ✔️: terminado

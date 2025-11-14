@@ -1,146 +1,222 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using test.Models;
-using System.Linq;
-using System.Threading.Tasks;
+using web_api.Models;
+using System.Security.Claims;
 
-// Define o controller e a rota base "api/cart"
-[ApiController]
-[Route("api/[controller]")]
-public class CartController : ControllerBase
+namespace web_api.Controllers
 {
-    // Acesso ao banco de dados
-    private readonly AppDbContext _context;
-
-    // Construtor para injeção de dependência do AppDbContext
-    public CartController(AppDbContext context)
+    [ApiController]
+    [Route("api/[controller]")]
+    [Authorize(Roles = "USER")]
+    public class CartController : ControllerBase
     {
-        _context = context;
-    }
+        private readonly AppDbContext _context;
 
-    // Classes para receber os dados da requisição (DTOs)
-    public class AddItemDto
-    {
-        public int ItemId { get; set; }
-        public int Quantity { get; set; }
-    }
-
-    public class UpdateItemDto
-    {
-        public int Quantity { get; set; }
-    }
-
-
-    // GET: /api/cart
-    // Retorna os itens do carrinho do usuário.
-    [HttpGet]
-    public async Task<IActionResult> GetCartItems()
-    {
-        // TODO: Substituir '1' pelo ID do usuário autenticado
-        var userId = 1; 
-
-        var cartItems = await _context.UserCarts
-            .Where(c => c.UserId == userId) // Filtra pelo usuário
-            .Include(c => c.Item)           // Inclui dados do item (produto)
-            .Select(c => new {
-                CartItemId = c.Id,
-                ItemId = c.ItemId,
-                ItemName = c.Item.NameItem,
-                Quantity = c.Quantity,
-                Price = c.Item.Value,
-                Subtotal = c.Quantity * c.Item.Value
-            })
-            .ToListAsync();
-
-        var total = cartItems.Sum(item => item.Subtotal);
-
-        return Ok(new { items = cartItems, total = total });
-    }
-
-    // POST: /api/cart
-    // Adiciona um item ao carrinho.
-    [HttpPost]
-    public async Task<IActionResult> AddItemToCart([FromBody] AddItemDto itemDto)
-    {
-        // TODO: Substituir '1' pelo ID do usuário autenticado
-        var userId = 1;
-
-        // Validação básica
-        var itemExists = await _context.Items.AnyAsync(i => i.Id == itemDto.ItemId);
-        if (!itemExists)
+        public CartController(AppDbContext context)
         {
-            return NotFound("Item não encontrado.");
+            _context = context;
         }
 
-        // Procura o item no carrinho
-        var cartItem = await _context.UserCarts
-            .FirstOrDefaultAsync(c => c.UserId == userId && c.ItemId == itemDto.ItemId);
-
-        if (cartItem != null)
+        [HttpPost("item")]
+        public async Task<ActionResult<UserCart>> AddItemToCart(UserCart cartItem)
         {
-            // Se já existe, soma a quantidade
-            cartItem.Quantity += itemDto.Quantity;
-        }
-        else
-        {
-            // Se não existe, cria um novo registro
-            cartItem = new UserCart
+            try
             {
-                UserId = userId,
-                ItemId = itemDto.ItemId,
-                Quantity = itemDto.Quantity
-            };
-            await _context.UserCarts.AddAsync(cartItem);
+                var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+                if (userIdClaim == null)
+                {
+                    return Unauthorized(new { message = "Usuário não autenticado" });
+                }
+
+                // Verificar se o item existe
+                var item = await _context.Items.FindAsync(cartItem.ItemId);
+                if (item == null)
+                {
+                    return NotFound(new { message = "Item não encontrado" });
+                }
+
+                var userId = int.Parse(userIdClaim.Value);
+                cartItem.UserId = userId;
+
+                var existingCartItem = await _context.UserCarts
+                    .FirstOrDefaultAsync(c => c.UserId == userId && c.ItemId == cartItem.ItemId);
+
+                if (existingCartItem != null)
+                {
+                    existingCartItem.Quantity += cartItem.Quantity;
+                    await _context.SaveChangesAsync();
+                    return Ok(existingCartItem);
+                }
+
+                _context.UserCarts.Add(cartItem);
+                await _context.SaveChangesAsync();
+                return CreatedAtAction(nameof(GetCartItem), new { id = cartItem.Id }, cartItem);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Erro ao adicionar item ao carrinho", error = ex.Message });
+            }
         }
 
-        await _context.SaveChangesAsync(); // Salva no banco
-
-        return CreatedAtAction(nameof(GetCartItems), new { id = cartItem.Id }, cartItem);
-    }
-
-    // PUT: /api/cart/{cartItemId}
-    // Atualiza a quantidade de um item.
-    [HttpPut("{cartItemId}")]
-    public async Task<IActionResult> UpdateCartItem(int cartItemId, [FromBody] UpdateItemDto updateDto)
-    {
-        // TODO: Substituir '1' pelo ID do usuário autenticado
-        var userId = 1;
-
-        // Busca o item no carrinho, garantindo que pertence ao usuário
-        var cartItem = await _context.UserCarts
-            .FirstOrDefaultAsync(c => c.Id == cartItemId && c.UserId == userId);
-
-        if (cartItem == null)
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<object>>> GetUserCart()
         {
-            return NotFound("Item do carrinho não encontrado.");
+            try
+            {
+                var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+                if (userIdClaim == null)
+                {
+                    return Unauthorized(new { message = "Usuário não autenticado" });
+                }
+
+                var userId = int.Parse(userIdClaim.Value);
+
+                var cartItems = await _context.UserCarts
+                    .Where(c => c.UserId == userId)
+                    .Include(c => c.Item)
+                    .Select(c => new {
+                        Id = c.Id,
+                        ItemId = c.ItemId,
+                        ItemName = c.Item.NameItem,
+                        ItemPrice = c.Item.Value,
+                        Quantity = c.Quantity,
+                        TotalPrice = c.Item.Value * c.Quantity
+                    })
+                    .ToListAsync();
+
+                return Ok(cartItems);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Erro ao buscar carrinho", error = ex.Message });
+            }
         }
 
-        cartItem.Quantity = updateDto.Quantity;
-        await _context.SaveChangesAsync(); // Salva no banco
-
-        return Ok(cartItem);
-    }
-
-    // DELETE: /api/cart/{cartItemId}
-    // Remove um item do carrinho.
-    [HttpDelete("{cartItemId}")]
-    public async Task<IActionResult> RemoveCartItem(int cartItemId)
-    {
-        // TODO: Substituir '1' pelo ID do usuário autenticado
-        var userId = 1;
-        
-        // Busca o item no carrinho, garantindo que pertence ao usuário
-        var cartItem = await _context.UserCarts
-            .FirstOrDefaultAsync(c => c.Id == cartItemId && c.UserId == userId);
-
-        if (cartItem == null)
+        [HttpGet("item/{id}")]
+        public async Task<ActionResult<UserCart>> GetCartItem(int id)
         {
-            return NotFound("Item do carrinho não encontrado.");
+            try
+            {
+                var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+                if (userIdClaim == null)
+                {
+                    return Unauthorized(new { message = "Usuário não autenticado" });
+                }
+
+                var userId = int.Parse(userIdClaim.Value);
+
+                var cartItem = await _context.UserCarts
+                    .Include(c => c.Item)
+                    .FirstOrDefaultAsync(c => c.Id == id && c.UserId == userId);
+
+                if (cartItem == null)
+                {
+                    return NotFound(new { message = "Item do carrinho não encontrado" });
+                }
+
+                return Ok(cartItem);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Erro ao buscar item do carrinho", error = ex.Message });
+            }
         }
 
-        _context.UserCarts.Remove(cartItem);
-        await _context.SaveChangesAsync(); // Salva no banco
+        [HttpPut("item/{id}")]
+        public async Task<IActionResult> UpdateCartItem(int id, [FromBody] UpdateCartItemDto updateDto)
+        {
+            try
+            {
+                var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+                if (userIdClaim == null)
+                {
+                    return Unauthorized(new { message = "Usuário não autenticado" });
+                }
 
-        return NoContent(); // Retorna sucesso sem conteúdo
+                var userId = int.Parse(userIdClaim.Value);
+
+                var cartItem = await _context.UserCarts
+                    .FirstOrDefaultAsync(c => c.Id == id && c.UserId == userId);
+
+                if (cartItem == null)
+                {
+                    return NotFound(new { message = "Item do carrinho não encontrado" });
+                }
+
+                if (updateDto.quantity <= 0)
+                {
+                    return BadRequest(new { message = "Quantidade deve ser maior que zero" });
+                }
+
+                cartItem.Quantity = updateDto.quantity;
+                await _context.SaveChangesAsync();
+                return Ok(new { message = "Item do carrinho atualizado com sucesso" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Erro ao atualizar item do carrinho", error = ex.Message });
+            }
+        }
+
+        [HttpDelete("item/{id}")]
+        public async Task<IActionResult> RemoveCartItem(int id)
+        {
+            try
+            {
+                var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+                if (userIdClaim == null)
+                {
+                    return Unauthorized(new { message = "Usuário não autenticado" });
+                }
+
+                var userId = int.Parse(userIdClaim.Value);
+
+                var cartItem = await _context.UserCarts
+                    .FirstOrDefaultAsync(c => c.Id == id && c.UserId == userId);
+
+                if (cartItem == null)
+                {
+                    return NotFound(new { message = "Item do carrinho não encontrado" });
+                }
+
+                _context.UserCarts.Remove(cartItem);
+                await _context.SaveChangesAsync();
+
+                return Ok(new { message = "Item removido do carrinho com sucesso" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Erro ao remover item do carrinho", error = ex.Message });
+            }
+        }
+
+        [HttpDelete("clear")]
+        public async Task<IActionResult> ClearCart()
+        {
+            try
+            {
+                var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+                if (userIdClaim == null)
+                {
+                    return Unauthorized(new { message = "Usuário não autenticado" });
+                }
+
+                var userId = int.Parse(userIdClaim.Value);
+
+                var cartItems = await _context.UserCarts
+                    .Where(c => c.UserId == userId)
+                    .ToListAsync();
+
+                _context.UserCarts.RemoveRange(cartItems);
+                await _context.SaveChangesAsync();
+
+                return NoContent(); // Status 204
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Erro ao limpar carrinho", error = ex.Message });
+            }
+        }
     }
 }

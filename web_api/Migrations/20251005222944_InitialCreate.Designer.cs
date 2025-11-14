@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using test.Models;
+using web_api.Models;
 
 #nullable disable
 
 namespace web_api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250924002538_InitialRestaurantModelsFixed")]
-    partial class InitialRestaurantModelsFixed
+    [Migration("20251005222944_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,7 +24,7 @@ namespace web_api.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("test.Models.Item", b =>
+            modelBuilder.Entity("web_api.Models.Item", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -52,7 +52,7 @@ namespace web_api.Migrations
                     b.ToTable("Items");
                 });
 
-            modelBuilder.Entity("test.Models.Order", b =>
+            modelBuilder.Entity("web_api.Models.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -86,7 +86,7 @@ namespace web_api.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("test.Models.OrderItem", b =>
+            modelBuilder.Entity("web_api.Models.OrderItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -113,7 +113,7 @@ namespace web_api.Migrations
                     b.ToTable("OrderItems");
                 });
 
-            modelBuilder.Entity("test.Models.User", b =>
+            modelBuilder.Entity("web_api.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -156,7 +156,7 @@ namespace web_api.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("test.Models.UserAddress", b =>
+            modelBuilder.Entity("web_api.Models.UserAddress", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -203,7 +203,7 @@ namespace web_api.Migrations
                     b.ToTable("UserAddresses");
                 });
 
-            modelBuilder.Entity("test.Models.UserCarrinho", b =>
+            modelBuilder.Entity("web_api.Models.UserCart", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -227,18 +227,18 @@ namespace web_api.Migrations
                     b.HasIndex("UserId", "ItemId")
                         .IsUnique();
 
-                    b.ToTable("UserCarrinhos");
+                    b.ToTable("UserCarts");
                 });
 
-            modelBuilder.Entity("test.Models.Order", b =>
+            modelBuilder.Entity("web_api.Models.Order", b =>
                 {
-                    b.HasOne("test.Models.UserAddress", "DeliveryAddress")
+                    b.HasOne("web_api.Models.UserAddress", "DeliveryAddress")
                         .WithMany("OrdersWithThisAddress")
                         .HasForeignKey("EnderecoEntregaId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("test.Models.User", "User")
+                    b.HasOne("web_api.Models.User", "User")
                         .WithMany("Orders")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -249,15 +249,15 @@ namespace web_api.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("test.Models.OrderItem", b =>
+            modelBuilder.Entity("web_api.Models.OrderItem", b =>
                 {
-                    b.HasOne("test.Models.Item", "Item")
+                    b.HasOne("web_api.Models.Item", "Item")
                         .WithMany("OrderItems")
                         .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("test.Models.Order", "Order")
+                    b.HasOne("web_api.Models.Order", "Order")
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -268,9 +268,9 @@ namespace web_api.Migrations
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("test.Models.UserAddress", b =>
+            modelBuilder.Entity("web_api.Models.UserAddress", b =>
                 {
-                    b.HasOne("test.Models.User", "User")
+                    b.HasOne("web_api.Models.User", "User")
                         .WithMany("Addresses")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -279,15 +279,15 @@ namespace web_api.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("test.Models.UserCarrinho", b =>
+            modelBuilder.Entity("web_api.Models.UserCart", b =>
                 {
-                    b.HasOne("test.Models.Item", "Item")
+                    b.HasOne("web_api.Models.Item", "Item")
                         .WithMany("CartItems")
                         .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("test.Models.User", "User")
+                    b.HasOne("web_api.Models.User", "User")
                         .WithMany("CartItems")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -298,19 +298,19 @@ namespace web_api.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("test.Models.Item", b =>
+            modelBuilder.Entity("web_api.Models.Item", b =>
                 {
                     b.Navigation("CartItems");
 
                     b.Navigation("OrderItems");
                 });
 
-            modelBuilder.Entity("test.Models.Order", b =>
+            modelBuilder.Entity("web_api.Models.Order", b =>
                 {
                     b.Navigation("OrderItems");
                 });
 
-            modelBuilder.Entity("test.Models.User", b =>
+            modelBuilder.Entity("web_api.Models.User", b =>
                 {
                     b.Navigation("Addresses");
 
@@ -319,7 +319,7 @@ namespace web_api.Migrations
                     b.Navigation("Orders");
                 });
 
-            modelBuilder.Entity("test.Models.UserAddress", b =>
+            modelBuilder.Entity("web_api.Models.UserAddress", b =>
                 {
                     b.Navigation("OrdersWithThisAddress");
                 });

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Usuários</title>
+    <link rel="stylesheet" href="style.sidebar.css">
+</head>
+<body>
+   <aside>
+    <div id="logo"><img src="../imgs/logo-fatia-certa.png" alt="Logo"></div>
+    <div id="logo-div">
+        <a href="/frontend/pedidos/pedidos.html" class="logo-div-link">Pedidos</a>
+        <a href="/frontend/users/index.html" class="logo-div-link">Usuários</a>
+        <a href="/frontend/cardapio/cardapio.html" class="logo-div-link">Cardápio</a>
+    </div>
+   </aside>
+
+    <main> 
+        <article>
+            <section id="user-header">
+                <h1 id="user-header-title">Usuários</h1>
+            </section>
+            <section id="user-controls">
+                <select id="search-user">
+                    <option value="">Todos os usuários</option>
+                    <option value="ADMIN">ADMIN</option>
+                    <option value="USER">USER</option>
+                    <option value="EMPLOYER">EMPLOYER</option>
+                </select>
+                <button id="add-user-btn" >Adicionar Usuário</button>
+            </section>
+            <section>
+                users
+            </section>
+
+        </article>
+
+
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

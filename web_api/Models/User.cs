@@ -1,7 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
-namespace test.Models
+namespace web_api.Models
 {
     public class User
     {
@@ -18,6 +19,7 @@ namespace test.Models
 
         [Required]
         [MaxLength(255)]
+        [JsonIgnore]
         public string PasswordHash { get; set; }
 
         [MaxLength(20)]
