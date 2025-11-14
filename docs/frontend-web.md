@@ -20,7 +20,8 @@ A cor predominante na plataforma é o vermelho (#EB3738). Essa tonalidade é amp
 
 ## Fluxo de Dados
 
-[Diagrama ou descrição do fluxo de dados na aplicação.]
+[fluxograma.pdf](https://github.com/user-attachments/files/23551749/fluxograma.pdf)
+
 
 ## Tecnologias Utilizadas
 - HTML 5
