@@ -2521,24 +2521,32 @@
     ]
   },
   "packageFolders": {
-    "/home/btetzner/.nuget/packages/": {}
+    "C:\\Users\\Thunder\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/btetzner/Documents/project/pmv-si-2025-2-pe6-t1-g1/web_api/web_api.csproj",
+      "projectUniqueName": "C:\\Users\\Thunder\\Desktop\\clone\\web_api\\web_api.csproj",
       "projectName": "web_api",
-      "projectPath": "/home/btetzner/Documents/project/pmv-si-2025-2-pe6-t1-g1/web_api/web_api.csproj",
-      "packagesPath": "/home/btetzner/.nuget/packages/",
-      "outputPath": "/home/btetzner/Documents/project/pmv-si-2025-2-pe6-t1-g1/web_api/obj/",
+      "projectPath": "C:\\Users\\Thunder\\Desktop\\clone\\web_api\\web_api.csproj",
+      "packagesPath": "C:\\Users\\Thunder\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Thunder\\Desktop\\clone\\web_api\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/home/btetzner/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Thunder\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2551,7 +2559,13 @@
         "warnAsError": [
           "NU1605"
         ]
-      }
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net6.0": {
@@ -2599,7 +2613,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.428/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306\\RuntimeIdentifierGraph.json"
       }
     }
   }
