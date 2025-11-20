@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-  const API_URL = 'https://localhost:7144/api';
+  const API_URL = 'https://localhost:7144/api'; 
 
   const messageContainer = document.getElementById('message-container');
   const orderListDiv = document.getElementById('items-container'); 
@@ -8,23 +7,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let allOrders = []; 
 
-function getToken() {
-    
+  function getToken() {
+
     const token = localStorage.getItem('token'); 
-    
+
     if (!token) {
-        showMessage('Acesso negado. Faça o login primeiro.', 'error');
-        
-      
-        window.location.href = '/frontend/LoginScreen/index.html#'; 
+        showMessage('Access denied. Please log in as an employee.', 'error');
         return null;
     }
-    
-   
     return token;
-}
+  }
 
-function showMessage(message, type) {
+  function showMessage(message, type) {
     const messageEl = document.createElement('div');
     messageEl.className = `message message-${type}`;
     messageEl.textContent = message;
@@ -42,7 +36,7 @@ function showMessage(message, type) {
     orderListDiv.innerHTML = ''; 
 
     if (ordersToRender.length === 0) {
-      orderListDiv.innerHTML = '<p style="text-align: center;">Nenhum pedido encontrado.</p>';
+      orderListDiv.innerHTML = '<p style="text-align: center;">No orders found.</p>';
       return;
     }
 
@@ -56,28 +50,29 @@ function showMessage(message, type) {
       orderCard.innerHTML = `
         <div class="order-header">
             <div class="order-info">
-              <h3>Pedido #${order.id}</h3>
-              <span>Cliente ID: ${order.userId}</span>
-              <span>Horário: ${orderTime}</span>
+              <h3>Order #${order.id}</h3>
+              <span>Client ID: ${order.userId}</span>
+              <span>Date: ${orderTime}</span>
               <span class="order-total">Total: R$ ${order.totalAmount.toFixed(2)}</span>
             </div>
             <div class="order-status">
-              <label for="status-${order.id}">Alterar Status:</label>
+              <label for="status-${order.id}">Change Status:</label>
               <select id="status-${order.id}" class="styled-select status-select-dynamic" data-id="${order.id}">
-                <option value="PENDING" ${order.status === 'PENDING' ? 'selected' : ''}>Pendente</option>
-                <option value="CONFIRMED" ${order.status === 'CONFIRMED' ? 'selected' : ''}>Confirmado</option>
-                <option value="PREPARING" ${order.status === 'PREPARING' ? 'selected' : ''}>Preparando</option>
-                <option value="READY" ${order.status === 'READY' ? 'selected' : ''}>Pronto p/ Entrega</option>
-                <option value="DELIVERED" ${order.status === 'DELIVERED' ? 'selected' : ''}>Entregue</option>
-                <option value="CANCELLED" ${order.status === 'CANCELLED' ? 'selected' : ''}>Cancelado</option>
+                <option value="PENDING" ${order.status === 'PENDING' ? 'selected' : ''}>Pending</option>
+                <option value="CONFIRMED" ${order.status === 'CONFIRMED' ? 'selected' : ''}>Confirmed</option>
+                <option value="PREPARING" ${order.status === 'PREPARING' ? 'selected' : ''}>Preparing</option>
+                <option value="READY" ${order.status === 'READY' ? 'selected' : ''}>Ready</option>
+                <option value="DELIVERED" ${order.status === 'DELIVERED' ? 'selected' : ''}>Delivered</option>
+                <option value="CANCELLED" ${order.status === 'CANCELLED' ? 'selected' : ''}>Cancelled</option>
               </select>
             </div>
         </div>
 
-        <button class="btn-details" data-id="${order.id}">Ver Detalhes</button>
+        <button class="btn-details" data-id="${order.id}">
+            View Items (${order.itemCount})
+        </button>
 
-        <div class="order-items-container" id="items-for-order-${order.id}">
-        </div>
+        <div class="order-items-container" id="items-for-order-${order.id}"></div>
       `;
       orderListDiv.appendChild(orderCard);
     });
@@ -97,17 +92,18 @@ function showMessage(message, type) {
 
       if (response.ok) {
         allOrders = await response.json();
+
         allOrders.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate));
         filterAndRenderOrders();
       } else if (response.status === 401) {
-        showMessage('Sessão expirada. Faça login novamente.', 'error');
+        showMessage('Session expired. Please log in again.', 'error');
       } else if (response.status === 403) {
-        showMessage('Acesso negado. Esta página é apenas para funcionários.', 'error');
+        showMessage('Access denied. Employee role required.', 'error');
       } else {
-        showMessage('Erro ao buscar pedidos.', 'error');
+        showMessage('Error fetching orders.', 'error');
       }
     } catch (error) {
-      showMessage('Falha na conexão com o servidor.', 'error');
+      showMessage('Connection failed.', 'error');
     }
   }
 
@@ -122,19 +118,20 @@ function showMessage(message, type) {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify(newStatus) 
+
+        body: JSON.stringify({ status: newStatus }) 
       });
 
       if (response.ok) {
-        showMessage(`Pedido #${orderId} atualizado para "${newStatus}".`, 'success');
+        showMessage(`Order #${orderId} updated to "${newStatus}".`, 'success');
         const orderToUpdate = allOrders.find(o => o.id == orderId);
         if (orderToUpdate) orderToUpdate.status = newStatus;
         filterAndRenderOrders(); 
       } else {
-        showMessage('Erro ao atualizar status.', 'error');
+        showMessage('Error updating status.', 'error');
       }
     } catch (error) {
-      showMessage('Falha na conexão com o servidor.', 'error');
+      showMessage('Connection failed.', 'error');
     }
   }
 
@@ -143,8 +140,7 @@ function showMessage(message, type) {
 
     if (itemsContainer.innerHTML !== '') {
       itemsContainer.innerHTML = '';
-
-      buttonEl.textContent = 'Ver Detalhes'; 
+      buttonEl.textContent = `View Items (${buttonEl.textContent.split('(')[1]}`; 
       return;
     }
 
@@ -152,6 +148,7 @@ function showMessage(message, type) {
     if (!token) return;
 
     try {
+
       const response = await fetch(`${API_URL}/orders/${orderId}`, {
         method: 'GET',
         headers: {
@@ -160,29 +157,35 @@ function showMessage(message, type) {
       });
 
       if (!response.ok) {
-        showMessage('Erro ao buscar detalhes do pedido.', 'error');
+        showMessage('Error fetching order details.', 'error');
         return;
       }
 
-      const orderDetails = await response.json();
+      const orderData = await response.json();
 
       let itemsHtml = '<ul class="order-item-list">';
-      orderDetails.items.forEach(item => {
-        itemsHtml += `
-          <li class="order-item">
-            <span class="item-qty">${item.quantity}x</span>
-            <span class="item-name">${item.itemName}</span>
-            <span class="item-price">R$ ${item.itemValue.toFixed(2)}</span>
-          </li>`;
-      });
+
+      if(orderData.items && orderData.items.length > 0) {
+          orderData.items.forEach(item => {
+            itemsHtml += `
+              <li class="order-item">
+                <span class="item-qty">${item.quantity}x</span>
+                <span class="item-name">${item.itemName}</span>
+                <span class="item-price">R$ ${item.itemValue.toFixed(2)}</span>
+              </li>`;
+          });
+      } else {
+          itemsHtml += '<li>No items found.</li>';
+      }
+
       itemsHtml += '</ul>';
 
       itemsContainer.innerHTML = itemsHtml;
-
-      buttonEl.textContent = 'Esconder Detalhes'; 
+      buttonEl.textContent = 'Hide Items';
 
     } catch (error) {
-      showMessage('Falha na conexão com o servidor.', 'error');
+      console.error(error);
+      showMessage('Connection failed.', 'error');
     }
   }
 
@@ -214,5 +217,4 @@ function showMessage(message, type) {
       updateStatus(orderId, newStatus);
     }
   });
-
 });
