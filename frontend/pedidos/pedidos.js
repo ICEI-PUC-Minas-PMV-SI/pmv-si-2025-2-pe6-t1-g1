@@ -8,34 +8,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let allOrders = []; 
 
-function getToken() {
-    
+  function getToken() {
     const token = localStorage.getItem('token'); 
     
     if (!token) {
         showMessage('Acesso negado. Faça o login primeiro.', 'error');
-        
-      
         window.location.href = '/frontend/LoginScreen/index.html#'; 
         return null;
     }
-    
-   
     return token;
-}
+  }
 
-function showMessage(message, type) {
+  function showMessage(message, type) {
     const messageEl = document.createElement('div');
     messageEl.className = `message message-${type}`;
     messageEl.textContent = message;
 
-    messageContainer.innerHTML = '';
-    messageContainer.appendChild(messageEl);
+    // Garante que o container existe antes de limpar
+    if(messageContainer) {
+        messageContainer.innerHTML = '';
+        messageContainer.appendChild(messageEl);
 
-    setTimeout(() => {
-        messageEl.style.opacity = '0';
-        setTimeout(() => messageEl.remove(), 300);
-    }, 3000);
+        setTimeout(() => {
+            messageEl.style.opacity = '0';
+            setTimeout(() => messageEl.remove(), 300);
+        }, 3000);
+    } else {
+        alert(message); // Fallback se não houver container
+    }
   }
 
   function renderOrders(ordersToRender) {
@@ -122,7 +122,9 @@ function showMessage(message, type) {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify(newStatus) 
+        
+        body: JSON.stringify({ status: newStatus }) 
+      
       });
 
       if (response.ok) {
@@ -131,7 +133,8 @@ function showMessage(message, type) {
         if (orderToUpdate) orderToUpdate.status = newStatus;
         filterAndRenderOrders(); 
       } else {
-        showMessage('Erro ao atualizar status.', 'error');
+        const errData = await response.json().catch(() => ({}));
+        showMessage(errData.message || 'Erro ao atualizar status.', 'error');
       }
     } catch (error) {
       showMessage('Falha na conexão com o servidor.', 'error');
@@ -143,7 +146,6 @@ function showMessage(message, type) {
 
     if (itemsContainer.innerHTML !== '') {
       itemsContainer.innerHTML = '';
-
       buttonEl.textContent = 'Ver Detalhes'; 
       return;
     }
@@ -167,18 +169,22 @@ function showMessage(message, type) {
       const orderDetails = await response.json();
 
       let itemsHtml = '<ul class="order-item-list">';
-      orderDetails.items.forEach(item => {
-        itemsHtml += `
-          <li class="order-item">
-            <span class="item-qty">${item.quantity}x</span>
-            <span class="item-name">${item.itemName}</span>
-            <span class="item-price">R$ ${item.itemValue.toFixed(2)}</span>
-          </li>`;
-      });
+      // Verificação de segurança caso items venha nulo
+      if (orderDetails.items && orderDetails.items.length > 0) {
+          orderDetails.items.forEach(item => {
+            itemsHtml += `
+              <li class="order-item">
+                <span class="item-qty">${item.quantity}x</span>
+                <span class="item-name">${item.itemName}</span>
+                <span class="item-price">R$ ${item.itemValue.toFixed(2)}</span>
+              </li>`;
+          });
+      } else {
+          itemsHtml += '<li>Sem itens</li>';
+      }
       itemsHtml += '</ul>';
 
       itemsContainer.innerHTML = itemsHtml;
-
       buttonEl.textContent = 'Esconder Detalhes'; 
 
     } catch (error) {
@@ -196,23 +202,27 @@ function showMessage(message, type) {
     }
   }
 
+  // Inicialização
   loadOrders();
 
-  statusFilter.addEventListener('change', filterAndRenderOrders);
+  if (statusFilter) {
+      statusFilter.addEventListener('change', filterAndRenderOrders);
+  }
 
-  orderListDiv.addEventListener('click', (e) => {
-    if (e.target.classList.contains('btn-details')) {
-      const orderId = e.target.dataset.id;
-      loadOrderDetails(orderId, e.target); 
-    }
-  });
+  if (orderListDiv) {
+      orderListDiv.addEventListener('click', (e) => {
+        if (e.target.classList.contains('btn-details')) {
+          const orderId = e.target.dataset.id;
+          loadOrderDetails(orderId, e.target); 
+        }
+      });
 
-  orderListDiv.addEventListener('change', (e) => {
-    if (e.target.classList.contains('status-select-dynamic')) { 
-      const orderId = e.target.dataset.id;
-      const newStatus = e.target.value;
-      updateStatus(orderId, newStatus);
-    }
-  });
-
+      orderListDiv.addEventListener('change', (e) => {
+        if (e.target.classList.contains('status-select-dynamic')) { 
+          const orderId = e.target.dataset.id;
+          const newStatus = e.target.value;
+          updateStatus(orderId, newStatus);
+        }
+      });
+  }
 });
