@@ -24,13 +24,23 @@ namespace web_api.Controllers
         {
             try
             {
-                var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+               var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
                 if (userIdClaim == null)
                 {
                     return Unauthorized(new { message = "Usuário não autenticado" });
                 }
 
                 var userId = int.Parse(userIdClaim.Value);
+
+               
+                var userAddress = await _context.UserAddresses
+                    .Where(a => a.UserId == userId)
+                    .FirstOrDefaultAsync();
+
+                if (userAddress == null)
+                {
+                    return BadRequest(new { message = "Você precisa cadastrar um endereço antes de finalizar o pedido." });
+                }
 
                 var cartItems = await _context.UserCarts
                     .Where(c => c.UserId == userId)
@@ -45,7 +55,7 @@ namespace web_api.Controllers
                 var order = new Order
                 {
                     UserId = userId,
-                    EnderecoEntregaId = 1, // Valor temporário - deveria vir do frontend
+                    EnderecoEntregaId = userAddress.Id,
                     DataPedido = DateTime.Now,
                     Status = "PENDING",
                     Total = cartItems.Sum(c => c.Item.Value * c.Quantity)

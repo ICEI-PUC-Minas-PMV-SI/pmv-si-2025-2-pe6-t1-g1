@@ -93,7 +93,7 @@ namespace web_api.Controllers
         public async Task<ActionResult<UserResponseDto>> GetCurrentUser()
         {
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
-            
+
             var user = await _context.Users.FindAsync(userId);
             if (user == null)
             {
@@ -117,7 +117,7 @@ namespace web_api.Controllers
         public async Task<ActionResult<UserResponseDto>> UpdateCurrentUser([FromBody] UserUpdateDto updateDto)
         {
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
-            
+
             var user = await _context.Users.FindAsync(userId);
             if (user == null)
             {
@@ -151,7 +151,7 @@ namespace web_api.Controllers
         public async Task<ActionResult> DeleteCurrentUser()
         {
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
-            
+
             var user = await _context.Users.FindAsync(userId);
             if (user == null)
             {
@@ -196,15 +196,15 @@ namespace web_api.Controllers
                 Role = user.Role
             });
         }
-     
+
         //ADMIN ENDPOINT: PUT/user{id}
         [HttpPut("{id}")]
         [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<UserResponseDto>> UpdateUser(int id, [FromBody] UserUpdateDto updateDto)
-        {   
-           
+        {
+
             var user = await _context.Users
-                                     .Include(u => u.Addresses) 
+                                     .Include(u => u.Addresses)
                                      .FirstOrDefaultAsync(u => u.Id == id);
 
             if (user == null)
@@ -212,11 +212,11 @@ namespace web_api.Controllers
                 return NotFound();
             }
 
-           
+
             user.Name = updateDto.Name ?? user.Name;
             user.Phone = updateDto.Phone ?? user.Phone;
             user.Role = updateDto.Role ?? user.Role;
-            
+
 
             if (!string.IsNullOrEmpty(updateDto.Password))
             {
@@ -230,13 +230,13 @@ namespace web_api.Controllers
 
                 if (existingAddress == null)
                 {
-                   
+
                     if (!string.IsNullOrEmpty(updateDto.Address.Street))
                     {
                         var newAddress = new UserAddress
                         {
                             UserId = user.Id,
-                            Street = updateDto.Address.Street, 
+                            Street = updateDto.Address.Street,
                             Number = updateDto.Address.Number,
                             ZipCode = updateDto.Address.ZipCode,
                             Complement = updateDto.Address.Complement,
@@ -246,17 +246,17 @@ namespace web_api.Controllers
                         };
                         _context.UserAddresses.Add(newAddress);
                     }
-                    
+
                 }
                 else
                 {
-                   
+
                     if (!string.IsNullOrEmpty(updateDto.Address.Street))
                     {
                         existingAddress.Street = updateDto.Address.Street;
                     }
 
-                   
+
                     existingAddress.Number = updateDto.Address.Number ?? existingAddress.Number;
                     existingAddress.ZipCode = updateDto.Address.ZipCode ?? existingAddress.ZipCode;
                     existingAddress.Complement = updateDto.Address.Complement ?? existingAddress.Complement;
@@ -268,7 +268,7 @@ namespace web_api.Controllers
                 }
             }
 
-            
+
             await _context.SaveChangesAsync();
 
             return Ok(new UserResponseDto
@@ -301,5 +301,47 @@ namespace web_api.Controllers
 
 
 
+
+
+        // USER ENDPOINT: user/address 
+        [HttpPost("address")]
+        [Authorize] 
+        public async Task<ActionResult<UserAddress>> AddAddress([FromBody] CreateAddressDto addressDto)
+        {
+            try
+            {
+               
+                var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+                if (userIdClaim == null)
+                {
+                    return Unauthorized(new { message = "Token inválido" });
+                }
+                var userId = int.Parse(userIdClaim.Value);
+
+                
+                var newAddress = new UserAddress
+                {
+                    UserId = userId, 
+                    Street = addressDto.Street,
+                    Number = addressDto.Number,
+                    Neighborhood = addressDto.Neighborhood,
+                    City = addressDto.City,
+                    State = addressDto.State,
+                    ZipCode = addressDto.ZipCode,
+                    Complement = addressDto.Complement
+                };
+
+                
+                _context.UserAddresses.Add(newAddress);
+                await _context.SaveChangesAsync();
+
+                return CreatedAtAction(nameof(GetCurrentUser), new { }, newAddress);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Erro ao adicionar endereço", error = ex.Message });
+            }
+        }
     }
 }
+    
