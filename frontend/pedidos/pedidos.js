@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+  // URL Corrigida para HTTPS e Porta 7144
   const API_URL = 'https://localhost:7144/api';
 
   const messageContainer = document.getElementById('message-container');
@@ -8,17 +9,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let allOrders = []; 
 
+  // --- AUTENTICAÇÃO ---
   function getToken() {
     const token = localStorage.getItem('token'); 
     
     if (!token) {
         showMessage('Acesso negado. Faça o login primeiro.', 'error');
+        // Caminho absoluto correto para o login
         window.location.href = '/frontend/LoginScreen/index.html#'; 
         return null;
     }
     return token;
   }
 
+  // --- MENSAGENS ---
   function showMessage(message, type) {
     const messageEl = document.createElement('div');
     messageEl.className = `message message-${type}`;
@@ -38,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // --- RENDERIZAÇÃO ---
   function renderOrders(ordersToRender) {
     orderListDiv.innerHTML = ''; 
 
@@ -83,6 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // --- CARREGAR PEDIDOS ---
   async function loadOrders() {
     const token = getToken();
     if (!token) return;
@@ -111,6 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // --- ATUALIZAR STATUS ---
   async function updateStatus(orderId, newStatus) {
     const token = getToken();
     if (!token) return;
@@ -122,9 +129,8 @@ document.addEventListener('DOMContentLoaded', () => {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        
+        // Correção crítica: Envia Objeto JSON para casar com o DTO do C#
         body: JSON.stringify({ status: newStatus }) 
-      
       });
 
       if (response.ok) {
@@ -141,6 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // --- DETALHES DO PEDIDO ---
   async function loadOrderDetails(orderId, buttonEl) {
     const itemsContainer = document.getElementById(`items-for-order-${orderId}`);
 
@@ -169,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const orderDetails = await response.json();
 
       let itemsHtml = '<ul class="order-item-list">';
-      // Verificação de segurança caso items venha nulo
+      // Verificação de segurança
       if (orderDetails.items && orderDetails.items.length > 0) {
           orderDetails.items.forEach(item => {
             itemsHtml += `
@@ -188,10 +195,12 @@ document.addEventListener('DOMContentLoaded', () => {
       buttonEl.textContent = 'Esconder Detalhes'; 
 
     } catch (error) {
+      console.error(error);
       showMessage('Falha na conexão com o servidor.', 'error');
     }
   }
 
+  // --- FILTROS E EVENTOS ---
   function filterAndRenderOrders() {
     const filterValue = statusFilter.value;
     if (filterValue === 'todos') {

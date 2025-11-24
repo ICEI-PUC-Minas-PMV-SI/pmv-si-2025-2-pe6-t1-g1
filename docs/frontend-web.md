@@ -1,6 +1,6 @@
 # Front-end Web
 
-[Inclua uma breve descrição do projeto e seus objetivos.]
+A aplicação web da FatiaCerta é uma plataforma de gestão interna, desenvolvida para uso exclusivo dos funcionários. O sistema visa otimizar os processos operacionais, centralizando funcionalidades como o gerenciamento de usuários, a administração do cardápio e o monitoramento completo do ciclo de pedidos e seus respectivos status.
 
 ## Projeto da Interface Web
 
@@ -59,6 +59,22 @@ Para validação do frontend web da aplicação, foram feitos testes manuais do 
 ### 3 - Caso não exista um usuário com a permissão selecionada, uma mensagem informativa deve ser renderizada na tela
 <img width="1555" height="922" alt="image" src="https://github.com/user-attachments/assets/e6200fb0-484e-4d24-9811-d76a5d856cc7" />
 
+
+## Pagína de Pedidos
+
+### 1 - Deve ser possível visualizar todos os Pedidos ao acessar a tela 
+
+<img width="1544" height="929" alt="image" src="https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2025-2-pe6-t1-g1/refs/heads/main/docs/img/3.jpeg" />
+
+### 2 - Deve ser possível filtrar Pedidos de acordo com a etapa de preparo 
+
+<img width="1555" height="922" alt="image" src="https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2025-2-pe6-t1-g1/refs/heads/main/docs/img/2.jpeg" />
+
+### 3 - Caso não exista um Pedido com a etapa selecionada, uma mensagem informativa deve ser renderizada na tela
+
+<img width="1555" height="922" alt="image" src="https://raw.githubusercontent.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2025-2-pe6-t1-g1/refs/heads/main/docs/img/1.jpeg" />
+
+
 ## Página de cardápio
 
 ### 1 - Deve ser possível visualizar todos os items ao acessar a tela
@@ -111,11 +127,6 @@ Ao deixar um campo obrigatorio vazio o sistema não atualizará
 
 ![Edição de usuário erro](https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2025-2-pe6-t1-g1/blob/main/docs/img/preenchimento%20obrigatorio.png)
 
-1. Crie casos de teste para cobrir todos os requisitos funcionais e não funcionais da aplicação.
-2. Implemente testes unitários para testar unidades individuais de código, como funções e classes.
-3. Realize testes de integração para verificar a interação correta entre os componentes da aplicação.
-4. Execute testes de carga para avaliar o desempenho da aplicação sob carga significativa.
-5. Utilize ferramentas de teste adequadas, como frameworks de teste e ferramentas de automação de teste, para agilizar o processo de teste.
 
 ## Tela de cardápio
 
@@ -177,6 +188,8 @@ Atualizado em: 31/10/2024
 | Samuel Lacerda  | Tela login       | 20/10/2025     | 31/10/2025 | ✔️    |   31/10/2025              |
 | Bruno Tetzner   | Figma            | 20/10/2025     | 25/10/2025 | ✔️   |  25/10/2025               |
 | Pedro Justino   | fluxograma       | 20/10/2025     | 29/10/2025 | ✔️    | 29/10/2025  |
+| Luigi Mezzogori   | Tela Pedidos       | 20/10/2025     | 28/10/2025 | ✔️    | 30/10/2025  |
+| Victor Alexandre   | Tela Cardápio       | 20/10/2025     | 28/10/2025 | ✔️    | 26/10/2025  |
 
 #### Semana 2
 
@@ -189,6 +202,8 @@ Atualizado em: 21/04/2024
 | Bruno Tetzner       | Documentação do layout e considerações de segurança  |    25/10/2025        | 31/10/2025 | ✔️   | 31/10/2025      |
 | Samuel Lacerda        | Testes tela login    | 28/10/2025    | 31/10/2025 | ✔️    | 31/10/2025                |
 |Pedro Justino | Tela e testes de edição de usuário| 26/10/2025 | 31/10/2025 |✔️| 13/11/2025 |
+|Luigi Mezzogori | Aprimorações tela de pedido| 27/10/2025 | 31/10/2025 |✔️| 31/10/2025      |
+|Victor Alexandre | Aprimorações tela de cardápio| 28/10/2025 | 28/10/2025 |✔️| 26/10/2025      |
 
 Legenda:
 - ✔️: terminado
