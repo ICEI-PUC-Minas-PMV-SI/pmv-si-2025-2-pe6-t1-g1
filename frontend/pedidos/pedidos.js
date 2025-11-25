@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const API_URL = 'https://localhost:7144/api'; 
+
+  // URL Corrigida para HTTPS e Porta 7144
+  const API_URL = 'https://localhost:7144/api';
 
   const messageContainer = document.getElementById('message-container');
   const orderListDiv = document.getElementById('items-container'); 
@@ -7,36 +9,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let allOrders = []; 
 
+  // --- AUTENTICAÇÃO ---
   function getToken() {
-
     const token = localStorage.getItem('token'); 
-
+    
     if (!token) {
-        showMessage('Access denied. Please log in as an employee.', 'error');
+        showMessage('Acesso negado. Faça o login primeiro.', 'error');
+        // Caminho absoluto correto para o login
+        window.location.href = '/frontend/LoginScreen/index.html#'; 
         return null;
     }
     return token;
   }
 
+  // --- MENSAGENS ---
   function showMessage(message, type) {
     const messageEl = document.createElement('div');
     messageEl.className = `message message-${type}`;
     messageEl.textContent = message;
 
-    messageContainer.innerHTML = '';
-    messageContainer.appendChild(messageEl);
+    // Garante que o container existe antes de limpar
+    if(messageContainer) {
+        messageContainer.innerHTML = '';
+        messageContainer.appendChild(messageEl);
 
-    setTimeout(() => {
-        messageEl.style.opacity = '0';
-        setTimeout(() => messageEl.remove(), 300);
-    }, 3000);
+        setTimeout(() => {
+            messageEl.style.opacity = '0';
+            setTimeout(() => messageEl.remove(), 300);
+        }, 3000);
+    } else {
+        alert(message); // Fallback se não houver container
+    }
   }
 
+  // --- RENDERIZAÇÃO ---
   function renderOrders(ordersToRender) {
     orderListDiv.innerHTML = ''; 
 
     if (ordersToRender.length === 0) {
-      orderListDiv.innerHTML = '<p style="text-align: center;">No orders found.</p>';
+      orderListDiv.innerHTML = '<p style="text-align: center;">Nenhum pedido encontrado.</p>';
       return;
     }
 
@@ -50,34 +61,34 @@ document.addEventListener('DOMContentLoaded', () => {
       orderCard.innerHTML = `
         <div class="order-header">
             <div class="order-info">
-              <h3>Order #${order.id}</h3>
-              <span>Client ID: ${order.userId}</span>
-              <span>Date: ${orderTime}</span>
+              <h3>Pedido #${order.id}</h3>
+              <span>Cliente ID: ${order.userId}</span>
+              <span>Horário: ${orderTime}</span>
               <span class="order-total">Total: R$ ${order.totalAmount.toFixed(2)}</span>
             </div>
             <div class="order-status">
-              <label for="status-${order.id}">Change Status:</label>
+              <label for="status-${order.id}">Alterar Status:</label>
               <select id="status-${order.id}" class="styled-select status-select-dynamic" data-id="${order.id}">
-                <option value="PENDING" ${order.status === 'PENDING' ? 'selected' : ''}>Pending</option>
-                <option value="CONFIRMED" ${order.status === 'CONFIRMED' ? 'selected' : ''}>Confirmed</option>
-                <option value="PREPARING" ${order.status === 'PREPARING' ? 'selected' : ''}>Preparing</option>
-                <option value="READY" ${order.status === 'READY' ? 'selected' : ''}>Ready</option>
-                <option value="DELIVERED" ${order.status === 'DELIVERED' ? 'selected' : ''}>Delivered</option>
-                <option value="CANCELLED" ${order.status === 'CANCELLED' ? 'selected' : ''}>Cancelled</option>
+                <option value="PENDING" ${order.status === 'PENDING' ? 'selected' : ''}>Pendente</option>
+                <option value="CONFIRMED" ${order.status === 'CONFIRMED' ? 'selected' : ''}>Confirmado</option>
+                <option value="PREPARING" ${order.status === 'PREPARING' ? 'selected' : ''}>Preparando</option>
+                <option value="READY" ${order.status === 'READY' ? 'selected' : ''}>Pronto p/ Entrega</option>
+                <option value="DELIVERED" ${order.status === 'DELIVERED' ? 'selected' : ''}>Entregue</option>
+                <option value="CANCELLED" ${order.status === 'CANCELLED' ? 'selected' : ''}>Cancelado</option>
               </select>
             </div>
         </div>
 
-        <button class="btn-details" data-id="${order.id}">
-            View Items (${order.itemCount})
-        </button>
+        <button class="btn-details" data-id="${order.id}">Ver Detalhes</button>
 
-        <div class="order-items-container" id="items-for-order-${order.id}"></div>
+        <div class="order-items-container" id="items-for-order-${order.id}">
+        </div>
       `;
       orderListDiv.appendChild(orderCard);
     });
   }
 
+  // --- CARREGAR PEDIDOS ---
   async function loadOrders() {
     const token = getToken();
     if (!token) return;
@@ -92,21 +103,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (response.ok) {
         allOrders = await response.json();
-
         allOrders.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate));
         filterAndRenderOrders();
       } else if (response.status === 401) {
-        showMessage('Session expired. Please log in again.', 'error');
+        showMessage('Sessão expirada. Faça login novamente.', 'error');
       } else if (response.status === 403) {
-        showMessage('Access denied. Employee role required.', 'error');
+        showMessage('Acesso negado. Esta página é apenas para funcionários.', 'error');
       } else {
-        showMessage('Error fetching orders.', 'error');
+        showMessage('Erro ao buscar pedidos.', 'error');
       }
     } catch (error) {
-      showMessage('Connection failed.', 'error');
+      showMessage('Falha na conexão com o servidor.', 'error');
     }
   }
 
+  // --- ATUALIZAR STATUS ---
   async function updateStatus(orderId, newStatus) {
     const token = getToken();
     if (!token) return;
@@ -118,29 +129,31 @@ document.addEventListener('DOMContentLoaded', () => {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-
+        // Correção crítica: Envia Objeto JSON para casar com o DTO do C#
         body: JSON.stringify({ status: newStatus }) 
       });
 
       if (response.ok) {
-        showMessage(`Order #${orderId} updated to "${newStatus}".`, 'success');
+        showMessage(`Pedido #${orderId} atualizado para "${newStatus}".`, 'success');
         const orderToUpdate = allOrders.find(o => o.id == orderId);
         if (orderToUpdate) orderToUpdate.status = newStatus;
         filterAndRenderOrders(); 
       } else {
-        showMessage('Error updating status.', 'error');
+        const errData = await response.json().catch(() => ({}));
+        showMessage(errData.message || 'Erro ao atualizar status.', 'error');
       }
     } catch (error) {
-      showMessage('Connection failed.', 'error');
+      showMessage('Falha na conexão com o servidor.', 'error');
     }
   }
 
+  // --- DETALHES DO PEDIDO ---
   async function loadOrderDetails(orderId, buttonEl) {
     const itemsContainer = document.getElementById(`items-for-order-${orderId}`);
 
     if (itemsContainer.innerHTML !== '') {
       itemsContainer.innerHTML = '';
-      buttonEl.textContent = `View Items (${buttonEl.textContent.split('(')[1]}`; 
+      buttonEl.textContent = 'Ver Detalhes'; 
       return;
     }
 
@@ -148,7 +161,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!token) return;
 
     try {
-
       const response = await fetch(`${API_URL}/orders/${orderId}`, {
         method: 'GET',
         headers: {
@@ -157,16 +169,16 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       if (!response.ok) {
-        showMessage('Error fetching order details.', 'error');
+        showMessage('Erro ao buscar detalhes do pedido.', 'error');
         return;
       }
 
-      const orderData = await response.json();
+      const orderDetails = await response.json();
 
       let itemsHtml = '<ul class="order-item-list">';
-
-      if(orderData.items && orderData.items.length > 0) {
-          orderData.items.forEach(item => {
+      // Verificação de segurança
+      if (orderDetails.items && orderDetails.items.length > 0) {
+          orderDetails.items.forEach(item => {
             itemsHtml += `
               <li class="order-item">
                 <span class="item-qty">${item.quantity}x</span>
@@ -175,20 +187,20 @@ document.addEventListener('DOMContentLoaded', () => {
               </li>`;
           });
       } else {
-          itemsHtml += '<li>No items found.</li>';
+          itemsHtml += '<li>Sem itens</li>';
       }
-
       itemsHtml += '</ul>';
 
       itemsContainer.innerHTML = itemsHtml;
-      buttonEl.textContent = 'Hide Items';
+      buttonEl.textContent = 'Esconder Detalhes'; 
 
     } catch (error) {
       console.error(error);
-      showMessage('Connection failed.', 'error');
+      showMessage('Falha na conexão com o servidor.', 'error');
     }
   }
 
+  // --- FILTROS E EVENTOS ---
   function filterAndRenderOrders() {
     const filterValue = statusFilter.value;
     if (filterValue === 'todos') {
@@ -199,22 +211,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Inicialização
   loadOrders();
 
-  statusFilter.addEventListener('change', filterAndRenderOrders);
+  if (statusFilter) {
+      statusFilter.addEventListener('change', filterAndRenderOrders);
+  }
 
-  orderListDiv.addEventListener('click', (e) => {
-    if (e.target.classList.contains('btn-details')) {
-      const orderId = e.target.dataset.id;
-      loadOrderDetails(orderId, e.target); 
-    }
-  });
+  if (orderListDiv) {
+      orderListDiv.addEventListener('click', (e) => {
+        if (e.target.classList.contains('btn-details')) {
+          const orderId = e.target.dataset.id;
+          loadOrderDetails(orderId, e.target); 
+        }
+      });
 
-  orderListDiv.addEventListener('change', (e) => {
-    if (e.target.classList.contains('status-select-dynamic')) { 
-      const orderId = e.target.dataset.id;
-      const newStatus = e.target.value;
-      updateStatus(orderId, newStatus);
-    }
-  });
+      orderListDiv.addEventListener('change', (e) => {
+        if (e.target.classList.contains('status-select-dynamic')) { 
+          const orderId = e.target.dataset.id;
+          const newStatus = e.target.value;
+          updateStatus(orderId, newStatus);
+        }
+      });
+  }
 });
