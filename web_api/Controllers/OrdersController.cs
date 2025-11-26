@@ -1,3 +1,4 @@
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -32,6 +33,16 @@ namespace web_api.Controllers
 
                 var userId = int.Parse(userIdClaim.Value);
 
+
+                var userAddress = await _context.UserAddresses
+                    .Where(a => a.UserId == userId)
+                    .FirstOrDefaultAsync();
+
+                if (userAddress == null)
+                {
+                    return BadRequest(new { message = "Você precisa cadastrar um endereço antes de finalizar o pedido." });
+                }
+
                 var cartItems = await _context.UserCarts
                     .Where(c => c.UserId == userId)
                     .Include(c => c.Item)
@@ -45,7 +56,7 @@ namespace web_api.Controllers
                 var order = new Order
                 {
                     UserId = userId,
-                    EnderecoEntregaId = 1, // Valor temporário - deveria vir do frontend
+                    EnderecoEntregaId = userAddress.Id,
                     DataPedido = DateTime.Now,
                     Status = "PENDING",
                     Total = cartItems.Sum(c => c.Item.Value * c.Quantity)
