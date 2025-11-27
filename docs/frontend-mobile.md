@@ -62,7 +62,7 @@ Atualizado em: 21/04/2024
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
 | Samuel Lacerda        | Criar tela de login | 20/11/2025  | 28/11/2025 | ✔️    | 26/11/2025  |
-| Vitor Gonçalves        | Configurações Iniciais Tela Cadastro    | 22/11/2025     | 22/11/2025 |  ✔️    |                 |
+| Vitor Gonçalves        | Configurações Iniciais Tela Cadastro    | 14/11/2025     | 22/11/2025 |  ✔️    | 22/11/2025 |
 | AlunoY        | Histórias de usuário  | 01/01/2024     | 07/01/2005 | ⌛     |                 |
 | AlunoK        | Personas 1  |    01/01/2024        | 12/02/2005 | ❌    |       |
 
