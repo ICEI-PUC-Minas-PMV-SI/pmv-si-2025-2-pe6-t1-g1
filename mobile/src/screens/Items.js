@@ -67,7 +67,7 @@ export default function Items() {
           <Text style={{ color: '#c00' }}>Falha ao carregar itens:</Text>
           <Text style={{ color: '#666' }}>{error}</Text>
           <Text style={{ color: '#666', marginTop: 8 }}>
-            Verifique se a API está rodando em `https://localhost:7144` e acessível pelo emulador/dispositivo.
+            Verifique se a API está rodando e acessível pelo emulador/dispositivo.
           </Text>
         </View>
       ) : (
