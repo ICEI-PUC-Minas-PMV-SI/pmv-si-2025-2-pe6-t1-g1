@@ -1,29 +1,30 @@
 # Front-end Móvel
 
-[Inclua uma breve descrição do projeto e seus objetivos.]
+APlicativo mobile da fatia certa, utilizado pelos usuários para visualizaro cardápio e fazer pedidos.
 
 ## Projeto da Interface
 [Descreva o projeto da interface móvel da aplicação, incluindo o design visual, layout das páginas, interações do usuário e outros aspectos relevantes.]
 
 ### Wireframes
 
-[Inclua os wireframes das páginas principais da interface, mostrando a disposição dos elementos na página.]
+<img width="628" height="277" alt="image" src="https://github.com/user-attachments/assets/f8e1ffda-7107-40c7-bade-5dd6dd00a3a7" />
+
 
 ### Design Visual
 
-[Descreva o estilo visual da interface, incluindo paleta de cores, tipografia, ícones e outros elementos gráficos.]
+A interface visual da fatiacerta utiliza cores em branco e vermelho, com toques de amarelo, para transmitir a ideia de um aplicativo voltado para restaurantes. Além disso a escolha da fonte poppins visa facilitar a leitura para os usuário.
 
-## Fluxo de Dados
 
-[Diagrama ou descrição do fluxo de dados na aplicação.]
 
 ## Tecnologias Utilizadas
 
-[Lista das tecnologias principais que serão utilizadas no projeto.]
+- React native
+- javascript
+- react native navigation
 
 ## Considerações de Segurança
 
-[Discuta as considerações de segurança relevantes para a aplicação distribuída, como autenticação, autorização, proteção contra ataques, etc.]
+Afim de garantir a segurança da aplicação, é utilizada autenticaçJão usando jwt tokens
 
 ## Implantação
 
