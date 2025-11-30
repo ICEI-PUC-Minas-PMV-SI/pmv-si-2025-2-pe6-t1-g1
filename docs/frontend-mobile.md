@@ -24,7 +24,7 @@ A interface visual da fatiacerta utiliza cores em branco e vermelho, com toques 
 
 ## Considerações de Segurança
 
-Afim de garantir a segurança da aplicação, é utilizada autenticaçJão usando jwt tokens
+Afim de garantir a segurança da aplicação, é utilizada autenticação usando jwt tokens
 
 ## Implantação
 
