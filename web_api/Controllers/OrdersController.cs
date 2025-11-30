@@ -1,4 +1,3 @@
-
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -20,8 +19,8 @@ namespace web_api.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "USER")]
-        public async Task<ActionResult<Order>> CreateOrder()
+        [Authorize] 
+        public async Task<ActionResult<object>> CreateOrder([FromBody] List<OrderRequestItem> items)
         {
             try
             {
@@ -33,53 +32,58 @@ namespace web_api.Controllers
 
                 var userId = int.Parse(userIdClaim.Value);
 
-
-                var userAddress = await _context.UserAddresses
-                    .Where(a => a.UserId == userId)
-                    .FirstOrDefaultAsync();
-
-                if (userAddress == null)
-                {
-                    return BadRequest(new { message = "Você precisa cadastrar um endereço antes de finalizar o pedido." });
-                }
-
-                var cartItems = await _context.UserCarts
-                    .Where(c => c.UserId == userId)
-                    .Include(c => c.Item)
-                    .ToListAsync();
-
-                if (!cartItems.Any())
+                if (items == null || !items.Any())
                 {
                     return BadRequest(new { message = "Carrinho vazio" });
+                }
+
+                decimal total = 0;
+                var orderItemsToSave = new List<OrderItem>();
+
+                foreach (var itemDto in items)
+                {
+                    var product = await _context.Items.FindAsync(itemDto.ItemId);
+
+                    if (product != null)
+                    {
+                        total += product.Value * itemDto.Quantity;
+                        orderItemsToSave.Add(new OrderItem
+                        {
+                            ItemId = itemDto.ItemId,
+                            Quantity = itemDto.Quantity
+                        });
+                    }
                 }
 
                 var order = new Order
                 {
                     UserId = userId,
-                    EnderecoEntregaId = userAddress.Id,
+                    EnderecoEntregaId = 1,
                     DataPedido = DateTime.Now,
                     Status = "PENDING",
-                    Total = cartItems.Sum(c => c.Item.Value * c.Quantity)
+                    Total = total
                 };
 
                 _context.Orders.Add(order);
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync(); 
 
-                foreach (var cartItem in cartItems)
+                foreach (var oi in orderItemsToSave)
                 {
-                    var orderItem = new OrderItem
-                    {
-                        OrderId = order.Id,
-                        ItemId = cartItem.ItemId,
-                        Quantity = cartItem.Quantity
-                    };
-                    _context.OrderItems.Add(orderItem);
+                    oi.OrderId = order.Id;
+                    _context.OrderItems.Add(oi);
                 }
 
-                _context.UserCarts.RemoveRange(cartItems);
                 await _context.SaveChangesAsync();
 
-                return CreatedAtAction(nameof(GetOrder), new { id = order.Id }, order);
+                var simpleResponse = new 
+                { 
+                    Id = order.Id, 
+                    Status = order.Status, 
+                    Total = order.Total, 
+                    DataPedido = order.DataPedido 
+                };
+
+                return CreatedAtAction(nameof(GetOrder), new { id = order.Id }, simpleResponse);
             }
             catch (Exception ex)
             {
@@ -190,7 +194,7 @@ namespace web_api.Controllers
         }
 
         [HttpPut("{id}/status")]
-        [Authorize(Roles = "ADMIN,EMPLOYEE")]
+        [Authorize] 
         public async Task<IActionResult> UpdateOrderStatus(int id, [FromBody] UpdateStatusDto request)
         {
             var order = await _context.Orders.FindAsync(id);
@@ -237,5 +241,11 @@ namespace web_api.Controllers
                 return BadRequest(new { message = "Erro ao remover pedido", error = ex.Message });
             }
         }
+    }
+
+    public class OrderRequestItem
+    {
+        public int ItemId { get; set; }
+        public int Quantity { get; set; }
     }
 }
