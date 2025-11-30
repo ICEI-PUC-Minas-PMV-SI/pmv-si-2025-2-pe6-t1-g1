@@ -63,7 +63,7 @@ Atualizado em: 21/04/2024
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
 | Samuel Lacerda        | Criar tela de login | 20/11/2025  | 28/11/2025 | ✔️    | 26/11/2025  |
 | Vitor Gonçalves        | Configurações Iniciais Tela Cadastro    | 14/11/2025     | 22/11/2025 |  ✔️    | 22/11/2025 |
-| Luigi Mezzogori        | Definição API  | 14/11/2025     | 20/11/2025 | ✔️     |                 |
+| Luigi Mezzogori        | Definição API  | 14/11/2025     | 20/11/2025 | ✔️     | 20/11/2025                |
 | AlunoK        | Personas 1  |    01/01/2024        | 12/02/2005 | ❌    |       |
 
 #### Semana 2
@@ -73,7 +73,7 @@ Atualizado em: 21/04/2024
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
 | Samuel Lacerda        | Testes tela de login   | 26/11/20245    | 28/11/2025 | ✔️    | 27/11/2025      |
-| Luigi Mezzogori        | Integração Back-end, Carrinho e CSS    | 28/11/2025     | 30/11/2025 | ✔️    |                 |
+| Luigi Mezzogori        | Integração Back-end, Carrinho e CSS    | 28/11/2025     | 30/11/2025 | ✔️    |  28/11/2025               |
 | AlunoY        | Página de login  | 01/02/2024     | 07/03/2024 | ⌛     |                 |
 | AlunoK        | Script de login  |  01/01/2024    | 12/03/2024 | ❌    |       |
 
