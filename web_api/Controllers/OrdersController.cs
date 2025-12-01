@@ -18,6 +18,7 @@ namespace web_api.Controllers
             _context = context;
         }
 
+        // ALTERADO: Agora recebe a lista de itens via corpo da requisição (JSON)
         [HttpPost]
         [Authorize] 
         public async Task<ActionResult<object>> CreateOrder([FromBody] List<OrderRequestItem> items)
@@ -32,18 +33,21 @@ namespace web_api.Controllers
 
                 var userId = int.Parse(userIdClaim.Value);
 
+                // Valida se a lista enviada pelo front tem itens
                 if (items == null || !items.Any())
                 {
                     return BadRequest(new { message = "Carrinho vazio" });
                 }
 
+                // Calcula o total buscando os preços reais no banco de dados (segurança)
                 decimal total = 0;
                 var orderItemsToSave = new List<OrderItem>();
 
                 foreach (var itemDto in items)
                 {
                     var product = await _context.Items.FindAsync(itemDto.ItemId);
-
+                    
+                    // Se o item existir, adiciona ao cálculo
                     if (product != null)
                     {
                         total += product.Value * itemDto.Quantity;
@@ -65,8 +69,9 @@ namespace web_api.Controllers
                 };
 
                 _context.Orders.Add(order);
-                await _context.SaveChangesAsync(); 
+                await _context.SaveChangesAsync(); // Salva para gerar o ID do pedido
 
+                // Vincula os itens ao pedido recém-criado
                 foreach (var oi in orderItemsToSave)
                 {
                     oi.OrderId = order.Id;
@@ -75,6 +80,7 @@ namespace web_api.Controllers
 
                 await _context.SaveChangesAsync();
 
+                // Retorna objeto simples
                 var simpleResponse = new 
                 { 
                     Id = order.Id, 
@@ -243,6 +249,7 @@ namespace web_api.Controllers
         }
     }
 
+    // DTO auxiliar para receber os itens do Frontend
     public class OrderRequestItem
     {
         public int ItemId { get; set; }

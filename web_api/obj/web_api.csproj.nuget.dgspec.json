@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/btetzner/Documents/project/pmv-si-2025-2-pe6-t1-g1/web_api/web_api.csproj": {}
+    "C:\\Users\\Luigi Mezzogori\\Desktop\\TRABALHO PUC\\web_api\\web_api.csproj": {}
   },
   "projects": {
-    "/home/btetzner/Documents/project/pmv-si-2025-2-pe6-t1-g1/web_api/web_api.csproj": {
+    "C:\\Users\\Luigi Mezzogori\\Desktop\\TRABALHO PUC\\web_api\\web_api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/btetzner/Documents/project/pmv-si-2025-2-pe6-t1-g1/web_api/web_api.csproj",
+        "projectUniqueName": "C:\\Users\\Luigi Mezzogori\\Desktop\\TRABALHO PUC\\web_api\\web_api.csproj",
         "projectName": "web_api",
-        "projectPath": "/home/btetzner/Documents/project/pmv-si-2025-2-pe6-t1-g1/web_api/web_api.csproj",
-        "packagesPath": "/home/btetzner/.nuget/packages/",
-        "outputPath": "/home/btetzner/Documents/project/pmv-si-2025-2-pe6-t1-g1/web_api/obj/",
+        "projectPath": "C:\\Users\\Luigi Mezzogori\\Desktop\\TRABALHO PUC\\web_api\\web_api.csproj",
+        "packagesPath": "C:\\Users\\Luigi Mezzogori\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Luigi Mezzogori\\Desktop\\TRABALHO PUC\\web_api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/btetzner/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Luigi Mezzogori\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -80,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.428/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.427\\RuntimeIdentifierGraph.json"
         }
       }
     }
