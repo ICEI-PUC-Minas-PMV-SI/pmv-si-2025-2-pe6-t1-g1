@@ -66,7 +66,7 @@ Atualizado em: 21/04/2024
 | Vitor Gonçalves        | Configurações Iniciais Tela Cadastro    | 14/11/2025     | 22/11/2025 |  ✔️    | 22/11/2025 |
 | Luigi Mezzogori        | Definição API  | 14/11/2025     | 20/11/2025 | ✔️     | 20/11/2025                |
 | Bruno Tetzner        | Setup da aplicação mobile  | 14/11/2025     | 20/11/2025 | ✔️     | 20/11/2025                |
-| Victor Alexandre        | Tela de items mobile  |    20/11/2025        | 20/11/2025 | ✔️   |   20/11/2025    | 20/11/2025 
+| Victor Alexandre        | Tela de items mobile  |    20/11/2025        | 20/11/2025 | ✔️   |   20/11/2025    | 21/11/2025 
 
 #### Semana 2
 
@@ -77,7 +77,7 @@ Atualizado em: 21/04/2024
 | Samuel Lacerda        | Testes tela de login   | 26/11/20245    | 28/11/2025 | ✔️    | 27/11/2025      |
 | Luigi Mezzogori        | Integração Back-end, Carrinho e CSS    | 28/11/2025     | 30/11/2025 | ✔️    |  28/11/2025               |
 | Cadastro aplicação mobile        | Bruno tetzner    | 28/11/2025     | 30/11/2025 | ✔️    |  28/11/2025               |
-| Victor Alexandre        | Tela de items mobile  | 28/11/2025    | 30/11/2025 | ✔️     |     27/11/2025            |
+| Victor Alexandre        | Tela de items mobile  | 28/11/2025    | 30/11/2025 | ✔️     |     28/11/2025            |
 | AlunoK        | Script de login  |  01/01/2024    | 12/03/2024 | ❌    |       |
 
 Legenda:
