@@ -1,0 +1,146 @@
+/* Grid Container para os itens do Menu */
+#menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Cria colunas responsivas */
+    gap: 25px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    overflow-y: auto;
+    height: calc(100vh - 220px); /* Ajusta altura para não estourar a tela */
+    margin: 0 20px;
+    
+    /* Scrollbar personalizada (igual ao pedidos.css) */
+    scrollbar-width: thin;
+    scrollbar-color: #EB3738 #f0f0f0;
+}
+
+#menu-grid::-webkit-scrollbar {
+    width: 8px;
+}
+#menu-grid::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 4px;
+}
+#menu-grid::-webkit-scrollbar-thumb {
+    background-color: #EB3738;
+    border-radius: 4px;
+}
+
+/* Card do Item */
+.menu-item-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    height: 100%; /* Garante que todos tenham mesma altura na linha */
+}
+
+.menu-item-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-color: #EB3738;
+}
+
+/* Placeholder da Imagem */
+.card-img-placeholder {
+    height: 140px;
+    background-color: #fff5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #EB3738;
+    font-size: 3rem;
+    border-bottom: 1px solid #eee;
+}
+
+.card-content {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-title {
+    color: #333;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.card-desc {
+    color: #666;
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+    line-height: 1.4;
+    flex-grow: 1;
+}
+
+.card-footer {
+    margin-top: auto;
+}
+
+.card-price {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #EB3738;
+    margin-bottom: 10px;
+}
+
+/* Controles de Adição */
+.add-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.qty-input {
+    width: 50px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-weight: bold;
+    outline: none;
+}
+
+.btn-add {
+    flex: 1;
+    background-color: #EB3738;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.btn-add:hover {
+    background-color: #c42627;
+}
+
+/* Estilo do botão Ver Carrinho (cabeçalho) */
+.btn-action {
+    background-color: white;
+    border: 2px solid #EB3738;
+    color: #EB3738;
+    padding: 0 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 10px;
+    height: 43px; /* Mesma altura do select */
+    transition: all 0.3s;
+}
+
+.btn-action:hover {
+    background-color: #EB3738;
+    color: white;
+}
