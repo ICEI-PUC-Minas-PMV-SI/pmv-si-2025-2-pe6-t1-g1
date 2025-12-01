@@ -15,7 +15,7 @@ export default function Items() {
   const [selectedCategory, setSelectedCategory] = useState('Todos');
 
   // URL da API - ajuste conforme necessário
-  const API_URL = `http://localhost:7144/api/Items`;
+  const API_URL = `http://192.168.15.14:7144/api/Items`;
 
   useEffect(() => {
     let mounted = true;

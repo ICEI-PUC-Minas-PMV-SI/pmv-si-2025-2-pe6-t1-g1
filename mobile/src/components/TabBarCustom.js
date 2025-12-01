@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { IconButton } from 'react-native-paper';
-import { useSafeAreaInsets } from 'react-native-safe-area-context'; 
+import { useSafeAreaInsets } from 'react-native-safe-area-context'; // Import necessário
 
 const TabBar = ({ state, navigation }) => {
-  const insets = useSafeAreaInsets(); 
+  const insets = useSafeAreaInsets(); // Pega as medidas seguras da tela (topo, baixo, etc)
 
   const tabs = [
     { name: 'Items', label: 'Cardápio', icon: 'silverware-fork-knife' },
@@ -16,8 +16,7 @@ const TabBar = ({ state, navigation }) => {
   return (
     <View style={[
       styles.container, 
-      { paddingBottom: Math.max(insets.bottom, 10) } 
-
+      { paddingBottom: Math.max(insets.bottom, 10) } // Adiciona padding dinâmico na parte inferior
     ]}>
       {tabs.map((tab, index) => {
         const isFocused = state.index === index;
@@ -68,8 +67,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderTopWidth: 1,
     borderTopColor: '#E0E0E0',
-    paddingTop: 4, 
-
+    paddingTop: 4, // Mudado de paddingVertical para controlar topo e baixo separadamente
     paddingHorizontal: 4,
     elevation: 8,
     shadowColor: '#000',
@@ -93,8 +91,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#666666',
     marginTop: -8,
-    marginBottom: 4, 
-
+    marginBottom: 4, // Espaçamento extra para o texto não colar
   },
   activeLabel: {
     color: '#EB3738',

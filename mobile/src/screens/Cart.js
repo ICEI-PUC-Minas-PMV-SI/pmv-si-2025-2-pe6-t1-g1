@@ -10,6 +10,7 @@ export default function Cart({ navigation }) {
   const { cart, removeItem, clearCart, adjustQuantity, updateQuantity } = useContext(CartContext);
   const [loading, setLoading] = useState(false);
 
+  // Mantendo a porta 7144
   const API_URL = 'http://192.168.15.14:7144/api/orders';
 
   const total = cart.reduce((s, entry) => {
@@ -49,8 +50,11 @@ export default function Cart({ navigation }) {
     try {
       console.log('Enviando pedido para:', API_URL);
 
+      // PREPARA OS DADOS PARA O ENVIO
+      // Transforma o carrinho local no formato que o backend espera:
+      // [{ ItemId: 1, Quantity: 2 }, { ItemId: 5, Quantity: 1 }]
       const itemsToSend = cart.map(entry => {
-
+        // Tenta pegar o ID do produto de forma segura
         const prod = entry.product || entry;
         return {
           ItemId: prod.id,
@@ -66,8 +70,7 @@ export default function Cart({ navigation }) {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${global.userToken}`
         },
-        body: JSON.stringify(itemsToSend) 
-
+        body: JSON.stringify(itemsToSend) // AGORA ENVIAMOS O CORPO
       });
 
       const responseText = await response.text();
@@ -92,7 +95,7 @@ export default function Cart({ navigation }) {
         } catch (e) {
             errorMessage = responseText || `Erro ${response.status}`;
         }
-
+        
         Alert.alert('Erro ao finalizar', errorMessage);
       }
     } catch (error) {

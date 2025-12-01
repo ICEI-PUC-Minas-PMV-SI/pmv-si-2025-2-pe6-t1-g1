@@ -11,7 +11,7 @@ export default function Orders({ navigation }) {
   const API_URL = 'http://192.168.15.14:7144/api/orders';
 
   const fetchOrders = async () => {
-
+    // Verifica token global
     if (!global.userToken) {
       setLoading(false);
       setRefreshing(false);
@@ -59,7 +59,7 @@ export default function Orders({ navigation }) {
           text: 'Sim',
           onPress: async () => {
             try {
-
+              // Tenta atualizar o status para CANCELLED
               const response = await fetch(`${API_URL}/${orderId}/status`, {
                 method: 'PUT',
                 headers: {
@@ -71,12 +71,13 @@ export default function Orders({ navigation }) {
 
               if (response.ok) {
                 Alert.alert('Sucesso', 'Pedido cancelado.');
-                fetchOrders(); 
-
+                fetchOrders(); // Atualiza a lista
               } else {
-
+                // Se der erro 403 (Proibido), é porque a API só deixa Admin cancelar via esse endpoint
                 if (response.status === 403) {
-
+                   // Fallback: Se o usuário não puder usar esse endpoint, teríamos que ter um endpoint DELETE ou específico
+                   // Como o controller OrdersController.cs tem um DELETE para admin, e PUT status para admin/employee...
+                   // O usuário comum pode ficar sem permissão dependendo da config do backend.
                    Alert.alert('Erro', 'Não foi possível cancelar. Entre em contato com a pizzaria.');
                 } else {
                    const errorData = await response.json();
@@ -92,6 +93,7 @@ export default function Orders({ navigation }) {
     );
   };
 
+  // Filtros de status
   const activeStatuses = ['PENDING', 'CONFIRMED', 'PREPARING'];
   const activeOrders = orders.filter(o => activeStatuses.includes(o.status?.toUpperCase()));
   const pastOrders = orders.filter(o => !activeStatuses.includes(o.status?.toUpperCase()));
@@ -106,7 +108,7 @@ export default function Orders({ navigation }) {
           <Text style={styles.orderNumber}>Pedido #{item.id}</Text>
           <Text style={styles.orderDate}>{new Date(item.orderDate).toLocaleDateString('pt-BR')}</Text>
         </View>
-
+        
         <View style={styles.statusContainer}>
           <Text style={[styles.statusText, { color: statusColor }]}>
             {translateStatus(item.status)}
@@ -118,15 +120,14 @@ export default function Orders({ navigation }) {
           <Text style={styles.totalText}>Total: R$ {item.totalAmount?.toFixed(2)}</Text>
         </View>
 
-        {}
+        {/* Mostra botão cancelar apenas se estiver Pendente */}
         {isPending && (
           <View style={styles.actions}>
             <Button 
               text="Cancelar" 
               size="small" 
               onPress={() => handleCancelOrder(item.id)}
-              style={{ backgroundColor: '#666', marginTop: 0 }} 
-
+              style={{ backgroundColor: '#666', marginTop: 0 }} // Override style
             />
           </View>
         )}
@@ -145,14 +146,13 @@ export default function Orders({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Meus Pedidos</Text>
-
+      
       <FlatList
         contentContainerStyle={{ paddingBottom: 20 }}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={() => { setRefreshing(true); fetchOrders(); }} />
         }
-        data={null} 
-
+        data={null} // Usamos null para renderizar tudo no ListEmptyComponent ou usar seções
         ListHeaderComponent={
           <>
             <View style={styles.sectionHeader}>
@@ -181,18 +181,12 @@ export default function Orders({ navigation }) {
 
 function getStatusColor(status) {
   switch (status?.toUpperCase()) {
-    case 'PENDING': return '#FFA500'; 
-
-    case 'CONFIRMED': return '#1E90FF'; 
-
-    case 'PREPARING': return '#8A2BE2'; 
-
-    case 'READY': return '#32CD32'; 
-
-    case 'DELIVERED': return '#228B22'; 
-
-    case 'CANCELLED': return '#FF0000'; 
-
+    case 'PENDING': return '#FFA500'; // Laranja
+    case 'CONFIRMED': return '#1E90FF'; // Azul
+    case 'PREPARING': return '#8A2BE2'; // Roxo
+    case 'READY': return '#32CD32'; // Verde
+    case 'DELIVERED': return '#228B22'; // Verde Escuro
+    case 'CANCELLED': return '#FF0000'; // Vermelho
     default: return '#666';
   }
 }
