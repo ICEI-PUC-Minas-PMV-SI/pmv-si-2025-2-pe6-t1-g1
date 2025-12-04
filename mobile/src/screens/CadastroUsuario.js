@@ -11,7 +11,7 @@ export default function CadastroUsuario({ navigation }) {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const API_URL = 'http://localhost:5123/api/user';
+  const API_URL = 'https://rosann-nonbiological-loyce.ngrok-free.dev/api/user';
 
   const handleRegister = async () => {
     // Validações
