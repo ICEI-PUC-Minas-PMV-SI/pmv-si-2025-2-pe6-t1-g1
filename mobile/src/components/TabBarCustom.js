@@ -1,8 +1,11 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { IconButton } from 'react-native-paper';
+import { useSafeAreaInsets } from 'react-native-safe-area-context'; 
 
 const TabBar = ({ state, navigation }) => {
+  const insets = useSafeAreaInsets(); 
+
   const tabs = [
     { name: 'Items', label: 'Cardápio', icon: 'silverware-fork-knife' },
     { name: 'Orders', label: 'Pedidos', icon: 'clipboard-text' },
@@ -11,7 +14,11 @@ const TabBar = ({ state, navigation }) => {
   ];
 
   return (
-    <View style={styles.container}>
+    <View style={[
+      styles.container, 
+      { paddingBottom: Math.max(insets.bottom, 10) } 
+
+    ]}>
       {tabs.map((tab, index) => {
         const isFocused = state.index === index;
 
@@ -61,7 +68,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderTopWidth: 1,
     borderTopColor: '#E0E0E0',
-    paddingVertical: 4,
+    paddingTop: 4, 
+
     paddingHorizontal: 4,
     elevation: 8,
     shadowColor: '#000',
@@ -85,6 +93,8 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#666666',
     marginTop: -8,
+    marginBottom: 4, 
+
   },
   activeLabel: {
     color: '#EB3738',

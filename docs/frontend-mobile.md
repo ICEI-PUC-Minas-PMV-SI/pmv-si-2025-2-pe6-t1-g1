@@ -1,29 +1,30 @@
 # Front-end Móvel
 
-[Inclua uma breve descrição do projeto e seus objetivos.]
+APlicativo mobile da fatia certa, utilizado pelos usuários para visualizaro cardápio e fazer pedidos.
 
 ## Projeto da Interface
 [Descreva o projeto da interface móvel da aplicação, incluindo o design visual, layout das páginas, interações do usuário e outros aspectos relevantes.]
 
 ### Wireframes
 
-[Inclua os wireframes das páginas principais da interface, mostrando a disposição dos elementos na página.]
+<img width="628" height="277" alt="image" src="https://github.com/user-attachments/assets/f8e1ffda-7107-40c7-bade-5dd6dd00a3a7" />
+
 
 ### Design Visual
 
-[Descreva o estilo visual da interface, incluindo paleta de cores, tipografia, ícones e outros elementos gráficos.]
+A interface visual da fatiacerta utiliza cores em branco e vermelho, com toques de amarelo, para transmitir a ideia de um aplicativo voltado para restaurantes. Além disso a escolha da fonte poppins visa facilitar a leitura para os usuário.
 
-## Fluxo de Dados
 
-[Diagrama ou descrição do fluxo de dados na aplicação.]
 
 ## Tecnologias Utilizadas
 
-[Lista das tecnologias principais que serão utilizadas no projeto.]
+- React native
+- javascript
+- react native navigation
 
 ## Considerações de Segurança
 
-[Discuta as considerações de segurança relevantes para a aplicação distribuída, como autenticação, autorização, proteção contra ataques, etc.]
+Afim de garantir a segurança da aplicação, é utilizada autenticação usando jwt tokens
 
 ## Implantação
 
@@ -61,10 +62,11 @@ Atualizado em: 21/04/2024
 
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
-| AlunaX        | Introdução | 01/02/2024     | 07/02/2024 | ✔️    | 05/02/2024      |
-| AlunaZ        | Objetivos    | 03/02/2024     | 10/02/2024 | 📝    |                 |
-| AlunoY        | Histórias de usuário  | 01/01/2024     | 07/01/2005 | ⌛     |                 |
-| AlunoK        | Personas 1  |    01/01/2024        | 12/02/2005 | ❌    |       |
+| Samuel Lacerda        | Criar tela de login | 20/11/2025  | 28/11/2025 | ✔️    | 26/11/2025  |
+| Vitor Gonçalves        | Configurações Iniciais Tela Cadastro    | 14/11/2025     | 22/11/2025 |  ✔️    | 22/11/2025 |
+| Luigi Mezzogori        | Definição API  | 14/11/2025     | 20/11/2025 | ✔️     | 20/11/2025                |
+| Bruno Tetzner        | Setup da aplicação mobile  | 14/11/2025     | 20/11/2025 | ✔️     | 20/11/2025                |
+| Victor Alexandre        | Tela de items mobile  |    20/11/2025        | 20/11/2025 | ✔️   |   20/11/2025    | 21/11/2025 
 
 #### Semana 2
 
@@ -72,9 +74,10 @@ Atualizado em: 21/04/2024
 
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
-| AlunaX        | Página inicial   | 01/02/2024     | 07/03/2024 | ✔️    | 05/02/2024      |
-| AlunaZ        | CSS unificado    | 03/02/2024     | 10/03/2024 | 📝    |                 |
-| AlunoY        | Página de login  | 01/02/2024     | 07/03/2024 | ⌛     |                 |
+| Samuel Lacerda        | Testes tela de login   | 26/11/20245    | 28/11/2025 | ✔️    | 27/11/2025      |
+| Luigi Mezzogori        | Integração Back-end, Carrinho e CSS    | 28/11/2025     | 30/11/2025 | ✔️    |  28/11/2025               |
+| Cadastro aplicação mobile        | Bruno tetzner    | 28/11/2025     | 30/11/2025 | ✔️    |  28/11/2025               |
+| Victor Alexandre        | Tela de items mobile  | 28/11/2025    | 30/11/2025 | ✔️     |     28/11/2025            |
 | AlunoK        | Script de login  |  01/01/2024    | 12/03/2024 | ❌    |       |
 
 Legenda:
