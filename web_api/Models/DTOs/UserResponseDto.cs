@@ -8,5 +8,6 @@ namespace web_api.Models.DTOs
         public string Phone { get; set; }
         public DateTime CreatedAt { get; set; }
         public string Role { get; set; }
+        public ICollection<UserAddress> Addresses { get; set; }
     }
 }

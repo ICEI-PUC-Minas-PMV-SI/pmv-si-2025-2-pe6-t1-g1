@@ -301,9 +301,28 @@ namespace web_api.Controllers
 
 
 
+        // USER ENDPOINT: GET /api/User/addresses
+        
+        [HttpGet("addresses")]
+        [Authorize]
+        public async Task<ActionResult<IEnumerable<UserAddress>>> GetMyAddresses()
+        {
+            
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null) return Unauthorized();
+            var userId = int.Parse(userIdClaim.Value);
+
+            
+            var addresses = await _context.UserAddresses
+                .Where(a => a.UserId == userId)
+                .ToListAsync();
+
+            return Ok(addresses);
+        }
 
 
-        // USER ENDPOINT: user/address 
+
+        // USER ENDPOINT: user/address (Criar endereço
         [HttpPost("address")]
         [Authorize]
         public async Task<ActionResult<UserAddress>> AddAddress([FromBody] CreateAddressDto addressDto)
@@ -342,5 +361,41 @@ namespace web_api.Controllers
                 return BadRequest(new { message = "Erro ao adicionar endereço", error = ex.Message });
             }
         }
+        // PUT: api/UserAddress/{id} (Atualizar Endereço)
+        [HttpPut("{id}/address")]
+        [Authorize]
+        public async Task<IActionResult> UpdateAddress(int id, [FromBody] UserAddress updatedAddress)
+        {
+            var address = await _context.UserAddresses.FindAsync(id);
+            if (address == null) return NotFound();
+
+            // Atualiza os campos
+            address.Street = updatedAddress.Street;
+            address.Number = updatedAddress.Number;
+            address.Neighborhood = updatedAddress.Neighborhood;
+            address.City = updatedAddress.City;
+            address.State = updatedAddress.State;
+            address.ZipCode = updatedAddress.ZipCode;
+            address.Complement = updatedAddress.Complement;
+
+            await _context.SaveChangesAsync();
+            return Ok(address);
+        }
+
+        // DELETE: api/UserAddress/{id} (Deletar Endereço)
+        [HttpDelete("{id}/address")]
+        [Authorize]
+        public async Task<IActionResult> DeleteAddress(int id)
+        {
+            var address = await _context.UserAddresses.FindAsync(id);
+            if (address == null) return NotFound();
+
+            _context.UserAddresses.Remove(address);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
     }
 }
+ 
