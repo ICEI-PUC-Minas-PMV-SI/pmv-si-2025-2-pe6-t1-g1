@@ -211,7 +211,7 @@ namespace web_api.Controllers
                 _context.UserCarts.RemoveRange(cartItems);
                 await _context.SaveChangesAsync();
 
-                return NoContent(); // Status 204
+                return NoContent(); 
             }
             catch (Exception ex)
             {
