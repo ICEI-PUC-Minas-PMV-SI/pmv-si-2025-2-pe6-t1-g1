@@ -4,6 +4,8 @@ import ItemCard from '../components/ItemCard';
 import CategoryBar from '../components/CategoryBar';
 import ItemModal from '../components/ItemModal';
 import { CartContext } from '../context/CartContext';
+// 1. IMPORTANTE: Importar AsyncStorage para pegar o token
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Items() {
   const [items, setItems] = useState([]);
@@ -14,17 +16,20 @@ export default function Items() {
   const { addItem } = useContext(CartContext);
   const [selectedCategory, setSelectedCategory] = useState('Todos');
 
-  // URL da API - ajuste conforme necessário
-  const API_URL = `http://localhost:7144/api/Items`;
+  // URL da API (Use a mesma que está funcionando no resto do app)
+  const API_URL = `https://rosann-nonbiological-loyce.ngrok-free.dev/api`;
 
   useEffect(() => {
     let mounted = true;
 
-    async function fetchItems() { // Busca itens da API
+    async function fetchItems() { 
       setLoading(true);
       setError(null);
       try {
-        const resp = await fetch(API_URL);
+        // Busca os itens (ENDPOINT PÚBLICO OU PROTEGIDO)
+        // Se precisar de token aqui, adicione o header Authorization
+        const resp = await fetch(`${API_URL}/Items`);
+        
         if (!resp.ok) throw new Error(`${resp.status} ${resp.statusText}`);
         const data = await resp.json();
         if (mounted) setItems(Array.isArray(data) ? data : []);
@@ -39,12 +44,12 @@ export default function Items() {
     return () => (mounted = false);
   }, [API_URL]);
 
-  const categories = useMemo(() => { // Extrai categorias únicas dos itens
+  const categories = useMemo(() => { 
     const s = new Set(items.map(i => (i.category || '').trim()).filter(Boolean));
     return ['Todos', ...Array.from(s)];
   }, [items]);
 
-  const filteredItems = useMemo(() => { // Filtra itens pela categoria selecionada
+  const filteredItems = useMemo(() => { 
     if (!selectedCategory || selectedCategory === 'Todos') return items;
     return items.filter(i => (i.category || '').trim() === selectedCategory);
   }, [items, selectedCategory]);
@@ -53,9 +58,44 @@ export default function Items() {
     return <ItemCard item={item} onPress={(it) => { setSelectedItem(it); setModalVisible(true); }} />;
   }
 
-  // addToCart handled via CartContext in ItemModal onAdd
+  // --- 2. NOVA FUNÇÃO: SALVAR NO BANCO DE DADOS ---
+  const addItemToBackend = async (item, quantity = 1) => {
+    try {
+        const token = await AsyncStorage.getItem('token');
+        
+        if (!token) {
+            // Se não tiver token, o usuário não está logado.
+            // Opcional: Alertar que precisa logar ou salvar apenas localmente.
+            console.log("Usuário não logado, item salvo apenas localmente.");
+            return; 
+        }
 
-  return ( // Tela principal
+        // Chama o endpoint que criamos no CartController
+        const response = await fetch(`${API_URL}/cart/item`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                itemId: item.id || item.Id, // Garante que pega o ID certo
+                quantity: quantity
+            })
+        });
+
+        if (!response.ok) {
+            console.log("Erro ao salvar no banco:", response.status);
+        } else {
+            console.log("Item salvo no banco com sucesso!");
+        }
+
+    } catch (error) {
+        console.error("Erro de conexão ao adicionar item:", error);
+    }
+  };
+  // ----------------------------------------------------
+
+  return ( 
     <View style={styles.container}>
       <Text style={styles.title}>Cardápio</Text>
       <Text style={styles.subtitle}>Lista de itens disponíveis</Text>
@@ -66,9 +106,6 @@ export default function Items() {
         <View style={{ marginTop: 20 }}>
           <Text style={{ color: '#c00' }}>Falha ao carregar itens:</Text>
           <Text style={{ color: '#666' }}>{error}</Text>
-          <Text style={{ color: '#666', marginTop: 8 }}>
-            Verifique se a API está rodando e acessível pelo emulador/dispositivo.
-          </Text>
         </View>
       ) : (
         <>
@@ -89,7 +126,20 @@ export default function Items() {
         visible={modalVisible}
         item={selectedItem}
         onClose={() => { setModalVisible(false); setSelectedItem(null); }}
-        onAdd={(it) => { addItem(it); const title = it.name || it.nameItem || it.title || 'Item'; Alert.alert('Carrinho', `${title} adicionado ao carrinho.`); setModalVisible(false); setSelectedItem(null); }}
+        
+        // --- 3. MUDANÇA AQUI NO onAdd ---
+        onAdd={async (it, qty = 1) => { // Aceita quantidade se o modal passar
+            // 1. Atualiza Visual (Contexto)
+            addItem(it); 
+            
+            // 2. Atualiza Banco (API) - O SEGREDO DO SUCESSO
+            await addItemToBackend(it, qty); 
+
+            const title = it.name || it.nameItem || it.title || 'Item';
+            Alert.alert('Carrinho', `${title} adicionado ao carrinho.`);
+            setModalVisible(false);
+            setSelectedItem(null);
+        }}
       />
     </View>
   );
@@ -113,118 +163,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#666',
   },
-  card: {
-    flexDirection: 'row',
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    padding: 12,
-    marginBottom: 12,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 3,
-    alignItems: 'center',
-  },
-  cardImage: {
-    width: 72,
-    height: 72,
-    borderRadius: 8,
-    marginRight: 12,
-    backgroundColor: '#eee',
-  },
-  cardBody: {
-    flex: 1,
-  },
-  itemTitle: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#222',
-  },
-  itemDesc: {
-    fontSize: 14,
-    color: '#666',
-    marginTop: 4,
-  },
-  itemPrice: {
-    marginTop: 8,
-    fontSize: 15,
-    fontWeight: '700',
-    color: '#EB3738',
-  },
-  modalOverlay: {
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-  },
-  modalContent: {
-    width: '100%',
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    padding: 16,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    elevation: 5,
-  },
-  modalTitle: {
-    fontSize: 18,
-    fontWeight: '700',
-    color: '#222',
-    marginBottom: 8,
-  },
-  modalDesc: {
-    fontSize: 14,
-    color: '#555',
-  },
-  modalPrice: {
-    marginTop: 12,
-    fontSize: 16,
-    fontWeight: '700',
-    color: '#EB3738',
-  },
-  modalCloseButton: {
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    marginRight: 8,
-  },
-  modalActionButton: {
-    backgroundColor: '#EB3738',
-    paddingVertical: 10,
-    paddingHorizontal: 14,
-    borderRadius: 8,
-  },
-  modalActionText: {
-    color: '#fff',
-    fontWeight: '600',
-  },
-  categoriesContainer: {
-    paddingVertical: 6,
-    paddingHorizontal: 4,
-    alignItems: 'center',
-  },
-  categoryPill: {
-    backgroundColor: '#fff',
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    borderRadius: 20,
-    marginRight: 8,
-    borderWidth: 1,
-    borderColor: '#eee',
-  },
-  categoryPillActive: {
-    backgroundColor: '#EB3738',
-    borderColor: '#EB3738',
-  },
-  categoryText: {
-    color: '#444',
-    fontSize: 14,
-  },
-  categoryTextActive: {
-    color: '#fff',
-    fontWeight: '700',
-  },
+  // ... (o resto dos seus estilos continua igual)
 });

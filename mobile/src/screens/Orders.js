@@ -2,17 +2,21 @@ import React, { useState, useCallback } from 'react';
 import { View, Text, StyleSheet, FlatList, ActivityIndicator, Alert, RefreshControl } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import Button from '../components/Button';
+// 1. IMPORTAÇÃO DO ASYNC STORAGE
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Orders({ navigation }) {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
 
-  const API_URL = 'http://192.168.15.14:7144/api/orders';
+  const API_URL = 'https://rosann-nonbiological-loyce.ngrok-free.dev/api/orders';
 
   const fetchOrders = async () => {
+    // 2. RECUPERA O TOKEN DO ARMAZENAMENTO
+    const token = await AsyncStorage.getItem('token');
 
-    if (!global.userToken) {
+    if (!token) {
       setLoading(false);
       setRefreshing(false);
       Alert.alert('Aviso', 'Faça login para ver seus pedidos.', [
@@ -25,7 +29,7 @@ export default function Orders({ navigation }) {
       const response = await fetch(API_URL, {
         method: 'GET',
         headers: {
-          'Authorization': `Bearer ${global.userToken}`
+          'Authorization': `Bearer ${token}` // Usa a variável local 'token'
         }
       });
 
@@ -59,12 +63,14 @@ export default function Orders({ navigation }) {
           text: 'Sim',
           onPress: async () => {
             try {
+              // 3. RECUPERA O TOKEN TAMBÉM PARA A AÇÃO DE CANCELAR
+              const token = await AsyncStorage.getItem('token');
 
               const response = await fetch(`${API_URL}/${orderId}/status`, {
                 method: 'PUT',
                 headers: {
                   'Content-Type': 'application/json',
-                  'Authorization': `Bearer ${global.userToken}`
+                  'Authorization': `Bearer ${token}` // Usa a variável local 'token'
                 },
                 body: JSON.stringify({ status: 'CANCELLED' })
               });
@@ -72,14 +78,11 @@ export default function Orders({ navigation }) {
               if (response.ok) {
                 Alert.alert('Sucesso', 'Pedido cancelado.');
                 fetchOrders(); 
-
               } else {
-
                 if (response.status === 403) {
-
                    Alert.alert('Erro', 'Não foi possível cancelar. Entre em contato com a pizzaria.');
                 } else {
-                   const errorData = await response.json();
+                   const errorData = await response.json().catch(() => ({}));
                    Alert.alert('Erro', errorData.message || 'Erro ao cancelar.');
                 }
               }
@@ -118,7 +121,6 @@ export default function Orders({ navigation }) {
           <Text style={styles.totalText}>Total: R$ {item.totalAmount?.toFixed(2)}</Text>
         </View>
 
-        {}
         {isPending && (
           <View style={styles.actions}>
             <Button 
@@ -126,7 +128,6 @@ export default function Orders({ navigation }) {
               size="small" 
               onPress={() => handleCancelOrder(item.id)}
               style={{ backgroundColor: '#666', marginTop: 0 }} 
-
             />
           </View>
         )}
@@ -182,17 +183,11 @@ export default function Orders({ navigation }) {
 function getStatusColor(status) {
   switch (status?.toUpperCase()) {
     case 'PENDING': return '#FFA500'; 
-
     case 'CONFIRMED': return '#1E90FF'; 
-
     case 'PREPARING': return '#8A2BE2'; 
-
     case 'READY': return '#32CD32'; 
-
     case 'DELIVERED': return '#228B22'; 
-
     case 'CANCELLED': return '#FF0000'; 
-
     default: return '#666';
   }
 }
